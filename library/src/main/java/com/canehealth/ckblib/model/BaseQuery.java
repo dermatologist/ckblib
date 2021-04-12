@@ -20,4 +20,9 @@ public class BaseQuery {
         }
         return query.replace(" ", "+");
     }
+
+    public String getFetchQuery(String ids) {
+        String query = "?retmode=xml&rettype=abstract&db=" + db + "&id=" + ids;
+        return query.replace(" ", "+");
+    }
 }

@@ -12,4 +12,8 @@ public class Esearchresult {
     public List<Translationset> translationset;
     public List<Object> translationstack;
     public String querytranslation;
+
+    public String ids() {
+        return String.join(",", idlist);
+    }
 }

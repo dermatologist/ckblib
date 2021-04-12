@@ -20,32 +20,21 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
 @SpringBootTest
-public class CkbEsearchTest {
+public class CkbEfetchTest {
 
     @Autowired
     private BaseQuery baseQuery;
 
     @Autowired
-    private CkbEsearch ckbEsearch;
-
-    List<EsearchResultRoot> results = new ArrayList<EsearchResultRoot>();
-
-    @BeforeAll
-    public static void beforeAll() {
-
-    }
+    private CkbEfetch ckbEfetch;
 
     @Test
-    public void CkbEsearchTestGet() throws InterruptedException {
-        ckbEsearch.setBaseQuery(baseQuery);
-        ckbEsearch.get().subscribe(results::add);
+    public void CkbEfetchTestGet() throws InterruptedException {
+        ckbEfetch.setBaseQuery(baseQuery);
         TimeUnit.SECONDS.sleep(3);
-        EsearchResultRoot esearchResultRoot = results.get(0);
-        System.out.print(esearchResultRoot.esearchresult.count);
-        assertNotEquals(esearchResultRoot.esearchresult.count, "0");
-        System.out.print(esearchResultRoot.esearchresult.ids());
-        assertNotEquals(esearchResultRoot.esearchresult.ids(), "0");
-        assertNotNull(results);
+        ckbEfetch.get();
+        TimeUnit.SECONDS.sleep(5);
+        System.out.print(ckbEfetch.getResults().get(0));
     }
 
     @SpringBootApplication
