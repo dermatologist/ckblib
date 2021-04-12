@@ -1,6 +1,5 @@
 package com.canehealth.ckblib.service;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
@@ -9,7 +8,6 @@ import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import com.canehealth.ckblib.model.BaseQuery;
-import com.canehealth.ckblib.model.EsearchResult;
 import com.canehealth.ckblib.model.EsearchResultRoot;
 
 import org.junit.jupiter.api.BeforeAll;
