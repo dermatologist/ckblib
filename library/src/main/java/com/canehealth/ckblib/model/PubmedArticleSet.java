@@ -2,7 +2,11 @@ package com.canehealth.ckblib.model;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlElementWrapper;
+
 public class PubmedArticleSet {
+    @JacksonXmlElementWrapper(useWrapping = false)
     List<PubmedArticle> PubmedArticle;
 }
 
@@ -30,16 +34,21 @@ class PubDate {
 }
 
 class JournalIssue {
+    @JacksonXmlElementWrapper(useWrapping = false)
     int Volume;
+    @JacksonXmlElementWrapper(useWrapping = false)
     int Issue;
+    @JacksonXmlElementWrapper(useWrapping = false)
     PubDate PubDate;
     String CitedMedium;
+    @JacksonXmlElementWrapper(useWrapping = false)
     String text;
 }
 
 class Journal {
     ISSN ISSN;
     JournalIssue JournalIssue;
+    @JacksonXmlElementWrapper(useWrapping = false)
     String Title;
     String ISOAbbreviation;
 }
@@ -55,7 +64,8 @@ class ELocationID {
 }
 
 class Abstract {
-    List<AbstractText> AbstractText;
+    @JacksonXmlElementWrapper(useWrapping = false)
+    List<String> AbstractText;
     String CopyrightInformation;
 }
 
@@ -97,14 +107,20 @@ class ArticleDate {
 }
 
 class Article {
+    @JacksonXmlElementWrapper(useWrapping = false)
     Journal Journal;
+    @JacksonXmlElementWrapper(useWrapping = false)
     String ArticleTitle;
     Pagination Pagination;
     ELocationID ELocationID;
+    @JacksonXmlElementWrapper(useWrapping = false)
     Abstract Abstract;
+    @JacksonXmlElementWrapper(useWrapping = false)
     AuthorList AuthorList;
     String Language;
+    @JacksonXmlElementWrapper(useWrapping = false)
     PublicationTypeList PublicationTypeList;
+    @JacksonXmlElementWrapper(useWrapping = false)
     ArticleDate ArticleDate;
     String PubModel;
     String text;
@@ -123,16 +139,22 @@ class Keyword {
 }
 
 class KeywordList {
+    @JacksonXmlElementWrapper(useWrapping = false)
     List<Keyword> Keyword;
     String Owner;
     String text;
 }
 
 class MedlineCitation {
+    @JacksonXmlElementWrapper(useWrapping = false)
     PMID PMID;
+    @JacksonXmlElementWrapper(useWrapping = false)
     DateRevised DateRevised;
+    @JacksonXmlElementWrapper(useWrapping = false)
     Article Article;
+    @JacksonXmlElementWrapper(useWrapping = false)
     MedlineJournalInfo MedlineJournalInfo;
+    @JacksonXmlElementWrapper(useWrapping = false)
     KeywordList KeywordList;
     String CoiStatement;
     String Status;
@@ -140,6 +162,7 @@ class MedlineCitation {
     String text;
     DateCompleted DateCompleted;
     String CitationSubset;
+    @JacksonXmlElementWrapper(useWrapping = false)
     MeshHeadingList MeshHeadingList;
     String IndexingMethod;
     int NumberOfReferences;
@@ -161,16 +184,21 @@ class History {
 }
 
 class ArticleId {
+    @JacksonXmlElementWrapper(useWrapping = false)
     String IdType;
+    @JacksonXmlElementWrapper(useWrapping = false)
     int text;
 }
 
 class ArticleIdList {
+    @JacksonXmlElementWrapper(useWrapping = false)
     List<ArticleId> ArticleId;
 }
 
 class Reference {
+    @JacksonXmlElementWrapper(useWrapping = false)
     String Citation;
+    @JacksonXmlElementWrapper(useWrapping = false)
     ArticleIdList ArticleIdList;
 }
 
@@ -181,12 +209,15 @@ class ReferenceList {
 class PubmedData {
     History History;
     String PublicationStatus;
+    @JacksonXmlElementWrapper(useWrapping = false)
     ArticleIdList ArticleIdList;
     ReferenceList ReferenceList;
 }
 
 class PubmedArticle {
+    @JacksonXmlElementWrapper(useWrapping = false)
     MedlineCitation MedlineCitation;
+    @JacksonXmlElementWrapper(useWrapping = false)
     PubmedData PubmedData;
 }
 
@@ -211,11 +242,12 @@ class MeshHeadingList {
     List<MeshHeading> MeshHeading;
 }
 
-class AbstractText {
-    String Label;
-    String NlmCategory;
-    String text;
-}
+// class AbstractText {
+// String Label;
+// String NlmCategory;
+// @JacksonXmlElementWrapper(useWrapping = false)
+// String text;
+// }
 
 class Identifier {
     String Source;
