@@ -28,8 +28,7 @@ build/
 *.iws
 *.idea
 
-# VS Code #
-.vscode/
+
 
 # Spring Bootstrap artifacts
 
