@@ -1,18 +1,10 @@
 package com.canehealth.ckblib.service;
 
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-
-import java.util.ArrayList;
-import java.util.List;
 import java.util.concurrent.TimeUnit;
-
 import com.canehealth.ckblib.model.BaseQuery;
 import com.canehealth.ckblib.model.EsearchResultRoot;
-
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -27,7 +19,6 @@ public class CkbEsearchTest {
 
     @Autowired
     private CkbEsearch ckbEsearch;
-
 
     @Test
     public void CkbEsearchTestGet() throws InterruptedException {
