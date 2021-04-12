@@ -2,7 +2,6 @@ package com.canehealth.ckblib.model;
 
 import java.util.List;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlElementWrapper;
 
 public class PubmedArticleSet {
