@@ -28,8 +28,7 @@ build/
 *.iws
 *.idea
 
-# VS Code #
-.vscode/
+
 
 # Spring Bootstrap artifacts
 
@@ -39,3 +38,4 @@ mem*.db
 
 README.html
 application/.factorypath
+library/.factorypath

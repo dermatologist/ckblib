@@ -32,7 +32,7 @@ public class DemoApplication implements CommandLineRunner {
 		String _destination = "";
 		try {
 			if (args[0].toLowerCase().equals("help")) {
-				System.out.println(CkblibConstants.HELPSTRING);
+				System.out.println(CkblibConstants.HELP_STRING);
 			} else {
 				for (int i = 0; i < args.length; ++i) {
 					LOG.debug("args[{}]: {}", i, args[i]);
@@ -46,17 +46,17 @@ public class DemoApplication implements CommandLineRunner {
 				try {
 
 				} catch (Exception e) {
-					System.out.println(CkblibConstants.HELPSTRING);
+					System.out.println(CkblibConstants.HELP_STRING);
 				}
 			} else if (_function.equals("tofhirserver")) {
 				System.out.println("To FHIR SERVER not implemented yet");
 			} else if (_function.equals("toomop")) {
 
 			} else if (_function.toLowerCase().equals("help")) {
-				System.out.println(CkblibConstants.HELPSTRING);
+				System.out.println(CkblibConstants.HELP_STRING);
 			}
 		} catch (Exception e) {
-			System.out.println(CkblibConstants.HELPSTRING);
+			System.out.println(CkblibConstants.HELP_STRING);
 		}
 	}
 
