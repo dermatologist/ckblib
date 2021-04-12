@@ -2,7 +2,7 @@ package com.canehealth.ckblib.model;
 
 import java.util.List;
 
-public class EsearchResult {
+public class Esearchresult {
     public String count;
     public String retmax;
     public String retstart;

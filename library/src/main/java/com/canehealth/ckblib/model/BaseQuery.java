@@ -14,7 +14,7 @@ public class BaseQuery {
     private int reldate = 0;
 
     public String getQuery() {
-        String query = "?db=" + db + "&term=" + term + "&retmax=" + Integer.toString(retmax);
+        String query = "?retmode=json&db=" + db + "&term=" + term + "&retmax=" + Integer.toString(retmax);
         if (reldate > 0) {
             query += "&reldate=" + Integer.toString(reldate);
         }

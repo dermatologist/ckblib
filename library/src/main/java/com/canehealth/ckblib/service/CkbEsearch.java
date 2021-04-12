@@ -4,23 +4,26 @@ import com.canehealth.ckblib.model.BaseQuery;
 import com.canehealth.ckblib.model.EsearchResultRoot;
 import com.canehealth.ckblib.util.CkblibConstants;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 
+import lombok.Setter;
 import reactor.core.publisher.Mono;
 
 @Service
 @EnableConfigurationProperties(ServiceProperties.class)
 public class CkbEsearch {
 
-    private final BaseQuery baseQuery;
+    @Autowired
+    @Setter
+    private BaseQuery baseQuery;
 
-    WebClient webClient;
+    private WebClient webClient;
 
 
-    public CkbEsearch(BaseQuery baseQuery) {
-        this.baseQuery = baseQuery;
+    public CkbEsearch() {
         this.webClient = WebClient.create(CkblibConstants.ESEARCH_URL);
     }
 
