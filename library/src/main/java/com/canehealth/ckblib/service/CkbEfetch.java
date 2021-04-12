@@ -51,7 +51,7 @@ public class CkbEfetch {
         ckbEsearch.get().subscribe(esearch_results::add);
     }
 
-    public void get() {
+    public Mono<String> get() {
         String query = baseQuery.getFetchQuery(esearch_results.get(0).esearchresult.ids());
         Mono<String> pubmedArticleSet = webClient.get().uri(query).retrieve()
                 /*
@@ -60,7 +60,7 @@ public class CkbEfetch {
                  */
                 .bodyToMono(String.class);
         pubmedArticleSet.subscribe(results::add);
-
+        return pubmedArticleSet;
     }
 
     public PubmedArticleSet getPubmedArticleSet() {

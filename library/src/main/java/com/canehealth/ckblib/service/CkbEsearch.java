@@ -1,5 +1,8 @@
 package com.canehealth.ckblib.service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.canehealth.ckblib.model.BaseQuery;
 import com.canehealth.ckblib.model.EsearchResultRoot;
 import com.canehealth.ckblib.util.CkblibConstants;
@@ -9,6 +12,7 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 
+import lombok.Getter;
 import lombok.Setter;
 import reactor.core.publisher.Mono;
 
@@ -22,17 +26,22 @@ public class CkbEsearch {
 
     private WebClient webClient;
 
+    @Getter
+    List<EsearchResultRoot> results = new ArrayList<EsearchResultRoot>();
 
     public CkbEsearch() {
         this.webClient = WebClient.create(CkblibConstants.ESEARCH_URL);
     }
 
     public Mono<EsearchResultRoot> get() {
-        return webClient.get().uri(baseQuery.getQuery()).retrieve()
+        Mono<EsearchResultRoot> esearchResultRoot = webClient.get().uri(baseQuery.getQuery()).retrieve()
                 /*
                  * .onStatus(httpStatus -> HttpStatus.NOT_FOUND.equals(httpStatus),
                  * clientResponse -> Mono.empty())
                  */
                 .bodyToMono(EsearchResultRoot.class);
+
+        esearchResultRoot.subscribe(results::add);
+        return esearchResultRoot;
     }
 }
