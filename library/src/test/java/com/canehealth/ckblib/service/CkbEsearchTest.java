@@ -43,6 +43,8 @@ public class CkbEsearchTest {
         EsearchResultRoot esearchResultRoot = results.get(0);
         System.out.print(esearchResultRoot.esearchresult.count);
         assertNotEquals(esearchResultRoot.esearchresult.count, "0");
+        System.out.print(esearchResultRoot.esearchresult.ids());
+        assertNotEquals(esearchResultRoot.esearchresult.ids(), "0");
         assertNotNull(results);
     }
 
