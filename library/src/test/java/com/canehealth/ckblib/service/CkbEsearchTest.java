@@ -28,24 +28,17 @@ public class CkbEsearchTest {
     @Autowired
     private CkbEsearch ckbEsearch;
 
-    List<EsearchResultRoot> results = new ArrayList<EsearchResultRoot>();
-
-    @BeforeAll
-    public static void beforeAll() {
-
-    }
 
     @Test
     public void CkbEsearchTestGet() throws InterruptedException {
         ckbEsearch.setBaseQuery(baseQuery);
-        ckbEsearch.get().subscribe(results::add);
+        ckbEsearch.get();
         TimeUnit.SECONDS.sleep(3);
-        EsearchResultRoot esearchResultRoot = results.get(0);
+        EsearchResultRoot esearchResultRoot = ckbEsearch.getResults().get(0);
         System.out.print(esearchResultRoot.esearchresult.count);
         assertNotEquals(esearchResultRoot.esearchresult.count, "0");
         System.out.print(esearchResultRoot.esearchresult.ids());
         assertNotEquals(esearchResultRoot.esearchresult.ids(), "0");
-        assertNotNull(results);
     }
 
     @SpringBootApplication
