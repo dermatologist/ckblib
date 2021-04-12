@@ -1,12 +1,12 @@
-package com.canehealth.ckblib.service;
+package com.canehealth.ckblib.library.service;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import com.canehealth.ckblib.model.BaseQuery;
-import com.canehealth.ckblib.model.EsearchResultRoot;
-import com.canehealth.ckblib.model.PubmedArticleSet;
-import com.canehealth.ckblib.util.CkblibConstants;
+import com.canehealth.ckblib.library.model.BaseQuery;
+import com.canehealth.ckblib.library.model.EsearchResultRoot;
+import com.canehealth.ckblib.library.model.PubmedArticleSet;
+import com.canehealth.ckblib.library.util.CkblibConstants;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.JsonMappingException;
@@ -18,7 +18,6 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
-
 
 import lombok.Getter;
 import reactor.core.publisher.Mono;

@@ -1,4 +1,4 @@
-package com.canehealth.ckblib.util;
+package com.canehealth.ckblib.library.util;
 
 /**
  * CkblibConstants
