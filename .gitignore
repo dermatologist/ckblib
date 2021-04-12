@@ -39,3 +39,4 @@ mem*.db
 
 README.html
 application/.factorypath
+library/.factorypath
