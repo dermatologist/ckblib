@@ -1,0 +1,1 @@
+ mvn install -pl library && mvn spring-boot:run -pl application

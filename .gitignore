@@ -38,3 +38,4 @@ dependency-reduced-pom.xml
 mem*.db
 
 README.html
+application/.factorypath
