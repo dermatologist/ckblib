@@ -36,6 +36,8 @@ public class CkbEfetch {
 
     List<EsearchResultRoot> esearch_results = new ArrayList<EsearchResultRoot>();
 
+    PubmedArticleSet pubmedArticleSet = new PubmedArticleSet();
+
     @Getter
     List<String> results = new ArrayList<String>();
 
@@ -69,9 +71,8 @@ public class CkbEfetch {
         XmlMapper xmlMapper = new XmlMapper(module);
         xmlMapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
         xmlMapper.enable(DeserializationFeature.ACCEPT_EMPTY_STRING_AS_NULL_OBJECT);
-        PubmedArticleSet pubmedArticleSet = new PubmedArticleSet();
         try {
-            pubmedArticleSet = xmlMapper.readValue(results.get(0).replaceAll("<AbstractText ", "<AbstractText>"),
+            this.pubmedArticleSet = xmlMapper.readValue(results.get(0).replaceAll("<AbstractText ", "<AbstractText>"),
                     PubmedArticleSet.class);
         } catch (JsonMappingException e) {
             // TODO Auto-generated catch block
@@ -80,6 +81,6 @@ public class CkbEfetch {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
-        return pubmedArticleSet;
+        return this.pubmedArticleSet;
     }
 }
