@@ -1,13 +1,8 @@
-package com.canehealth.ckblib.service;
-
-
+package com.canehealth.ckblib.library.service;
 
 import java.util.concurrent.TimeUnit;
-
-import com.canehealth.ckblib.model.BaseQuery;
-
+import com.canehealth.ckblib.library.model.BaseQuery;
 import org.junit.jupiter.api.Test;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -29,7 +24,8 @@ public class CkbEfetchTest {
         TimeUnit.SECONDS.sleep(3);
         ckbEfetch.get();
         TimeUnit.SECONDS.sleep(5);
-        System.out.print(ckbEfetch.getPubmedArticleSet().toString());
+        ckbEfetch.getPubmedArticleSet();
+        System.out.print(ckbEfetch.getAbstractsAsString(10));
     }
 
     @SpringBootApplication

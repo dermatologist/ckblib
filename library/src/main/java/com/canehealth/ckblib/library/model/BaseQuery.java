@@ -1,4 +1,4 @@
-package com.canehealth.ckblib.model;
+package com.canehealth.ckblib.library.model;
 
 import org.springframework.stereotype.Component;
 

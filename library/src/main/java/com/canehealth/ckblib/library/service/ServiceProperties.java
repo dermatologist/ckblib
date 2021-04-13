@@ -1,4 +1,4 @@
-package com.canehealth.ckblib.service;
+package com.canehealth.ckblib.library.service;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 

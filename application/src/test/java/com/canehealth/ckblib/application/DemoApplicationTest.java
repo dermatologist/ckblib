@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import com.canehealth.ckblib.service.MyService;
+import com.canehealth.ckblib.library.service.MyService;
 
 @SpringBootTest
 public class DemoApplicationTest {

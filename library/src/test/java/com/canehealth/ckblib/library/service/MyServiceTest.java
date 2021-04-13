@@ -1,4 +1,4 @@
-package com.canehealth.ckblib.service;
+package com.canehealth.ckblib.library.service;
 
 import static org.assertj.core.api.Assertions.assertThat;
 

@@ -1,11 +1,11 @@
-package com.canehealth.ckblib.service;
+package com.canehealth.ckblib.library.service;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import com.canehealth.ckblib.model.BaseQuery;
-import com.canehealth.ckblib.model.EsearchResultRoot;
-import com.canehealth.ckblib.util.CkblibConstants;
+import com.canehealth.ckblib.library.model.BaseQuery;
+import com.canehealth.ckblib.library.model.EsearchResultRoot;
+import com.canehealth.ckblib.library.util.CkblibConstants;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;

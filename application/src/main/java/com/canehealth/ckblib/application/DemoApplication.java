@@ -1,7 +1,7 @@
 package com.canehealth.ckblib.application;
 
-import com.canehealth.ckblib.service.MyService;
-import com.canehealth.ckblib.util.CkblibConstants;
+import com.canehealth.ckblib.library.service.MyService;
+import com.canehealth.ckblib.library.util.CkblibConstants;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.CommandLineRunner;

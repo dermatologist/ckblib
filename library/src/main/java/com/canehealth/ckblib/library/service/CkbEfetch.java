@@ -1,12 +1,16 @@
-package com.canehealth.ckblib.service;
+package com.canehealth.ckblib.library.service;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import com.canehealth.ckblib.model.BaseQuery;
-import com.canehealth.ckblib.model.EsearchResultRoot;
-import com.canehealth.ckblib.model.PubmedArticleSet;
-import com.canehealth.ckblib.util.CkblibConstants;
+import com.canehealth.ckblib.library.model.Abstract;
+import com.canehealth.ckblib.library.model.Article;
+import com.canehealth.ckblib.library.model.BaseQuery;
+import com.canehealth.ckblib.library.model.EsearchResultRoot;
+import com.canehealth.ckblib.library.model.MedlineCitation;
+import com.canehealth.ckblib.library.model.PubmedArticle;
+import com.canehealth.ckblib.library.model.PubmedArticleSet;
+import com.canehealth.ckblib.library.util.CkblibConstants;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.JsonMappingException;
@@ -18,7 +22,6 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
-
 
 import lombok.Getter;
 import reactor.core.publisher.Mono;
@@ -36,6 +39,8 @@ public class CkbEfetch {
     private WebClient webClient;
 
     List<EsearchResultRoot> esearch_results = new ArrayList<EsearchResultRoot>();
+
+    PubmedArticleSet pubmedArticleSet = new PubmedArticleSet();
 
     @Getter
     List<String> results = new ArrayList<String>();
@@ -70,9 +75,8 @@ public class CkbEfetch {
         XmlMapper xmlMapper = new XmlMapper(module);
         xmlMapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
         xmlMapper.enable(DeserializationFeature.ACCEPT_EMPTY_STRING_AS_NULL_OBJECT);
-        PubmedArticleSet pubmedArticleSet = new PubmedArticleSet();
         try {
-            pubmedArticleSet = xmlMapper.readValue(results.get(0).replaceAll("<AbstractText ", "<AbstractText>"),
+            this.pubmedArticleSet = xmlMapper.readValue(results.get(0).replaceAll("<AbstractText ", "<AbstractText>"),
                     PubmedArticleSet.class);
         } catch (JsonMappingException e) {
             // TODO Auto-generated catch block
@@ -81,6 +85,31 @@ public class CkbEfetch {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
-        return pubmedArticleSet;
+        return this.pubmedArticleSet;
+    }
+
+    public String getAbstractsAsString(int articleNum) {
+        String abstractString = "";
+        int articleCount = 0;
+        if (!this.pubmedArticleSet.getPubmedArticle().isEmpty()) {
+            List<PubmedArticle> pubmedArticles = this.pubmedArticleSet.getPubmedArticle();
+            for (PubmedArticle pubmedArticle : pubmedArticles) {
+                System.out.println(pubmedArticle.getMedlineCitation().getArticle());
+                try {
+                    List<String> abstracts = pubmedArticle.getMedlineCitation().getArticle().getAbstract()
+                            .getAbstractText();
+                    for (String abstractText : abstracts) {
+                        abstractString += abstractText;
+                    }
+                } catch (Exception e) {
+                    //TODO: handle exception
+                }
+                articleCount++;
+                if (articleCount > articleNum)
+                    break;
+            }
+            return abstractString;
+        }
+        return "";
     }
 }
