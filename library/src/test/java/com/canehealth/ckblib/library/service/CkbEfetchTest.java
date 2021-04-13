@@ -24,7 +24,8 @@ public class CkbEfetchTest {
         TimeUnit.SECONDS.sleep(3);
         ckbEfetch.get();
         TimeUnit.SECONDS.sleep(5);
-        System.out.print(ckbEfetch.getPubmedArticleSet().toString());
+        ckbEfetch.getPubmedArticleSet();
+        System.out.print(ckbEfetch.getAbstractsAsString(10));
     }
 
     @SpringBootApplication

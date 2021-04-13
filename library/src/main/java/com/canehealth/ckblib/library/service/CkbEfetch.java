@@ -3,8 +3,12 @@ package com.canehealth.ckblib.library.service;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.canehealth.ckblib.library.model.Abstract;
+import com.canehealth.ckblib.library.model.Article;
 import com.canehealth.ckblib.library.model.BaseQuery;
 import com.canehealth.ckblib.library.model.EsearchResultRoot;
+import com.canehealth.ckblib.library.model.MedlineCitation;
+import com.canehealth.ckblib.library.model.PubmedArticle;
 import com.canehealth.ckblib.library.model.PubmedArticleSet;
 import com.canehealth.ckblib.library.util.CkblibConstants;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -82,5 +86,30 @@ public class CkbEfetch {
             e.printStackTrace();
         }
         return this.pubmedArticleSet;
+    }
+
+    public String getAbstractsAsString(int articleNum) {
+        String abstractString = "";
+        int articleCount = 0;
+        if (!this.pubmedArticleSet.getPubmedArticle().isEmpty()) {
+            List<PubmedArticle> pubmedArticles = this.pubmedArticleSet.getPubmedArticle();
+            for (PubmedArticle pubmedArticle : pubmedArticles) {
+                System.out.println(pubmedArticle.getMedlineCitation().getArticle());
+                try {
+                    List<String> abstracts = pubmedArticle.getMedlineCitation().getArticle().getAbstract()
+                            .getAbstractText();
+                    for (String abstractText : abstracts) {
+                        abstractString += abstractText;
+                    }
+                } catch (Exception e) {
+                    //TODO: handle exception
+                }
+                articleCount++;
+                if (articleCount > articleNum)
+                    break;
+            }
+            return abstractString;
+        }
+        return "";
     }
 }
