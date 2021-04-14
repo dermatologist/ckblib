@@ -17,8 +17,8 @@ jobs:
       with:
         java-version: 13
     - name: Build with Maven
-      run: mvn -B package --file pom-deploy.xml
+      run: mvn -B package -Dmaven.test.skip=true --file pom-deploy.xml
     - name: Deploy to Github Package Registry
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      run: mvn -B -e -Dmaven.wagon.http.pool=false -DaltDeploymentRepository=github::default::https://maven.pkg.github.com/dermatologist/ckblib --settings settings.xml clean deploy --file pom-deploy.xml
+      run: mvn -B -e -Dmaven.wagon.http.pool=false -Dmaven.test.skip=true -DaltDeploymentRepository=github::default::https://maven.pkg.github.com/dermatologist/ckblib --settings settings.xml clean deploy --file pom-deploy.xml

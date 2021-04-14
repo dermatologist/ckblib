@@ -3,11 +3,8 @@ package com.canehealth.ckblib.library.service;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.canehealth.ckblib.library.model.Abstract;
-import com.canehealth.ckblib.library.model.Article;
 import com.canehealth.ckblib.library.model.BaseQuery;
 import com.canehealth.ckblib.library.model.EsearchResultRoot;
-import com.canehealth.ckblib.library.model.MedlineCitation;
 import com.canehealth.ckblib.library.model.PubmedArticle;
 import com.canehealth.ckblib.library.model.PubmedArticleSet;
 import com.canehealth.ckblib.library.util.CkblibConstants;

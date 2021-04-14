@@ -3,9 +3,9 @@
     xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.canehealth</groupId>
-    <artifactId>ckblib</artifactId>
-    <version>0.1.0</version>
+    <groupId>com.canehealth.ckblib</groupId>
+    <artifactId>cklib-core</artifactId>
+    <version>0.2.0</version>
     <packaging>pom</packaging>
 
     <modules>
@@ -13,5 +13,36 @@
         <module>qtakes</module>
         <module>application</module>
     </modules>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.mock-server</groupId>
+                <artifactId>mockserver-maven-plugin</artifactId>
+                <version>5.11.2</version>
+                <configuration>
+                    <serverPort>18093</serverPort>
+                    <logLevel>DEBUG</logLevel>
+                    <initializationClass>org.mockserver.maven.ExampleInitializationClass</initializationClass>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>process-test-classes</id>
+                        <phase>process-test-classes</phase>
+                        <goals>
+                            <goal>start</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>verify</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>stop</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
 
 </project>
