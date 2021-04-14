@@ -1,7 +1,6 @@
 package com.canehealth.ckblib.library.service;
 
 import java.util.concurrent.TimeUnit;
-import com.canehealth.ckblib.qtakes.model.QtakesRoot;
 import com.canehealth.ckblib.qtakes.service.QtakesService;
 
 import org.junit.jupiter.api.Test;
@@ -23,8 +22,7 @@ public class QtakesServiceTest {
         qtakesService.post(
                 "Lichen planus presented with pruritus and erythema on the face treated with oral paracetamol and blepharoplasty in the morning");
         TimeUnit.SECONDS.sleep(3);
-        String qtakesRoot = qtakesService.getResults().get(0);
-        System.out.print(qtakesRoot);
+        System.out.print(qtakesService.getQtakesResults().toString());
     }
 
     @SpringBootApplication

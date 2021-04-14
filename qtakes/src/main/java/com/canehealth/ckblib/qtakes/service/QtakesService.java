@@ -5,10 +5,9 @@ import java.util.List;
 
 import com.canehealth.ckblib.library.service.ServiceProperties;
 import com.canehealth.ckblib.qtakes.model.QtakesRoot;
-
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 
@@ -43,6 +42,16 @@ public class QtakesService {
 
         qtakesRoot.subscribe(results::add);
         return qtakesRoot;
+    }
+
+    public QtakesRoot getQtakesResults() {
+        try {
+            return new ObjectMapper().readValue(results.get(0), QtakesRoot.class);
+        } catch (JsonProcessingException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        return new QtakesRoot();
     }
 
 }
