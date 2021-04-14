@@ -12,6 +12,19 @@
         <module>library</module>
     </modules>
 
+    <repositories>
+        <repository>
+            <id>central</id>
+            <url>https://repo1.maven.org/maven2</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </repository>
+    </repositories>
+
     <distributionManagement>
         <repository>
             <id>github</id>
@@ -19,4 +32,5 @@
             <url>https://maven.pkg.github.com/dermatologist/ckblib</url>
         </repository>
     </distributionManagement>
+
 </project>
