@@ -55,36 +55,6 @@
 			<scope>provided</scope>
 		</dependency>
 	</dependencies>
-	<build>
-		<plugins>
-			<plugin>
-				<groupId>org.mock-server</groupId>
-				<artifactId>mockserver-maven-plugin</artifactId>
-				<version>3.10.8</version>
-				<configuration>
-					<serverPort>18093</serverPort>
-					<proxyPort>9095</proxyPort>
-					<logLevel>DEBUG</logLevel>
-					<initializationClass>org.mockserver.maven.ExampleInitializationClass</initializationClass>
-				</configuration>
-				<executions>
-					<execution>
-						<id>process-test-classes</id>
-						<phase>process-test-classes</phase>
-						<goals>
-							<goal>start</goal>
-						</goals>
-					</execution>
-					<execution>
-						<id>verify</id>
-						<phase>verify</phase>
-						<goals>
-							<goal>stop</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>
-		</plugins>
-	</build>
+
 
 </project>

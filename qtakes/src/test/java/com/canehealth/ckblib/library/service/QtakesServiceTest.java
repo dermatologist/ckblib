@@ -6,24 +6,16 @@ import com.canehealth.ckblib.qtakes.model.QtakesRoot;
 import com.canehealth.ckblib.qtakes.service.QtakesService;
 
 import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
 import org.junit.BeforeClass;
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.mockserver.client.server.MockServerClient;
 import org.mockserver.integration.ClientAndServer;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockserver.integration.ClientAndProxy.startClientAndProxy;
 import static org.mockserver.integration.ClientAndServer.startClientAndServer;
-import static org.mockserver.matchers.Times.exactly;
-import static org.mockserver.model.HttpClassCallback.callback;
-import static org.mockserver.model.HttpForward.forward;
+
 import static org.mockserver.model.HttpRequest.request;
 import static org.mockserver.model.HttpResponse.response;
-import static org.mockserver.model.StringBody.exact;
 import org.mockserver.model.Header;
 
 import org.springframework.beans.factory.annotation.Autowired;
