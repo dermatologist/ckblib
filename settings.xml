@@ -19,11 +19,6 @@
                         <enabled>true</enabled>
                     </snapshots>
                 </repository>
-                <repository>
-                    <id>github</id>
-                    <name>GitHub dermatologist Apache Maven Packages</name>
-                    <url>https://maven.pkg.github.com/dermatologist/ckblib</url>
-                </repository>
             </repositories>
         </profile>
     </profiles>

@@ -12,4 +12,11 @@
         <module>library</module>
     </modules>
 
+    <distributionManagement>
+        <repository>
+            <id>github</id>
+            <name>GitHub dermatologist Apache Maven Packages</name>
+            <url>https://maven.pkg.github.com/dermatologist/ckblib</url>
+        </repository>
+    </distributionManagement>
 </project>
