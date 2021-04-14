@@ -8,9 +8,9 @@
 		<version>2.4.3</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.canehealth</groupId>
+	<groupId>com.canehealth.ckblib</groupId>
 	<artifactId>qtakes</artifactId>
-	<version>0.1.0</version>
+	<version>0.2.0</version>
 	<name>ckblib-qtakes</name>
 	<description>Demo project for Spring Boot</description>
 
@@ -33,11 +33,58 @@
 			<scope>test</scope>
 		</dependency>
 		<dependency>
+			<groupId>org.mock-server</groupId>
+			<artifactId>mockserver-netty</artifactId>
+			<version>3.10.8</version>
+		</dependency>
+		<dependency>
+			<groupId>org.mock-server</groupId>
+			<artifactId>mockserver-client-java</artifactId>
+			<version>3.10.8</version>
+		</dependency>
+		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
 			<version>${lombok.version}</version>
 			<scope>provided</scope>
 		</dependency>
+		<dependency>
+			<groupId>com.canehealth.ckblib</groupId>
+			<artifactId>library</artifactId>
+			<version>${project.version}</version>
+			<scope>provided</scope>
+		</dependency>
 	</dependencies>
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.mock-server</groupId>
+				<artifactId>mockserver-maven-plugin</artifactId>
+				<version>3.10.8</version>
+				<configuration>
+					<serverPort>18093</serverPort>
+					<proxyPort>9095</proxyPort>
+					<logLevel>DEBUG</logLevel>
+					<initializationClass>org.mockserver.maven.ExampleInitializationClass</initializationClass>
+				</configuration>
+				<executions>
+					<execution>
+						<id>process-test-classes</id>
+						<phase>process-test-classes</phase>
+						<goals>
+							<goal>start</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>verify</id>
+						<phase>verify</phase>
+						<goals>
+							<goal>stop</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
 
 </project>
