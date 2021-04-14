@@ -8,9 +8,9 @@
 		<version>2.4.3</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.canehealth</groupId>
+	<groupId>com.canehealth.ckblib</groupId>
 	<artifactId>qtakes</artifactId>
-	<version>0.1.0</version>
+	<version>0.2.0</version>
 	<name>ckblib-qtakes</name>
 	<description>Demo project for Spring Boot</description>
 
