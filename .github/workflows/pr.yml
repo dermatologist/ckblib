@@ -1,0 +1,25 @@
+name: Java PR
+
+on:
+  push:
+    branches:
+      - develop
+  pull_request:
+    branches:
+      - master
+      - develop
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v1
+    - name: Set up JDK 13
+      uses: actions/setup-java@v1
+      with:
+        java-version: 13
+    - name: Test with Maven
+      run: mvn -B test --file pom.xml
+    - name: Build with Maven
+      run: mvn -B package --file pom.xml

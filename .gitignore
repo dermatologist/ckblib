@@ -28,8 +28,7 @@ build/
 *.iws
 *.idea
 
-# VS Code #
-.vscode/
+
 
 # Spring Bootstrap artifacts
 
@@ -38,3 +37,6 @@ dependency-reduced-pom.xml
 mem*.db
 
 README.html
+application/.factorypath
+library/.factorypath
+qtakes/.factorypath
