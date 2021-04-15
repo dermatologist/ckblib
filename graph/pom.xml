@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.canehealth.ckblib</groupId>
-	<artifactId>qtakes</artifactId>
+	<artifactId>graph</artifactId>
 	<version>0.2.0</version>
-	<name>ckblib-qtakes</name>
+	<name>ckblib-graph</name>
 	<description>Demo project for Spring Boot</description>
 
 	<properties>
