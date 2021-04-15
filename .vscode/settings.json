@@ -2,5 +2,8 @@
     "java.configuration.updateBuildConfiguration": "automatic",
     "cSpell.words": [
         "ESEARCH"
-    ]
+    ],
+    "licenser.license": "MPLv2",
+    "licenser.author": "Bell Eapen",
+    "licenser.projectName": "CKBLIB"
 }
