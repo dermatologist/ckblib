@@ -1,4 +1,4 @@
-package com.canehealth.ckblib.library.service;
+package com.canehealth.ckblib.qtakes.service;
 
 import java.util.concurrent.TimeUnit;
 
