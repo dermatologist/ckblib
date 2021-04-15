@@ -77,10 +77,10 @@ public class CkbEfetch {
                     PubmedArticleSet.class);
         } catch (JsonMappingException e) {
             // TODO Auto-generated catch block
-            e.printStackTrace();
+            // e.printStackTrace();
         } catch (JsonProcessingException e) {
             // TODO Auto-generated catch block
-            e.printStackTrace();
+            // e.printStackTrace();
         }
         return this.pubmedArticleSet;
     }
@@ -88,7 +88,7 @@ public class CkbEfetch {
     public String getAbstractsAsString(int articleNum) {
         String abstractString = "";
         int articleCount = 0;
-        if (!this.pubmedArticleSet.getPubmedArticle().isEmpty()) {
+        if (this.pubmedArticleSet.getPubmedArticle() != null && !this.pubmedArticleSet.getPubmedArticle().isEmpty()) {
             List<PubmedArticle> pubmedArticles = this.pubmedArticleSet.getPubmedArticle();
             for (PubmedArticle pubmedArticle : pubmedArticles) {
                 System.out.println(pubmedArticle.getMedlineCitation().getArticle());

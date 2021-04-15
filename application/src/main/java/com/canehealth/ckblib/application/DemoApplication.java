@@ -42,7 +42,7 @@ public class DemoApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws InterruptedException {
 		LOG.info("EXECUTING : " + myService.message());
-		baseQuery.setTerm("Lichen Planus");
+		baseQuery.setTerm("Erythema Multiforme");
 		ckbEfetch.setBaseQuery(baseQuery);
 		TimeUnit.SECONDS.sleep(3);
 		ckbEfetch.get();
