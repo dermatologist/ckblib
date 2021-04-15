@@ -1,6 +1,7 @@
 package com.canehealth.ckblib.graph.service;
 
 import com.canehealth.ckblib.graph.model.DiseaseDisorderMention;
+import com.canehealth.ckblib.graph.repository.DiseaseDisorderReactiveRepository;
 import com.canehealth.ckblib.graph.repository.DiseaseDisorderRepository;
 import java.util.ArrayList;
 import java.util.List;
@@ -10,32 +11,56 @@ import org.neo4j.driver.Driver;
 import org.neo4j.driver.Session;
 import org.springframework.stereotype.Service;
 
+import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
+
 @Service
 public class DiseaseDisorderService {
 
     private final DiseaseDisorderRepository diseaseDisorderRepository;
-
+    private final DiseaseDisorderReactiveRepository diseaseDisorderReactiveRepository;
     private final Driver driver;
 
-    DiseaseDisorderService(DiseaseDisorderRepository diseaseDisorderRepository, Driver driver) {
+    DiseaseDisorderService(DiseaseDisorderRepository diseaseDisorderRepository, DiseaseDisorderReactiveRepository diseaseDisorderReactiveRepository, Driver driver) {
 		this.diseaseDisorderRepository = diseaseDisorderRepository;
+        this.diseaseDisorderReactiveRepository = diseaseDisorderReactiveRepository;
 		this.driver = driver;
 	}
 
+    public Mono<DiseaseDisorderMention> getDiseaseByCui(String cui) {
+        return diseaseDisorderReactiveRepository.findById(cui);
+    }
+
     public List<DiseaseDisorderMention> withSymptoms(String name) {
         return diseaseDisorderRepository.findAllBySymptomsName(name);
+    }
+
+    public Flux<DiseaseDisorderMention> withReactiveSymptoms(String name) {
+        return diseaseDisorderReactiveRepository.findAllBySymptomsName(name);
     }
 
     public List<DiseaseDisorderMention> withAnatomy(String name) {
         return diseaseDisorderRepository.findAllByAnatomyName(name);
     }
 
+    public Flux<DiseaseDisorderMention> withReactiveAnatomy(String name) {
+        return diseaseDisorderReactiveRepository.findAllByAnatomyName(name);
+    }
+
     public List<DiseaseDisorderMention> withTreatment(String name) {
         return diseaseDisorderRepository.findAllByTreatmentName(name);
     }
 
+    public Flux<DiseaseDisorderMention> withReactiveTreatment(String name) {
+        return diseaseDisorderReactiveRepository.findAllByTreatmentName(name);
+    }
+
     public List<DiseaseDisorderMention> withProcedure(String name) {
         return diseaseDisorderRepository.findAllByProceduresName(name);
+    }
+
+    public Flux<DiseaseDisorderMention> withReactiveProcedure(String name) {
+        return diseaseDisorderReactiveRepository.findAllByProceduresName(name);
     }
     /**
      * This is an example of when you might want to use the pure driver in case you
@@ -76,7 +101,7 @@ public class DiseaseDisorderService {
         }
         return Map.of("nodes", nodes, "links", links);
 
-        
+
     }
 
 }
