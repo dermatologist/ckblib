@@ -2,11 +2,11 @@ package com.canehealth.ckblib.graph;
 
 import java.util.List;
 
-import org.springframework.stereotype.Component;
-
+import lombok.AllArgsConstructor;
 import lombok.Data;
 
 @Data
+@AllArgsConstructor
 public class WeightAttributes {
 
     private List<JournalArticle> confidence;
