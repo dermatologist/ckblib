@@ -1,7 +1,6 @@
 package com.canehealth.ckblib.library.service;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.mockito.Mockito.lenient;
 
 import java.util.concurrent.TimeUnit;
 import com.canehealth.ckblib.library.model.BaseQuery;

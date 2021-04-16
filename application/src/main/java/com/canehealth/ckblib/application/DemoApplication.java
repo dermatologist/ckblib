@@ -47,7 +47,6 @@ public class DemoApplication implements CommandLineRunner {
 		TimeUnit.SECONDS.sleep(3);
 		ckbEfetch.get();
 		TimeUnit.SECONDS.sleep(5);
-		ckbEfetch.getPubmedArticleSet();
 		String myPublications = ckbEfetch.getAbstractsAsString(10);
 		System.out.print(myPublications);
 
