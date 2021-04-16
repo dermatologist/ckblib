@@ -29,6 +29,7 @@ public class CkbEfetchTest {
         ckbEfetch.get();
         TimeUnit.SECONDS.sleep(5);
         List<String> abstracts = ckbEfetch.getPath("//Abstract");
+        System.out.println(abstracts.get(0));
         assertTrue(abstracts.get(0).length() > 100);
     }
 

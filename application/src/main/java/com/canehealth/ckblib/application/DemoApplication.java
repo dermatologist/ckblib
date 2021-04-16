@@ -47,8 +47,10 @@ public class DemoApplication implements CommandLineRunner {
 		TimeUnit.SECONDS.sleep(3);
 		ckbEfetch.get();
 		TimeUnit.SECONDS.sleep(5);
-		String myPublications = ckbEfetch.getAbstractsAsString(10);
+		String myPublications = ckbEfetch.getPath("//Abstract").get(0);
+		String myPMID = ckbEfetch.getPath("//PMID").get(0);
 		System.out.print(myPublications);
+		System.out.print(myPMID);
 
 		qtakesService.setQtakesUrl("http://127.0.0.1:8093");
 		qtakesService.post(myPublications);
