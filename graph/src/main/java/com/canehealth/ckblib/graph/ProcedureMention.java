@@ -1,4 +1,4 @@
-package com.canehealth.ckblib.graph.model;
+package com.canehealth.ckblib.graph;
 
 import static org.springframework.data.neo4j.core.schema.Relationship.Direction.*;
 import org.springframework.data.neo4j.core.schema.Id;
@@ -10,9 +10,9 @@ import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
-@Node("Anatomy")
+@Node("Procedure")
 @AllArgsConstructor
-public class AnatomicalSiteMention {
+public class ProcedureMention {
     @Id
     private final String cui;
 

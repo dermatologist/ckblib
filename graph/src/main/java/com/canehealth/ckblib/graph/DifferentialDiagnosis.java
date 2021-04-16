@@ -1,4 +1,4 @@
-package com.canehealth.ckblib.graph.model;
+package com.canehealth.ckblib.graph;
 
 import java.util.List;
 

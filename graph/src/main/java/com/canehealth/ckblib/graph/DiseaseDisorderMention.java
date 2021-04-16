@@ -1,4 +1,4 @@
-package com.canehealth.ckblib.graph.model;
+package com.canehealth.ckblib.graph;
 
 import org.springframework.data.neo4j.core.schema.Id;
 import org.springframework.data.neo4j.core.schema.Node;

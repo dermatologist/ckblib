@@ -1,4 +1,4 @@
-package com.canehealth.ckblib.graph.model;
+package com.canehealth.ckblib.graph;
 
 import static org.springframework.data.neo4j.core.schema.Relationship.Direction.*;
 import org.springframework.data.neo4j.core.schema.Id;

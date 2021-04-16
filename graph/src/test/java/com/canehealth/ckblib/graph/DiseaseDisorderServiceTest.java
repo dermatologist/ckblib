@@ -1,9 +1,9 @@
-package com.canehealth.ckblib.graph.service;
+package com.canehealth.ckblib.graph;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import com.canehealth.ckblib.graph.model.DiseaseDisorderMention;
-import com.canehealth.ckblib.graph.service.DiseaseDisorderService;
+import com.canehealth.ckblib.graph.DiseaseDisorderMention;
+import com.canehealth.ckblib.graph.DiseaseDisorderService;
 
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;

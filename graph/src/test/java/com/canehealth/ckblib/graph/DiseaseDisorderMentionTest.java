@@ -1,6 +1,8 @@
-package com.canehealth.ckblib.graph.model;
+package com.canehealth.ckblib.graph;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import com.canehealth.ckblib.graph.DiseaseDisorderMention;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

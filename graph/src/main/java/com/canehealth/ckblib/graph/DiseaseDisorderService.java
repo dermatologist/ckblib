@@ -1,6 +1,4 @@
-package com.canehealth.ckblib.graph.service;
-
-import com.canehealth.ckblib.graph.model.DiseaseDisorderMention;
+package com.canehealth.ckblib.graph;
 
 import java.util.ArrayList;
 import java.util.List;
