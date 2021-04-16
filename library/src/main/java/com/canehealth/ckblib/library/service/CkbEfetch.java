@@ -5,20 +5,26 @@ import java.util.List;
 
 import com.canehealth.ckblib.library.model.BaseQuery;
 import com.canehealth.ckblib.library.model.EsearchResultRoot;
-import com.canehealth.ckblib.library.model.PubmedArticle;
-import com.canehealth.ckblib.library.model.PubmedArticleSet;
 import com.canehealth.ckblib.library.util.CkblibConstants;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.DeserializationFeature;
-import com.fasterxml.jackson.databind.JsonMappingException;
-import com.fasterxml.jackson.dataformat.xml.JacksonXmlModule;
-import com.fasterxml.jackson.dataformat.xml.XmlMapper;
+
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.xpath.XPath;
+import javax.xml.xpath.XPathConstants;
+import javax.xml.xpath.XPathExpression;
+import javax.xml.xpath.XPathExpressionException;
+import javax.xml.xpath.XPathFactory;
+import org.xml.sax.InputSource;
+import java.io.StringReader;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
+import org.w3c.dom.NodeList;
+import org.w3c.dom.Document;
+import org.w3c.dom.Node;
 
 import lombok.Getter;
 import reactor.core.publisher.Mono;
@@ -37,7 +43,6 @@ public class CkbEfetch {
 
     List<EsearchResultRoot> esearch_results = new ArrayList<EsearchResultRoot>();
 
-    PubmedArticleSet pubmedArticleSet = new PubmedArticleSet();
 
     @Getter
     List<String> results = new ArrayList<String>();
@@ -65,48 +70,42 @@ public class CkbEfetch {
         return pubmedArticleSet;
     }
 
-    public PubmedArticleSet getPubmedArticleSet() {
-        // If you use the useWrapping option globally
-        JacksonXmlModule module = new JacksonXmlModule();
-        module.setDefaultUseWrapper(false);
-        XmlMapper xmlMapper = new XmlMapper(module);
-        xmlMapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
-        xmlMapper.enable(DeserializationFeature.ACCEPT_EMPTY_STRING_AS_NULL_OBJECT);
+    private static Document convertStringToXMLDocument(String xmlString) {
+        // Parser that produces DOM object trees from XML content
+        DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+
+        // API to obtain DOM Document instance
+        DocumentBuilder builder = null;
         try {
-            this.pubmedArticleSet = xmlMapper.readValue(results.get(0).replaceAll("<AbstractText ", "<AbstractText>"),
-                    PubmedArticleSet.class);
-        } catch (JsonMappingException e) {
-            // TODO Auto-generated catch block
-            // e.printStackTrace();
-        } catch (JsonProcessingException e) {
-            // TODO Auto-generated catch block
-            // e.printStackTrace();
+            // Create DocumentBuilder with default configuration
+            builder = factory.newDocumentBuilder();
+
+            // Parse the content to Document object
+            Document doc = builder.parse(new InputSource(new StringReader(xmlString)));
+            return doc;
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-        return this.pubmedArticleSet;
+        return null;
     }
 
     public String getAbstractsAsString(int articleNum) {
         String abstractString = "";
-        int articleCount = 0;
-        if (this.pubmedArticleSet.getPubmedArticle() != null && !this.pubmedArticleSet.getPubmedArticle().isEmpty()) {
-            List<PubmedArticle> pubmedArticles = this.pubmedArticleSet.getPubmedArticle();
-            for (PubmedArticle pubmedArticle : pubmedArticles) {
-                System.out.println(pubmedArticle.getMedlineCitation().getArticle());
-                try {
-                    List<String> abstracts = pubmedArticle.getMedlineCitation().getArticle().getAbstract()
-                            .getAbstractText();
-                    for (String abstractText : abstracts) {
-                        abstractString += abstractText;
-                    }
-                } catch (Exception e) {
-                    //TODO: handle exception
+        if (!results.isEmpty()) {
+            XPath xPath = XPathFactory.newInstance().newXPath();
+            Document doc = convertStringToXMLDocument(results.get(0));
+            try {
+                NodeList nodeList = (NodeList) xPath.compile("//Abstract").evaluate(doc, XPathConstants.NODESET);
+                for (int index = 0; index < nodeList.getLength(); index++) {
+                    Node node = nodeList.item(index);
+                    abstractString += node.getTextContent();
                 }
-                articleCount++;
-                if (articleCount > articleNum)
-                    break;
+
+            } catch (XPathExpressionException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
             }
-            return abstractString;
         }
-        return "";
+        return abstractString;
     }
 }
