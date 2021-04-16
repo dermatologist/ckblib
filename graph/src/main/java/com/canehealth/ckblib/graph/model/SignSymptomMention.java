@@ -19,6 +19,6 @@ public class SignSymptomMention {
     @Getter
     private final String name;
 
-    @Relationship(type = "DIRECTED", direction = OUTGOING)
+    @Relationship(type = "HAS_ATTRIBUTES", direction = OUTGOING)
     private List<ConceptAttributes> attributes = new ArrayList<>();
 }
