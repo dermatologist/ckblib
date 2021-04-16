@@ -2,6 +2,7 @@ package com.canehealth.ckblib.library.service;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 import com.canehealth.ckblib.library.model.BaseQuery;
 import org.junit.jupiter.api.Test;
@@ -27,8 +28,8 @@ public class CkbEfetchTest {
         TimeUnit.SECONDS.sleep(3);
         ckbEfetch.get();
         TimeUnit.SECONDS.sleep(5);
-        String abstracts = ckbEfetch.getAbstractsAsString(10);
-        assertTrue(abstracts.length() > 100);
+        List<String> abstracts = ckbEfetch.getPath("//Abstract");
+        assertTrue(abstracts.get(0).length() > 100);
     }
 
     @SpringBootApplication
