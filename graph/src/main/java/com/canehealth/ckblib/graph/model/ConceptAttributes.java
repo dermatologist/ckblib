@@ -1,10 +1,7 @@
 package com.canehealth.ckblib.graph.model;
 
-import org.springframework.data.neo4j.core.schema.RelationshipProperties;
-
 import lombok.Data;
 
-@RelationshipProperties
 @Data
 public class ConceptAttributes {
 
@@ -15,4 +12,6 @@ public class ConceptAttributes {
     private final String code;
 
     private final String tui;
+
+
 }
