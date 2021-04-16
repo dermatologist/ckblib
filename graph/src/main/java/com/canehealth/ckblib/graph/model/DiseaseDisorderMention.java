@@ -3,6 +3,7 @@ package com.canehealth.ckblib.graph.model;
 import org.springframework.data.neo4j.core.schema.Id;
 import org.springframework.data.neo4j.core.schema.Node;
 import org.springframework.data.neo4j.core.schema.Relationship;
+import org.springframework.stereotype.Component;
 
 import static org.springframework.data.neo4j.core.schema.Relationship.Direction.*;
 
@@ -12,21 +13,20 @@ import java.util.List;
 import java.util.Map;
 
 import lombok.AllArgsConstructor;
-import lombok.Getter;
+import lombok.Data;
 
 
 
 @Node("Disease")
-@AllArgsConstructor
+@Data
+@Component
 public class DiseaseDisorderMention {
 
     @Id
-    private final String cui;
+    private String cui;
 
-    @Getter
-    private final String name;
+    private String name;
 
-    @Getter
     private List<JournalArticle> support;
 
     @Relationship(type = "HAS_ATTRIBUTES", direction = OUTGOING)
@@ -48,4 +48,5 @@ public class DiseaseDisorderMention {
 
     @Relationship(type = "HAS_PROCEDURE", direction = OUTGOING)
     private Map<ProcedureMention, WeightAttributes> procedures = new HashMap<>();
+
 }
