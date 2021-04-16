@@ -8,6 +8,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.data.neo4j.repository.config.EnableReactiveNeo4jRepositories;
 
 @SpringBootTest
 public class DiseaseDisorderMentionTest {
@@ -22,8 +23,6 @@ public class DiseaseDisorderMentionTest {
 
     // This is required
     @SpringBootApplication
-    @Configuration
-    @ComponentScan(basePackages = "com.canehealth.ckblib")
     static class TestConfiguration {
     }
 }

@@ -9,7 +9,7 @@ import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 @Repository
-public interface DiseaseDisorderReactiveRepository extends ReactiveNeo4jRepository <DiseaseDisorderMention, String> {
+public interface DiseaseDisorderMentionRepository extends ReactiveNeo4jRepository <DiseaseDisorderMention, String> {
 
     Flux<DiseaseDisorderMention> findAll();
 
