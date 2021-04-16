@@ -33,6 +33,14 @@ public class CkbEfetchTest {
         assertTrue(abstracts.get(0).length() > 100);
     }
 
+    @Test
+    public void CkbEfetchTestGetChain() throws InterruptedException {
+        baseQuery.setTerm("Lichen Planus");
+        String s = ckbEfetch.getChain(baseQuery).block();
+        List<String> abstracts = ckbEfetch.getPathFromString("//Abstract", s);
+        System.out.println(abstracts.get(0));
+        assertTrue(abstracts.get(0).length() > 100);
+    }
     @SpringBootApplication
     @Configuration
     @ComponentScan(basePackages = "com.canehealth.ckblib")

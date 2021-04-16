@@ -48,6 +48,13 @@ public class CkbEfetch {
         ckbEsearch.get().subscribe(esearch_results::add);
     }
 
+    public Mono<String> getChain(BaseQuery baseQuery) {
+        this.baseQuery = baseQuery;
+        ckbEsearch.setBaseQuery(baseQuery);
+        return ckbEsearch.get().flatMap(x -> webClient.get().uri(baseQuery
+                .getFetchQuery(x.esearchresult.ids())).retrieve().bodyToMono(String.class));
+    }
+
     public Mono<String> get() {
         String query = baseQuery.getFetchQuery(esearch_results.get(0).esearchresult.ids());
         Mono<String> pubmedArticleSet = webClient.get().uri(query).retrieve()
@@ -69,6 +76,17 @@ public class CkbEfetch {
                 Node node = nodeList.item(index);
                 output.add(node.getTextContent());
             }
+        }
+        return output;
+    }
+
+    public List<String> getPathFromString(String xmlPath, String xmlString) {
+        List<String> output = new ArrayList<>();
+        CkbXpath ckbXpath = new CkbXpath(xmlString);
+        NodeList nodeList = ckbXpath.getNodes(xmlPath);
+        for (int index = 0; index < nodeList.getLength(); index++) {
+            Node node = nodeList.item(index);
+            output.add(node.getTextContent());
         }
         return output;
     }
