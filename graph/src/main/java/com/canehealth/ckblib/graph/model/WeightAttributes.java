@@ -1,5 +1,7 @@
 package com.canehealth.ckblib.graph.model;
 
+import java.util.List;
+
 import org.springframework.data.neo4j.core.schema.RelationshipProperties;
 
 import lombok.Data;
@@ -8,9 +10,7 @@ import lombok.Data;
 @Data
 public class WeightAttributes {
 
-    private int support;
-
-    private int confidence;
+    private List<JournalArticle> confidence;
 
     private int upVote;
 
