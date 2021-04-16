@@ -1,6 +1,7 @@
 package com.canehealth.ckblib.graph.repository;
 
 import com.canehealth.ckblib.graph.model.DiseaseDisorderMention;
+import com.canehealth.ckblib.graph.model.JournalArticle;
 
 import org.springframework.data.neo4j.repository.ReactiveNeo4jRepository;
 import org.springframework.stereotype.Repository;
@@ -18,6 +19,8 @@ public interface DiseaseDisorderMentionRepository extends ReactiveNeo4jRepositor
     Mono<DiseaseDisorderMention> findOneByCui(String cui);
 
     Flux<DiseaseDisorderMention> findAllByNameLikeIgnoreCase(String name);
+
+    Flux<String> findAllBySupport(JournalArticle journalArticle);
 
     Flux<DiseaseDisorderMention> findAllBySymptomsName(String name);
 

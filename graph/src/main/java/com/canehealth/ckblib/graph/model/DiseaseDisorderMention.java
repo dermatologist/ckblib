@@ -23,7 +23,7 @@ public class DiseaseDisorderMention {
 
     private String name;
 
-    private List<JournalArticle> support;
+    private List<JournalArticle> support = new ArrayList<>();
 
     @Relationship(type = "HAS_ATTRIBUTES", direction = OUTGOING)
     private List<ConceptAttributes> attributes = new ArrayList<>();
