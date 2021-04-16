@@ -1,4 +1,4 @@
-package com.canehealth.ckblib.graph.repository;
+package com.canehealth.ckblib.graph.service;
 
 import com.canehealth.ckblib.graph.model.DiseaseDisorderMention;
 import com.canehealth.ckblib.graph.model.JournalArticle;
@@ -10,7 +10,7 @@ import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 @Repository
-public interface DiseaseDisorderMentionRepository extends ReactiveNeo4jRepository <DiseaseDisorderMention, String> {
+public interface DiseaseDisorderRepository extends ReactiveNeo4jRepository <DiseaseDisorderMention, String> {
 
     Flux<DiseaseDisorderMention> findAll();
 

@@ -1,7 +1,6 @@
 package com.canehealth.ckblib.graph.service;
 
 import com.canehealth.ckblib.graph.model.DiseaseDisorderMention;
-import com.canehealth.ckblib.graph.repository.DiseaseDisorderMentionRepository;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,7 +20,7 @@ public class DiseaseDisorderService {
 
 
     @Autowired
-    DiseaseDisorderMentionRepository diseaseDisorderMentionRepository;
+    DiseaseDisorderRepository diseaseDisorderMentionRepository;
 
     @Autowired
     Driver driver;
@@ -36,9 +35,9 @@ public class DiseaseDisorderService {
         return diseaseDisorderMentionRepository.save(diseaseDisorderMention);
     }
 
-    public Flux<DiseaseDisorderMention> getDiseasesByName(String name){
-        return diseaseDisorderMentionRepository.findAllByNameLikeIgnoreCase(name);
-    }
+    // public Flux<DiseaseDisorderMention> getDiseasesByName(String name){
+    //     return diseaseDisorderMentionRepository.findAllByNameLikeIgnoreCase(name);
+    // }
 
     /**
      * This is an example of when you might want to use the pure driver in case you

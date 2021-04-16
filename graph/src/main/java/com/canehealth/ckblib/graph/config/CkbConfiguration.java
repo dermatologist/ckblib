@@ -24,8 +24,8 @@ public class CkbConfiguration extends AbstractReactiveNeo4jConfig {
         return GraphDatabase.driver("bolt://localhost:7687", AuthTokens.basic("neo4j", "secret"));
     }
 
-    // @Override
-    // protected Collection<String> getMappingBasePackages() {
-    //     return Collections.singletonList(DiseaseDisorderMention.class.getPackage().getName());
-    // }
+    @Override
+    protected Collection<String> getMappingBasePackages() {
+        return Collections.singletonList(DiseaseDisorderMention.class.getPackage().getName());
+    }
 }
