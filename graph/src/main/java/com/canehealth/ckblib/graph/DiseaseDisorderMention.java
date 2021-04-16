@@ -28,21 +28,21 @@ public class DiseaseDisorderMention {
     @Relationship(type = "HAS_ATTRIBUTES", direction = OUTGOING)
     private List<ConceptAttributes> attributes = new ArrayList<>();
 
-    @Relationship(type = "HAS_SYMPTOM", direction = OUTGOING)
-    private Map<SignSymptomMention, WeightAttributes> symptoms = new HashMap<>();
+    // @Relationship(type = "HAS_SYMPTOM", direction = OUTGOING)
+    // private Map<SignSymptomMention, WeightAttributes> symptoms = new HashMap<>();
 
-    @Relationship(type = "HAS_ANATOMY", direction = OUTGOING)
-    private Map<AnatomicalSiteMention, WeightAttributes> anatomy = new HashMap<>();
+    // @Relationship(type = "HAS_ANATOMY", direction = OUTGOING)
+    // private Map<AnatomicalSiteMention, WeightAttributes> anatomy = new HashMap<>();
 
-    // Difficult to know if it is drug reaction or treatment
-    @Relationship(type = "IS_ASSOCIATED", direction = OUTGOING)
-    private Map<MedicationMention, WeightAttributes> treatments = new HashMap<>();
+    // // Difficult to know if it is drug reaction or treatment
+    // @Relationship(type = "IS_ASSOCIATED", direction = OUTGOING)
+    // private Map<MedicationMention, WeightAttributes> treatments = new HashMap<>();
 
     // target is in differential diagnosis
     @Relationship(type = "HAS_ASSOCIATION", direction = OUTGOING)
     private List<DifferentialDiagnosis> dd = new ArrayList<>();
 
-    @Relationship(type = "HAS_PROCEDURE", direction = OUTGOING)
-    private Map<ProcedureMention, WeightAttributes> procedures = new HashMap<>();
+    // @Relationship(type = "HAS_PROCEDURE", direction = OUTGOING)
+    // private Map<ProcedureMention, WeightAttributes> procedures = new HashMap<>();
 
 }

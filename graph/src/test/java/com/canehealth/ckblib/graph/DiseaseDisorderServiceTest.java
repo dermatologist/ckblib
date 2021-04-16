@@ -1,19 +1,10 @@
 package com.canehealth.ckblib.graph;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-
-import com.canehealth.ckblib.graph.DiseaseDisorderMention;
-import com.canehealth.ckblib.graph.DiseaseDisorderService;
-
 import org.junit.jupiter.api.Test;
-import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.data.neo4j.repository.config.EnableNeo4jRepositories;
-import org.springframework.test.context.junit4.SpringRunner;
-
 @SpringBootTest
 public class DiseaseDisorderServiceTest {
     @Autowired
@@ -25,8 +16,10 @@ public class DiseaseDisorderServiceTest {
     @Test
     public void testDiseaseDisorderServiceTest() {
         diseaseDisorderMention.setCui("CUI1234");
+        diseaseDisorderMention.setName("Psoriasis Vulgaris");
         assertEquals(diseaseDisorderMention.getCui(), "CUI1234");
-        diseaseDisorderService.saveDisease(diseaseDisorderMention);
+        // diseaseDisorderService.saveDisease(diseaseDisorderMention);
+        System.out.println(diseaseDisorderService.saveDisease(diseaseDisorderMention).block());
     }
 
     //This is required
