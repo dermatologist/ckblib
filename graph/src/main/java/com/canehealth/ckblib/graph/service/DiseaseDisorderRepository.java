@@ -18,16 +18,16 @@ public interface DiseaseDisorderRepository extends ReactiveNeo4jRepository <Dise
 
     Mono<DiseaseDisorderMention> findOneByCui(String cui);
 
-    Flux<DiseaseDisorderMention> findAllByNameLikeIgnoreCase(String name);
+    // Flux<DiseaseDisorderMention> findAllByNameLikeIgnoreCase(String name);
 
-    Flux<String> findAllBySupport(JournalArticle journalArticle);
+    // Flux<String> findAllBySupport(JournalArticle journalArticle);
 
-    Flux<DiseaseDisorderMention> findAllBySymptomsName(String name);
+    // Flux<DiseaseDisorderMention> findAllBySymptomsName(String name);
 
-    Flux<DiseaseDisorderMention> findAllByAnatomyName(String name);
+    // Flux<DiseaseDisorderMention> findAllByAnatomyName(String name);
 
-    Flux<DiseaseDisorderMention> findAllByTreatmentName(String name);
+    // Flux<DiseaseDisorderMention> findAllByTreatmentName(String name);
 
-    Flux<DiseaseDisorderMention> findAllByProceduresName(String name);
+    // Flux<DiseaseDisorderMention> findAllByProceduresName(String name);
 
 }
