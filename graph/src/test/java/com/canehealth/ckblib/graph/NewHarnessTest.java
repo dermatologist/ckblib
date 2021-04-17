@@ -32,7 +32,8 @@ import org.springframework.test.context.ContextConfiguration;
  */
 // tag::test-harness-example-option3[]
 @SpringBootTest(classes = {DiseaseDisorderService.class,
-        DiseaseDisorderMention.class})
+        DiseaseDisorderMention.class,
+        CkbTestConfiguration.class})
 @EnableAutoConfiguration
 @ContextConfiguration(initializers = { NewHarnessTest.Initializer.class })
 @ActiveProfiles({ "test" })
@@ -76,9 +77,7 @@ class NewHarnessTest {
 
     @Test
     void testSomethingWithTheDriver(@Autowired Driver driver) {
-        diseaseDisorderMention.setCui("C0041834");
-        diseaseDisorderMention.setName("Psoriasis Vulgaris");
-        diseaseDisorderService.saveDisease(diseaseDisorderMention).block();
+
     }
     // end::test-harness-example-option3[]
 
