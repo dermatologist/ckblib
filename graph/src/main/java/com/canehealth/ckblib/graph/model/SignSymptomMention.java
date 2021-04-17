@@ -13,15 +13,17 @@ import org.springframework.data.neo4j.core.schema.Relationship;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.Setter;
 
 @Node("Symptom")
 @AllArgsConstructor
 @Data
 public class SignSymptomMention {
-    @Id
-    private final String cui;
 
-    private final String name;
+    @Id
+    private String cui;
+
+    private String name;
 
     @Version
     private Long version;

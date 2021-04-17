@@ -7,7 +7,7 @@ public class ConceptAttributes {
 
     private final String codingScheme;
 
-    private final String name;
+    private String name;
 
     private final String code;
 

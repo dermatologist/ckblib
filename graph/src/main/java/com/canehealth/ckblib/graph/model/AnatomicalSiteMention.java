@@ -17,10 +17,10 @@ import lombok.Getter;
 @AllArgsConstructor
 public class AnatomicalSiteMention {
     @Id
-    private final String cui;
+    private String cui;
 
     @Getter
-    private final String name;
+    private String name;
 
     @Version
     private Long version;

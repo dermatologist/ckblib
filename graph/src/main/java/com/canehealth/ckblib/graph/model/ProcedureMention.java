@@ -19,9 +19,9 @@ import lombok.Data;
 @Data
 public class ProcedureMention {
     @Id
-    private final String cui;
+    private String cui;
 
-    private final String name;
+    private String name;
 
     @Version
     private Long version;
