@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 @Service
@@ -32,9 +33,9 @@ public class DiseaseDisorderService {
         return diseaseDisorderMentionRepository.save(diseaseDisorderMention);
     }
 
-    // public Flux<DiseaseDisorderMention> getDiseasesByName(String name){
-    //     return diseaseDisorderMentionRepository.findAllByNameLikeIgnoreCase(name);
-    // }
+    public Flux<DiseaseDisorderMention> getDiseasesByName(String name){
+        return diseaseDisorderMentionRepository.findAllByNameLikeIgnoreCase(name);
+    }
 
     /**
      * This is an example of when you might want to use the pure driver in case you
