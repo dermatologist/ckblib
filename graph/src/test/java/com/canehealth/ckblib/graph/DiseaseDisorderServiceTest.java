@@ -3,11 +3,17 @@ package com.canehealth.ckblib.graph;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.ActiveProfiles;
+import org.springframework.test.context.ContextConfiguration;
 
 import reactor.core.publisher.Flux;
 @SpringBootTest
+@EnableAutoConfiguration
+@ContextConfiguration(initializers = { NewHarnessTest.Initializer.class })
+@ActiveProfiles({ "test" })
 public class DiseaseDisorderServiceTest {
     @Autowired
     private DiseaseDisorderService diseaseDisorderService;
@@ -17,9 +23,9 @@ public class DiseaseDisorderServiceTest {
 
     @Test
     public void testDiseaseDisorderServiceSaveTest() {
-        diseaseDisorderMention.setCui("CUI1234");
+        diseaseDisorderMention.setCui("C0041834");
         diseaseDisorderMention.setName("Psoriasis Vulgaris");
-        assertEquals(diseaseDisorderMention.getCui(), "CUI1234");
+        assertEquals(diseaseDisorderMention.getCui(), "C0041834");
         // diseaseDisorderService.saveDisease(diseaseDisorderMention);
         System.out.println(diseaseDisorderService.saveDisease(diseaseDisorderMention).block());
     }
@@ -32,7 +38,7 @@ public class DiseaseDisorderServiceTest {
         assertEquals("CUI1234", f.next().block().getCui());
     }
     //This is required
-    @SpringBootApplication
-    static class TestConfiguration {
-    }
+    // @SpringBootApplication
+    // static class TestConfiguration {
+    // }
 }

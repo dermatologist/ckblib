@@ -14,3 +14,5 @@ https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=33344334,
 forward both 7474 and 7687
 use bolt://localhost:7687
 
+
+https://github.com/neo4j/neo4j-java-driver-spring-boot-starter/tree/master/examples/testing-with-neo4j-harness/src/test/java/org/neo4j/doc/driver/springframework/boot/simple
