@@ -3,6 +3,8 @@ package com.canehealth.ckblib.graph;
 import java.util.Collection;
 import java.util.Collections;
 
+import com.canehealth.ckblib.graph.model.DiseaseDisorderMention;
+
 import org.neo4j.driver.Driver;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;

@@ -1,10 +1,13 @@
-package com.canehealth.ckblib.graph;
+package com.canehealth.ckblib.graph.model;
 
 import static org.springframework.data.neo4j.core.schema.Relationship.Direction.INCOMING;
 import static org.springframework.data.neo4j.core.schema.Relationship.Direction.OUTGOING;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import com.canehealth.ckblib.graph.BaseRelation;
+import com.canehealth.ckblib.graph.ConceptAttributes;
 
 import org.springframework.data.annotation.Version;
 import org.springframework.data.neo4j.core.schema.Id;
@@ -14,10 +17,10 @@ import org.springframework.data.neo4j.core.schema.Relationship;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
-@Node("Medication")
-@Data
+@Node("Symptom")
 @AllArgsConstructor
-public class MedicationMention {
+@Data
+public class SignSymptomMention {
     @Id
     private final String cui;
 
@@ -29,7 +32,6 @@ public class MedicationMention {
     @Relationship(type = "HAS_ATTRIBUTES", direction = OUTGOING)
     private List<ConceptAttributes> attributes = new ArrayList<>();
 
-    // Cannot differentiate drug reactions from treatments
-    @Relationship(value = "ASSOCIATED_WITH", direction = INCOMING)
+    @Relationship(value = "PRESENTS_WITH", direction = INCOMING)
     private final List<BaseRelation> diseases;
 }

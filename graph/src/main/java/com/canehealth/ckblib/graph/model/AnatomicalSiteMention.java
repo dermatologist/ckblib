@@ -1,26 +1,28 @@
-package com.canehealth.ckblib.graph;
+package com.canehealth.ckblib.graph.model;
 
-import static org.springframework.data.neo4j.core.schema.Relationship.Direction.INCOMING;
-import static org.springframework.data.neo4j.core.schema.Relationship.Direction.OUTGOING;
-
-import java.util.ArrayList;
-import java.util.List;
+import static org.springframework.data.neo4j.core.schema.Relationship.Direction.*;
 
 import org.springframework.data.annotation.Version;
 import org.springframework.data.neo4j.core.schema.Id;
 import org.springframework.data.neo4j.core.schema.Node;
 import org.springframework.data.neo4j.core.schema.Relationship;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
+import java.util.ArrayList;
+import java.util.List;
 
-@Node("Symptom")
+import com.canehealth.ckblib.graph.BaseRelation;
+import com.canehealth.ckblib.graph.ConceptAttributes;
+
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+
+@Node("Anatomy")
 @AllArgsConstructor
-@Data
-public class SignSymptomMention {
+public class AnatomicalSiteMention {
     @Id
     private final String cui;
 
+    @Getter
     private final String name;
 
     @Version
@@ -29,6 +31,6 @@ public class SignSymptomMention {
     @Relationship(type = "HAS_ATTRIBUTES", direction = OUTGOING)
     private List<ConceptAttributes> attributes = new ArrayList<>();
 
-    @Relationship(value = "PRESENTS_WITH", direction = INCOMING)
+    @Relationship(value = "AFFECTS", direction = INCOMING)
     private final List<BaseRelation> diseases;
 }

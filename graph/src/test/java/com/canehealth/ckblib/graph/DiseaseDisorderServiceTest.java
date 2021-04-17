@@ -1,5 +1,7 @@
 package com.canehealth.ckblib.graph;
 
+import com.canehealth.ckblib.graph.model.DiseaseDisorderMention;
+
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;

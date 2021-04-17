@@ -1,5 +1,7 @@
 package com.canehealth.ckblib.graph;
 
+import com.canehealth.ckblib.graph.model.DiseaseDisorderMention;
+
 import org.springframework.data.neo4j.repository.ReactiveNeo4jRepository;
 import org.springframework.stereotype.Repository;
 
