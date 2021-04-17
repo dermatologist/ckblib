@@ -25,14 +25,13 @@ public class DiseaseDisorderMention {
     @Version
     private Long version;
 
-    private List<JournalArticle> support = new ArrayList<>();
 
     @Relationship(type = "HAS_ATTRIBUTES", direction = OUTGOING)
     private List<ConceptAttributes> attributes = new ArrayList<>();
 
     // target is in differential diagnosis
-    @Relationship(value = "ASSOCIATED_WITH", direction = INCOMING)
-    private final List<BaseRelation> differentials;
+    @Relationship(type = "ASSOCIATED_WITH", direction = INCOMING)
+    private List<BaseRelation> differentials = new ArrayList<>();
 
 
 }

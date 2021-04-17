@@ -30,6 +30,6 @@ public class MedicationMention {
     private List<ConceptAttributes> attributes = new ArrayList<>();
 
     // Cannot differentiate drug reactions from treatments
-    @Relationship(value = "ASSOCIATED_WITH", direction = INCOMING)
-    private final List<BaseRelation> diseases;
+    @Relationship(type = "ASSOCIATED_WITH", direction = INCOMING)
+    private List<BaseRelation> diseases = new ArrayList<>();
 }
