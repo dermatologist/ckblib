@@ -1,6 +1,8 @@
 package com.canehealth.ckblib.graph;
 
 import static org.springframework.data.neo4j.core.schema.Relationship.Direction.*;
+
+import org.springframework.data.annotation.Version;
 import org.springframework.data.neo4j.core.schema.Id;
 import org.springframework.data.neo4j.core.schema.Node;
 import org.springframework.data.neo4j.core.schema.Relationship;
@@ -18,6 +20,9 @@ public class AnatomicalSiteMention {
 
     @Getter
     private final String name;
+
+    @Version
+    private Long version;
 
     @Relationship(type = "HAS_ATTRIBUTES", direction = OUTGOING)
     private List<ConceptAttributes> attributes = new ArrayList<>();
