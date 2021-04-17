@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.canehealth.ckblib.graph.model.DiseaseDisorderMention;
+import com.canehealth.ckblib.graph.model.SignSymptomMention;
 
 import org.neo4j.driver.Driver;
 import org.neo4j.driver.Session;
@@ -37,6 +38,10 @@ public class DiseaseDisorderService {
 
     public Flux<DiseaseDisorderMention> getDiseasesByName(String name){
         return diseaseDisorderMentionRepository.findAllByNameLikeIgnoreCase(name);
+    }
+
+    public Flux<SignSymptomMention> getSymptoms(String cui) {
+        return diseaseDisorderMentionRepository.findAllSymptomsByCui(cui);
     }
 
     /**

@@ -1,6 +1,7 @@
 package com.canehealth.ckblib.graph;
 
 import com.canehealth.ckblib.graph.model.DiseaseDisorderMention;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
@@ -97,10 +98,12 @@ class DiseaseDisorderServiceTest {
 
         }
 
-        System.out.println(diseaseDisorderService.getDiseaseByCui("C0041834").block().getName());
-
+        // System.out.println(diseaseDisorderService.getDiseaseByCui("C0041834").block().getName());
+        assertEquals(diseaseDisorderService.getDiseaseByCui("C0041834").block().getName(), "Psoriasis Vulgaris");
         // assertThat(diseaseDisorderService.getDiseasesByName("psoriasis").next().block().getName()).hasSize(3).contains("The Matrix");
     }
     // tag::test-harness-example-option3[]
+
+
 }
 // end::test-harness-example-option3[]
