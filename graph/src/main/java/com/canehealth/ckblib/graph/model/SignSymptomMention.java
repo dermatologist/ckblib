@@ -11,12 +11,9 @@ import org.springframework.data.neo4j.core.schema.Id;
 import org.springframework.data.neo4j.core.schema.Node;
 import org.springframework.data.neo4j.core.schema.Relationship;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.Setter;
 
 @Node("Symptom")
-@AllArgsConstructor
 @Data
 public class SignSymptomMention {
 
