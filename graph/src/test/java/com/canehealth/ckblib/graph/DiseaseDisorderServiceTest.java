@@ -46,10 +46,13 @@ class DiseaseDisorderServiceTest {
     static void initializeNeo4j() { // <.>
 
         embeddedDatabaseServer = Neo4jBuilders.newInProcessBuilder().withDisabledServer() // <.>
-                .withFixture(""
-                        + "CREATE (pv:Disease {cui:'C0041834', name:'Psoriasis Vulgaris', version:'1.0'})\n"
-                        + "CREATE (lp:Disease {cui:'C0041835', name:'Lichen Planus', version:'1.0'})\n"
-                        + "CREATE (pv2:Disease {cui:'C0041836', name:'Pemphigus Vulgaris', version:'1.0'})\n")
+                // .withFixture(""
+                // + "CREATE (pv:Disease {cui:'C0041834', name:'Psoriasis Vulgaris',
+                // version:'1.0'})\n"
+                // + "CREATE (lp:Disease {cui:'C0041835', name:'Lichen Planus',
+                // version:'1.0'})\n"
+                // + "CREATE (pv2:Disease {cui:'C0041836', name:'Pemphigus Vulgaris',
+                // version:'1.0'})\n")
                 .build();
 
     }
@@ -72,15 +75,26 @@ class DiseaseDisorderServiceTest {
 
     @Test
     void testSomethingWithTheDriver(@Autowired Driver driver) {
-
+        // Intentionally try to create duplicate
+        diseaseDisorderMention.setCui("C0041834");
+        diseaseDisorderMention.setName("Psoriasis Vulgaris");
+        diseaseDisorderMention.setVersion(1L);
+        diseaseDisorderService.saveDisease(diseaseDisorderMention).block();
     }
     // end::test-harness-example-option3[]
 
     @Test
-    void shouldRetrieveMovieTitles() {
+    void shouldRetrieveDiseases() {
         diseaseDisorderMention.setCui("C0041834");
         diseaseDisorderMention.setName("Psoriasis Vulgaris");
-        diseaseDisorderService.saveDisease(diseaseDisorderMention).block();
+        diseaseDisorderMention.setVersion(1L);
+        try {
+            // Should fail if already created
+            diseaseDisorderService.saveDisease(diseaseDisorderMention).block();
+        } catch (Exception e) {
+
+        }
+
         System.out.println(diseaseDisorderService.getDiseaseByCui("C0041834").block().getName());
 
         // assertThat(diseaseDisorderService.getDiseasesByName("psoriasis").next().block().getName()).hasSize(3).contains("The Matrix");

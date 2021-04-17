@@ -5,6 +5,7 @@ import static org.springframework.data.neo4j.core.schema.Relationship.Direction.
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.data.annotation.Version;
 import org.springframework.data.neo4j.core.schema.Id;
 import org.springframework.data.neo4j.core.schema.Node;
 import org.springframework.data.neo4j.core.schema.Relationship;
@@ -20,6 +21,9 @@ public class DiseaseDisorderMention {
     private String cui;
 
     private String name;
+
+    @Version
+    private Long version;
 
     private List<JournalArticle> support = new ArrayList<>();
 
