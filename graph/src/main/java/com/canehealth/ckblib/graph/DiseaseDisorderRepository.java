@@ -17,14 +17,4 @@ public interface DiseaseDisorderRepository extends ReactiveNeo4jRepository <Dise
 
     Flux<DiseaseDisorderMention> findAllByNameLikeIgnoreCase(String name);
 
-    // Flux<String> findAllBySupport(JournalArticle journalArticle);
-
-    // Flux<DiseaseDisorderMention> findAllBySymptomsName(String name);
-
-    // Flux<DiseaseDisorderMention> findAllByAnatomyName(String name);
-
-    // Flux<DiseaseDisorderMention> findAllByTreatmentName(String name);
-
-    // Flux<DiseaseDisorderMention> findAllByProceduresName(String name);
-
 }
