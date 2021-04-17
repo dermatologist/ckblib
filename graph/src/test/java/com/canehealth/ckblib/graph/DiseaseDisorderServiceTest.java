@@ -30,7 +30,7 @@ import org.springframework.test.context.ContextConfiguration;
 // tag::test-harness-example-option3[]
 @SpringBootTest(classes = {DiseaseDisorderService.class,
         DiseaseDisorderMention.class,
-        CkbTestConfiguration.class})
+        Neo4jTestConfiguration.class})
 @EnableAutoConfiguration
 @ContextConfiguration(initializers = { DiseaseDisorderServiceTest.Initializer.class })
 @ActiveProfiles({ "test" })

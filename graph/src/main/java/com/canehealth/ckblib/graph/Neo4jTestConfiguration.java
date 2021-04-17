@@ -16,7 +16,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @EnableReactiveNeo4jRepositories
 @EnableTransactionManagement
 @Profile({ "test" })
-public class CkbTestConfiguration extends AbstractReactiveNeo4jConfig {
+public class Neo4jTestConfiguration extends AbstractReactiveNeo4jConfig {
 
     @Override
     protected Collection<String> getMappingBasePackages() {
