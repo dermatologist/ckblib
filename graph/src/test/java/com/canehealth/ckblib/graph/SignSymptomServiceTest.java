@@ -1,5 +1,6 @@
 package com.canehealth.ckblib.graph;
 
+import com.canehealth.ckblib.graph.model.DiseaseDisorderMention;
 import com.canehealth.ckblib.graph.model.SignSymptomMention;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -29,7 +30,7 @@ import org.springframework.test.context.ContextConfiguration;
  * connection setting.
  */
 // tag::test-harness-example-option3[]
-@SpringBootTest(classes = { SignSymptomService.class, SignSymptomMention.class, Neo4jTestConfiguration.class })
+@SpringBootTest(classes = { DiseaseDisorderService.class, DiseaseDisorderMention.class, SignSymptomService.class, SignSymptomMention.class, Neo4jTestConfiguration.class })
 @EnableAutoConfiguration
 @ContextConfiguration(initializers = { SignSymptomServiceTest.Initializer.class })
 @ActiveProfiles({ "test" })
@@ -43,17 +44,16 @@ class SignSymptomServiceTest {
     @Autowired
     private SignSymptomMention signSymptomMention;
 
+    @Autowired
+    DiseaseDisorderService diseaseDisorderService;
+
+    @Autowired
+    private DiseaseDisorderMention diseaseDisorderMention;
+
     @BeforeAll
     static void initializeNeo4j() { // <.>
 
         embeddedDatabaseServer = Neo4jBuilders.newInProcessBuilder().withDisabledServer() // <.>
-                // .withFixture(""
-                // + "CREATE (pv:Disease {cui:'C0041834', name:'Psoriasis Vulgaris',
-                // version:'1.0'})\n"
-                // + "CREATE (lp:Disease {cui:'C0041835', name:'Lichen Planus',
-                // version:'1.0'})\n"
-                // + "CREATE (pv2:Disease {cui:'C0041836', name:'Pemphigus Vulgaris',
-                // version:'1.0'})\n")
                 .build();
 
     }
@@ -76,10 +76,10 @@ class SignSymptomServiceTest {
     @Test
     void testSomethingWithTheDriver(@Autowired Driver driver) {
         // Intentionally try to create duplicate
-        signSymptomMention.setCui("C0041834");
-        signSymptomMention.setName("Psoriasis Vulgaris");
-        signSymptomMention.setVersion(1L);
-        signSymptomService.saveSymptom(signSymptomMention).block();
+        diseaseDisorderMention.setCui("C0041834");
+        diseaseDisorderMention.setName("Psoriasis Vulgaris");
+        diseaseDisorderMention.setVersion(1L);
+        diseaseDisorderService.saveDisease(diseaseDisorderMention).block();
     }
     // end::test-harness-example-option3[]
 
