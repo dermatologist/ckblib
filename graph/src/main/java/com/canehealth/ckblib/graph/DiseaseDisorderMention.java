@@ -3,9 +3,7 @@ package com.canehealth.ckblib.graph;
 import static org.springframework.data.neo4j.core.schema.Relationship.Direction.OUTGOING;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.springframework.data.neo4j.core.schema.Id;
 import org.springframework.data.neo4j.core.schema.Node;

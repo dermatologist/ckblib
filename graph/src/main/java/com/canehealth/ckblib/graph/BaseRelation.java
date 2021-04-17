@@ -9,7 +9,7 @@ import lombok.Data;
 
 @Data
 @RelationshipProperties
-public class DiseaseSymptomRelation {
+public class BaseRelation {
 
     @Id
     @GeneratedValue
