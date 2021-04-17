@@ -21,4 +21,7 @@ public class AnatomicalSiteMention {
 
     @Relationship(type = "HAS_ATTRIBUTES", direction = OUTGOING)
     private List<ConceptAttributes> attributes = new ArrayList<>();
+
+    @Relationship(value = "AFFECTS", direction = INCOMING)
+    private final List<BaseRelation> diseases;
 }

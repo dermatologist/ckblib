@@ -21,4 +21,8 @@ public class MedicationMention {
 
     @Relationship(type = "HAS_ATTRIBUTES", direction = OUTGOING)
     private List<ConceptAttributes> attributes = new ArrayList<>();
+
+    // Cannot differentiate drug reactions from treatments
+    @Relationship(value = "ASSOCIATED_WITH", direction = INCOMING)
+    private final List<BaseRelation> diseases;
 }

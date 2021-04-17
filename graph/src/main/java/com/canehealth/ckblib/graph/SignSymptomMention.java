@@ -25,6 +25,6 @@ public class SignSymptomMention {
     @Relationship(type = "HAS_ATTRIBUTES", direction = OUTGOING)
     private List<ConceptAttributes> attributes = new ArrayList<>();
 
-    @Relationship(value = "IS_SYMPTOM", direction = INCOMING)
+    @Relationship(value = "PRESENTS_WITH", direction = INCOMING)
     private final List<BaseRelation> diseases;
 }
