@@ -1,8 +1,9 @@
 package com.canehealth.ckblib.graph;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import com.canehealth.ckblib.graph.model.DiseaseDisorderMention;
 import com.canehealth.ckblib.graph.model.SignSymptomMention;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
@@ -30,7 +31,8 @@ import org.springframework.test.context.ContextConfiguration;
  * connection setting.
  */
 // tag::test-harness-example-option3[]
-@SpringBootTest(classes = { DiseaseDisorderService.class, DiseaseDisorderMention.class, SignSymptomService.class, SignSymptomMention.class, Neo4jTestConfiguration.class })
+@SpringBootTest(classes = {
+        DiseaseDisorderService.class, DiseaseDisorderMention.class, SignSymptomService.class, SignSymptomMention.class, Neo4jTestConfiguration.class })
 @EnableAutoConfiguration
 @ContextConfiguration(initializers = { SignSymptomServiceTest.Initializer.class })
 @ActiveProfiles({ "test" })
@@ -49,6 +51,8 @@ class SignSymptomServiceTest {
 
     @Autowired
     private DiseaseDisorderMention diseaseDisorderMention;
+
+
 
     @BeforeAll
     static void initializeNeo4j() { // <.>
@@ -94,6 +98,8 @@ class SignSymptomServiceTest {
         } catch (Exception e) {
 
         }
+
+        signSymptomService.addRelation("C0041834", "C1041834");
 
         // System.out.println(signSymptomService.getDiseaseByCui("C0041834").block().getName());
         assertEquals(signSymptomService.getSymptomByCui("C1041834").block().getName(), "Pruritus");

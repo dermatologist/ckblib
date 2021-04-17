@@ -24,4 +24,7 @@ public interface SignSymptomRepository extends ReactiveNeo4jRepository<SignSympt
     @Query("MATCH (d:Disease) -[:PRESENTS_WITH]-> (s:Symptom {cui: $cui} ) RETURN d")
     Flux<DiseaseDisorderMention> findAllDiseasesWithSymptomsByCui(String cui);
 
+    @Query("MERGE (d:Disease {cui: $dcui} ) -[:PRESENTS_WITH]-> (s:Symptom {cui: $scui} )")
+    void mergeDiseaseWithSymptom(String dcui, String scui);
+
 }

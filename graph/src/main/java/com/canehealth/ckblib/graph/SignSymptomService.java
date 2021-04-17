@@ -20,26 +20,30 @@ import reactor.core.publisher.Mono;
 public class SignSymptomService {
 
     @Autowired
-    SignSymptomRepository diseaseDisorderMentionRepository;
+    SignSymptomRepository signSymptomMentionRepository;
 
     @Autowired
     Driver driver;
 
     public Mono<SignSymptomMention> getSymptomByCui(String cui) {
-        return diseaseDisorderMentionRepository.findOneByCui(cui);
+        return signSymptomMentionRepository.findOneByCui(cui);
     }
 
     @Transactional
-    public Mono<SignSymptomMention> saveSymptom(SignSymptomMention diseaseDisorderMention) {
-        return diseaseDisorderMentionRepository.save(diseaseDisorderMention);
+    public Mono<SignSymptomMention> saveSymptom(SignSymptomMention signSymptomMention) {
+        return signSymptomMentionRepository.save(signSymptomMention);
     }
 
     public Flux<SignSymptomMention> getSymptomByName(String name) {
-        return diseaseDisorderMentionRepository.findAllByNameLikeIgnoreCase(name);
+        return signSymptomMentionRepository.findAllByNameLikeIgnoreCase(name);
     }
 
     public Flux<DiseaseDisorderMention> getDiseases(String cui) {
-        return diseaseDisorderMentionRepository.findAllDiseasesWithSymptomsByCui(cui);
+        return signSymptomMentionRepository.findAllDiseasesWithSymptomsByCui(cui);
+    }
+
+    public void addRelation(String dcui, String scui) {
+            signSymptomMentionRepository.mergeDiseaseWithSymptom(dcui, scui);
     }
 
     /**

@@ -16,3 +16,8 @@ use bolt://localhost:7687
 
 
 https://github.com/neo4j/neo4j-java-driver-spring-boot-starter/tree/master/examples/testing-with-neo4j-harness/src/test/java/org/neo4j/doc/driver/springframework/boot/simple
+
+MERGE (nid:Incremental{type:ChildSession})
+ON CREATE SET nid.count = 1
+ON MATCH SET nid.count = nid.count + 1
+RETURN nid.count
