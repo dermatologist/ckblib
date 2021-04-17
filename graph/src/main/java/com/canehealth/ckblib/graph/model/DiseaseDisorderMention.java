@@ -5,10 +5,6 @@ import static org.springframework.data.neo4j.core.schema.Relationship.Direction.
 import java.util.ArrayList;
 import java.util.List;
 
-import com.canehealth.ckblib.graph.BaseRelation;
-import com.canehealth.ckblib.graph.ConceptAttributes;
-import com.canehealth.ckblib.graph.JournalArticle;
-
 import org.springframework.data.annotation.Version;
 import org.springframework.data.neo4j.core.schema.Id;
 import org.springframework.data.neo4j.core.schema.Node;

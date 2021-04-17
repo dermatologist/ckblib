@@ -10,9 +10,6 @@ import org.springframework.data.neo4j.core.schema.Relationship;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.canehealth.ckblib.graph.BaseRelation;
-import com.canehealth.ckblib.graph.ConceptAttributes;
-
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 

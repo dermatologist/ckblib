@@ -1,4 +1,4 @@
-package com.canehealth.ckblib.graph;
+package com.canehealth.ckblib.graph.model;
 
 import lombok.Data;
 
