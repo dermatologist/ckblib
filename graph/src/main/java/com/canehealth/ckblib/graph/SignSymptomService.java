@@ -38,13 +38,13 @@ public class SignSymptomService {
         return signSymptomMentionRepository.findAllByNameLikeIgnoreCase(name);
     }
 
-    public Flux<DiseaseDisorderMention> getDiseases(String cui) {
-        return signSymptomMentionRepository.findAllDiseasesWithSymptomsByCui(cui);
-    }
+    // public Flux<DiseaseDisorderMention> getDiseases(String cui) {
+    //     return signSymptomMentionRepository.findAllDiseasesWithSymptomsByCui(cui);
+    // }
 
-    public Mono<DiseaseDisorderMention> addRelation(String dcui, String scui) {
-            return signSymptomMentionRepository.mergeDiseaseWithSymptom(dcui, scui);
-    }
+    // public Mono<DiseaseDisorderMention> addRelation(String dcui, String scui) {
+    //         return signSymptomMentionRepository.mergeDiseaseWithSymptom(dcui, scui);
+    // }
 
     /**
      * This is an example of when you might want to use the pure driver in case you

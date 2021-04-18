@@ -40,7 +40,7 @@ public class DiseaseDisorderService {
         return diseaseDisorderMentionRepository.findAllByNameLikeIgnoreCase(name);
     }
 
-    public Flux<SignSymptomMention> getSymptoms(String cui) {
+    public Flux<DiseaseDisorderMention> getSymptoms(String cui) {
         return diseaseDisorderMentionRepository.findAllSymptomsByCui(cui);
     }
 
