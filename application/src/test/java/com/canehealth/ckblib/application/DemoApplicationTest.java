@@ -26,7 +26,7 @@ public class DemoApplicationTest {
 	// This is required
 	@SpringBootApplication
 	@Configuration
-	@EnableReactiveNeo4jRepositories(basePackages = "com.canehealth.ckblib.graph")
+	//@EnableReactiveNeo4jRepositories(basePackages = "com.canehealth.ckblib.graph")
 	@ComponentScan(basePackages = "com.canehealth.ckblib")
 	static class TestConfiguration {
 	}
