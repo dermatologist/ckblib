@@ -1,6 +1,5 @@
 package com.canehealth.ckblib.graph;
 
-import com.canehealth.ckblib.graph.model.DiseaseDisorderMention;
 import com.canehealth.ckblib.graph.model.SignSymptomMention;
 
 import org.springframework.data.neo4j.repository.ReactiveNeo4jRepository;
@@ -27,9 +26,15 @@ public interface SignSymptomRepository extends ReactiveNeo4jRepository<SignSympt
 
     @Query(""
 		+ "MATCH (d:Disease {cui: $dcui}), (s:Symptom {cui: $scui})\n"
-		+ "MERGE (d) <-[:PRESENTATION_OF]- (s) \n"
+		+ "MERGE (d) <-[r:PRESENTATION_OF]- (s) \n"
+        + "ON CREATE SET r.confidence = 0 \n"
+        + "ON MATCH SET r.confidence = r.confidence + 1 \n"
 		+ "RETURN DISTINCT s"
 	)
     Mono<SignSymptomMention> mergeDiseaseWithSymptom(String dcui, String scui);
+
+    // @Query("" + "MATCH (d:Disease {cui: $dcui}) <-[r:PRESENTATION_OF]-  (s:Symptom {cui: $scui})\n"
+    //           + "SET r.weights = r.weights + 1 RETURN DISTINCT s")
+    // Mono<SignSymptomMention> updateWeights(String dcui, String scui);
 
 }

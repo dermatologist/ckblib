@@ -15,7 +15,11 @@ public class BaseRelation {
     @GeneratedValue
     private Long id;
 
-    private WeightAttributes weights;
+    private Long confidence;
+
+    private Long upVote;
+
+    private Long downVote;
 
     @TargetNode
     DiseaseDisorderMention diseaseDisorderMention;
