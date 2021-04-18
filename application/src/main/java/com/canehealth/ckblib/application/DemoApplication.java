@@ -55,6 +55,12 @@ public class DemoApplication implements CommandLineRunner {
 	@Autowired
 	private SignSymptomMention signSymptomMention;
 
+	@Autowired
+	AnatomicalSiteService anatomicalSiteService;
+
+	@Autowired
+	private AnatomicalSiteMention anatomicalSiteMention;
+
 	public DemoApplication (MyService myService) {
 		this.myService = myService;
 	}
@@ -97,7 +103,8 @@ public class DemoApplication implements CommandLineRunner {
 
 			for (int i = 0; i < abstracts.size(); i++) {
 				System.out.println(pmids.get(i) + " : " + titles.get(i));
-				journalArticle.setPmid(pmids.get(i));
+				String pmid = pmids.get(i);
+				journalArticle.setPmid(pmid);
 				journalArticle.setName(titles.get(i));
 				qtakesService.post(abstracts.get(i));
 				try {
@@ -120,13 +127,17 @@ public class DemoApplication implements CommandLineRunner {
 					try {
 						diseaseDisorderService.saveDisease(diseaseDisorderMention).block();
 					} catch (Exception e) {}
+					journalArticleService.addEvidence(cui, pmid).block();
 				}
 				// Disease should exist now
-				if("".equals(mainCui))
+				if("".equals(mainCui)){
 					try {
 						mainCui = diseaseDisorderService.getDiseasesByName(_term).block().getCui();
 					} catch (Exception e) {
 					}
+				}
+
+				// Signs and symptoms
 				concepts = r.getSignSymptomMention();
 				for (ConceptMention concept : concepts) {
 					String name = concept.getText();
@@ -140,8 +151,28 @@ public class DemoApplication implements CommandLineRunner {
 						signSymptomService.saveSymptom(signSymptomMention).block();
 					} catch (Exception e) {
 					}
-					System.out.println("Diasease: " + mainCui + " Contept: " + cui + "\n");
+					System.out.println("Disease: " + mainCui + " Contept: " + cui + "\n");
 					signSymptomService.addRelation(mainCui, cui, polarity, 0, 0).block();
+					journalArticleService.addEvidence(cui, pmid).block();
+				}
+
+				// Anatomy
+				concepts = r.getAnatomicalSiteMention();
+				for (ConceptMention concept : concepts) {
+					String name = concept.getText();
+					int polarity = 1;
+					if (concept.getPolarity() < 0)
+						polarity = concept.getPolarity();
+					String cui = concept.getConceptAttributes().get(0).cui;
+					anatomicalSiteMention.setCui(cui);
+					anatomicalSiteMention.setName(name);
+					try {
+						anatomicalSiteService.saveSymptom(anatomicalSiteMention).block();
+					} catch (Exception e) {
+					}
+					System.out.println("Disease: " + mainCui + " Contept: " + cui + "\n");
+					anatomicalSiteService.addRelation(mainCui, cui, polarity, 0, 0).block();
+					journalArticleService.addEvidence(cui, pmid).block();
 				}
 				//System.out.println(r);
 			}
