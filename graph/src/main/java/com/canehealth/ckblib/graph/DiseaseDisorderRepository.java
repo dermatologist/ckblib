@@ -21,7 +21,5 @@ public interface DiseaseDisorderRepository extends ReactiveNeo4jRepository <Dise
 
     Flux<DiseaseDisorderMention> findAllByNameLikeIgnoreCase(String name);
 
-    @Query("MATCH (d:Disease {cui: $cui}) RETURN d")
-    Flux<DiseaseDisorderMention> findAllSymptomsByCui(String cui);
 
 }

@@ -40,9 +40,6 @@ public class DiseaseDisorderService {
         return diseaseDisorderMentionRepository.findAllByNameLikeIgnoreCase(name);
     }
 
-    public Flux<DiseaseDisorderMention> getSymptoms(String cui) {
-        return diseaseDisorderMentionRepository.findAllSymptomsByCui(cui);
-    }
 
     /**
      * This is an example of when you might want to use the pure driver in case you

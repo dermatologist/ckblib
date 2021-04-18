@@ -21,10 +21,15 @@ public interface SignSymptomRepository extends ReactiveNeo4jRepository<SignSympt
 
     Flux<SignSymptomMention> findAllByNameLikeIgnoreCase(String name);
 
-    @Query("MATCH (d:Disease) <-[:PRESENTATION_OF]- (s:Symptom {cui: $cui} ) RETURN d")
-    Flux<DiseaseDisorderMention> findAllDiseasesWithSymptomsByCui(String cui);
 
-    @Query("MERGE(d:Disease {cui: $dcui}) <-[:PRESENTATION_OF]-> (s:Symptom {cui: $scui}) RETURN d")
-    Mono<DiseaseDisorderMention> mergeDiseaseWithSymptom(String dcui, String scui);
+    // @Query("MATCH (d:Disease {cui: $dcui}), (s:Symptom {cui: $scui}) MERGE (d) <-[:PRESENTATION_OF]- (s) RETURN s")
+    // Mono<SignSymptomMention> mergeDiseaseWithSymptom(String dcui, String scui);
+
+    @Query(""
+		+ "MATCH (d:Disease {cui: $dcui}), (s:Symptom {cui: $scui})\n"
+		+ "MERGE (d) <-[:PRESENTATION_OF]- (s) \n"
+		+ "RETURN DISTINCT s"
+	)
+    Mono<SignSymptomMention> mergeDiseaseWithSymptom(String dcui, String scui);
 
 }
