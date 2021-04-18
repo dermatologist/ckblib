@@ -1,6 +1,5 @@
 package com.canehealth.ckblib.graph.model;
 
-import static org.springframework.data.neo4j.core.schema.Relationship.Direction.INCOMING;
 import static org.springframework.data.neo4j.core.schema.Relationship.Direction.OUTGOING;
 
 import java.util.ArrayList;

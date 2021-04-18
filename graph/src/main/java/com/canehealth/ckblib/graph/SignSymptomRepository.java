@@ -27,7 +27,7 @@ public interface SignSymptomRepository extends ReactiveNeo4jRepository<SignSympt
     @Query(""
 		+ "MATCH (d:Disease {cui: $dcui}), (s:Symptom {cui: $scui})\n"
 		+ "MERGE (d) <-[r:PRESENTATION_OF]- (s) \n"
-        + "ON CREATE SET r.confidence = 0 \n"
+        + "ON CREATE SET r.confidence = 0, r.upvote = 0, r.downvote = 0 \n"
         + "ON MATCH SET r.confidence = r.confidence + 1 \n"
 		+ "RETURN DISTINCT s"
 	)

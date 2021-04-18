@@ -1,10 +1,8 @@
 package com.canehealth.ckblib.graph;
 
 import com.canehealth.ckblib.graph.model.DiseaseDisorderMention;
-import com.canehealth.ckblib.graph.model.SignSymptomMention;
 
 import org.springframework.data.neo4j.repository.ReactiveNeo4jRepository;
-import org.springframework.data.neo4j.repository.query.Query;
 import org.springframework.stereotype.Repository;
 
 import reactor.core.publisher.Flux;

@@ -17,9 +17,9 @@ public class BaseRelation {
 
     private Long confidence;
 
-    private Long upVote;
+    private Long upvote;
 
-    private Long downVote;
+    private Long downvote;
 
     @TargetNode
     DiseaseDisorderMention diseaseDisorderMention;

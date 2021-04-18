@@ -19,17 +19,7 @@ import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
 
-/**
- * This variant uses a custom {@link ApplicationContextInitializer} that
- * modifies Springs configuration properties with the help of
- * {@link TestPropertyValues}. Thus, the autoconfiguration of the driver is kept
- * and all other things are as you'd expect in production.
- * <p>
- * If you don't like that setup, look at {@link MoviesServiceAlt1Test}. Here, we
- * expose the embedded server as a Spring Bean and don't do the manual
- * connection setting.
- */
-// tag::test-harness-example-option3[]
+
 @SpringBootTest(classes = {
         DiseaseDisorderService.class, DiseaseDisorderMention.class, SignSymptomService.class, SignSymptomMention.class, Neo4jTestConfiguration.class })
 @EnableAutoConfiguration
@@ -90,15 +80,7 @@ class SignSymptomServiceTest {
         } catch (Exception e) {
 
         }
-
-        System.out.println(signSymptomService.addRelation("C0041834", "C1041834").block().getName());
-
-        // System.out.println(signSymptomService.getDiseaseByCui("C0041834").block().getName());
-        assertEquals(signSymptomService.getSymptomByCui("C1041834").block().getName(), "Pruritus");
-        // assertThat(signSymptomService.getDiseasesByName("psoriasis").next().block().getName()).hasSize(3).contains("The
-        // Matrix");
+        assertEquals(signSymptomService.addRelation("C0041834", "C1041834").block().getName(), "Pruritus");
     }
-    // tag::test-harness-example-option3[]
 
 }
-// end::test-harness-example-option3[]
