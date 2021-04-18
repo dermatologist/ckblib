@@ -3,11 +3,13 @@ package com.canehealth.ckblib.graph.model;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.Version;
 import org.springframework.data.neo4j.core.schema.Node;
+import org.springframework.stereotype.Component;
 
 import lombok.Data;
 
 @Node("Article")
 @Data
+@Component
 public class JournalArticle {
 
     @Id
