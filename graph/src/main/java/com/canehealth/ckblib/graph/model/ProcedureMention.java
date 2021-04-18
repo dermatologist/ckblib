@@ -10,11 +10,9 @@ import org.springframework.data.neo4j.core.schema.Id;
 import org.springframework.data.neo4j.core.schema.Node;
 import org.springframework.data.neo4j.core.schema.Relationship;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
 
 @Node("Procedure")
-@AllArgsConstructor
 @Data
 public class ProcedureMention {
     @Id
