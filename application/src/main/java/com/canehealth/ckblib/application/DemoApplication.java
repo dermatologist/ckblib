@@ -61,6 +61,18 @@ public class DemoApplication implements CommandLineRunner {
 	@Autowired
 	private AnatomicalSiteMention anatomicalSiteMention;
 
+	@Autowired
+	MedicationService medicationService;
+
+	@Autowired
+	private MedicationMention medicationMention;
+
+	@Autowired
+	ProcedureService procedureService;
+
+	@Autowired
+	private ProcedureMention procedureMention;
+
 	public DemoApplication (MyService myService) {
 		this.myService = myService;
 	}
@@ -172,6 +184,44 @@ public class DemoApplication implements CommandLineRunner {
 					}
 					System.out.println("Disease: " + mainCui + " Contept: " + cui + "\n");
 					anatomicalSiteService.addRelation(mainCui, cui, polarity, 0, 0).block();
+					journalArticleService.addEvidence(cui, pmid).block();
+				}
+
+				// Medication
+				concepts = r.getMedicationMention();
+				for (ConceptMention concept : concepts) {
+					String name = concept.getText();
+					int polarity = 1;
+					if (concept.getPolarity() < 0)
+						polarity = concept.getPolarity();
+					String cui = concept.getConceptAttributes().get(0).cui;
+					medicationMention.setCui(cui);
+					medicationMention.setName(name);
+					try {
+						medicationService.saveSymptom(medicationMention).block();
+					} catch (Exception e) {
+					}
+					System.out.println("Disease: " + mainCui + " Contept: " + cui + "\n");
+					medicationService.addRelation(mainCui, cui, polarity, 0, 0).block();
+					journalArticleService.addEvidence(cui, pmid).block();
+				}
+
+				// Anatomy
+				concepts = r.getProcedureMention();
+				for (ConceptMention concept : concepts) {
+					String name = concept.getText();
+					int polarity = 1;
+					if (concept.getPolarity() < 0)
+						polarity = concept.getPolarity();
+					String cui = concept.getConceptAttributes().get(0).cui;
+					procedureMention.setCui(cui);
+					procedureMention.setName(name);
+					try {
+						procedureService.saveSymptom(procedureMention).block();
+					} catch (Exception e) {
+					}
+					System.out.println("Disease: " + mainCui + " Contept: " + cui + "\n");
+					procedureService.addRelation(mainCui, cui, polarity, 0, 0).block();
 					journalArticleService.addEvidence(cui, pmid).block();
 				}
 				//System.out.println(r);
