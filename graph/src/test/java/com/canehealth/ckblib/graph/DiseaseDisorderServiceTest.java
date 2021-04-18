@@ -81,8 +81,12 @@ class DiseaseDisorderServiceTest {
         // Intentionally try to create duplicate
         diseaseDisorderMention.setCui("C0041834");
         diseaseDisorderMention.setName("Psoriasis Vulgaris");
-        diseaseDisorderMention.setVersion(1L);
-        diseaseDisorderService.saveDisease(diseaseDisorderMention).block();
+        try {
+            // Should fail if already created
+            diseaseDisorderService.saveDisease(diseaseDisorderMention).block();
+        } catch (Exception e) {
+
+        }
     }
     // end::test-harness-example-option3[]
 
@@ -90,7 +94,6 @@ class DiseaseDisorderServiceTest {
     void shouldRetrieveDiseases() {
         diseaseDisorderMention.setCui("C0041834");
         diseaseDisorderMention.setName("Psoriasis Vulgaris");
-        diseaseDisorderMention.setVersion(1L);
         try {
             // Should fail if already created
             diseaseDisorderService.saveDisease(diseaseDisorderMention).block();

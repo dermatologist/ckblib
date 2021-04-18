@@ -4,8 +4,11 @@ import java.util.Collection;
 import java.util.Collections;
 
 import com.canehealth.ckblib.graph.model.DiseaseDisorderMention;
-
+import org.neo4j.driver.AuthTokens;
 import org.neo4j.driver.Driver;
+import org.neo4j.driver.GraphDatabase;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 import org.springframework.data.neo4j.config.AbstractReactiveNeo4jConfig;
@@ -23,9 +26,15 @@ public class Neo4jTestConfiguration extends AbstractReactiveNeo4jConfig {
         return Collections.singletonList(DiseaseDisorderMention.class.getPackage().getName());
     }
 
-    @Override
+    // @Override
+    // public Driver driver() {
+    //     // TODO Auto-generated method stub
+    //     return null;
+    // }
+
+
+    @Bean
     public Driver driver() {
-        // TODO Auto-generated method stub
-        return null;
+        return GraphDatabase.driver("bolt://localhost:7687", AuthTokens.basic("neo4j", "secret"));
     }
 }

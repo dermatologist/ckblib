@@ -81,14 +81,17 @@ class SignSymptomServiceTest {
     void shouldRetrieveDiseases() {
         diseaseDisorderMention.setCui("C0041834");
         diseaseDisorderMention.setName("Psoriasis Vulgaris");
-        diseaseDisorderMention.setVersion(1L);
-        diseaseDisorderService.saveDisease(diseaseDisorderMention).block();
         signSymptomMention.setCui("C1041834");
         signSymptomMention.setName("Pruritus");
-        signSymptomMention.setVersion(1L);
-        signSymptomService.saveSymptom(signSymptomMention).block();
+        try {
+            // Should fail if already created
+            diseaseDisorderService.saveDisease(diseaseDisorderMention).block();
+            signSymptomService.saveSymptom(signSymptomMention).block();
 
-        
+        } catch (Exception e) {
+
+        }
+
         System.out.println(signSymptomService.addRelation("C0041834", "C1041834").block().getName());
 
         // System.out.println(signSymptomService.getDiseaseByCui("C0041834").block().getName());
