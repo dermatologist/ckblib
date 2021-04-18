@@ -9,11 +9,13 @@ import org.springframework.data.annotation.Version;
 import org.springframework.data.neo4j.core.schema.Id;
 import org.springframework.data.neo4j.core.schema.Node;
 import org.springframework.data.neo4j.core.schema.Relationship;
+import org.springframework.stereotype.Component;
 
 import lombok.Data;
 
 @Node("Symptom")
 @Data
+@Component
 public class SignSymptomMention {
 
     @Id
