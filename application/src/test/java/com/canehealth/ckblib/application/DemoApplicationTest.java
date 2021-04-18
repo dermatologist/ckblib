@@ -23,12 +23,19 @@ public class DemoApplicationTest {
 		assertThat(myService.message()).isNotNull();
 	}
 
+	// Use this while testing locally
+	// @Test
+	// public void demoTest() {
+	// 	String[] args = { "Erythema Multiforme"};
+	// 	DemoApplication.main(args);
+	// }
+
 	// This is required
-	@SpringBootApplication
-	@Configuration
-	//@EnableReactiveNeo4jRepositories(basePackages = "com.canehealth.ckblib.graph")
-	@ComponentScan(basePackages = "com.canehealth.ckblib")
-	static class TestConfiguration {
-	}
+	// @SpringBootApplication
+	// @Configuration
+	// //@EnableReactiveNeo4jRepositories(basePackages = "com.canehealth.ckblib.graph")
+	// @ComponentScan(basePackages = "com.canehealth.ckblib")
+	// static class TestConfiguration {
+	// }
 
 }

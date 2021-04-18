@@ -53,34 +53,49 @@ public class DemoApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws InterruptedException {
 		LOG.info("EXECUTING : " + myService.message());
-		baseQuery.setTerm("Erythema Multiforme");
-		baseQuery.setRetmax(3);
-		ckbEfetch.setBaseQuery(baseQuery);
-		TimeUnit.SECONDS.sleep(3);
-		ckbEfetch.get();
-		TimeUnit.SECONDS.sleep(5);
 
-		List<String> abstracts = ckbEfetch.getPath("//Abstract");
-		List<String> pmids = ckbEfetch.getPath("//PMID");
-		List<String> titles = ckbEfetch.getPath("//ArticleTitle");
-
-		qtakesService.setQtakesUrl("http://127.0.0.1:8093");
-
-		for (int i = 0; i < abstracts.size(); i++) {
-			System.out.println(pmids.get(i) + " : " + titles.get(i));
-			journalArticle.setPmid(pmids.get(i));
-			journalArticle.setName(titles.get(i));
-			qtakesService.post(abstracts.get(i));
-			try {
-				// Should fail if already created
-				journalArticleService.saveArticle(journalArticle).block();
-
-			} catch (Exception e) {
-
+		String _term = "";
+		try {
+			if (args[0].toLowerCase().equals("help")) {
+				System.out.println(myService.message());
+			} else {
+				for (int i = 0; i < args.length; ++i) {
+					LOG.debug("args[{}]: {}", i, args[i]);
+					_term = args[0];
+				}
 			}
+			baseQuery.setTerm(_term);
+			baseQuery.setRetmax(3);
+			ckbEfetch.setBaseQuery(baseQuery);
 			TimeUnit.SECONDS.sleep(3);
-			QtakesRoot r = qtakesService.getQtakesResults();
-			System.out.println(r);
+			ckbEfetch.get();
+			TimeUnit.SECONDS.sleep(5);
+
+			List<String> abstracts = ckbEfetch.getPath("//Abstract");
+			List<String> pmids = ckbEfetch.getPath("//PMID");
+			List<String> titles = ckbEfetch.getPath("//ArticleTitle");
+
+			qtakesService.setQtakesUrl("http://127.0.0.1:8093");
+
+			for (int i = 0; i < abstracts.size(); i++) {
+				System.out.println(pmids.get(i) + " : " + titles.get(i));
+				journalArticle.setPmid(pmids.get(i));
+				journalArticle.setName(titles.get(i));
+				qtakesService.post(abstracts.get(i));
+				try {
+					// Should fail if already created
+					journalArticleService.saveArticle(journalArticle).block();
+
+				} catch (Exception e) {
+
+				}
+				TimeUnit.SECONDS.sleep(3);
+				QtakesRoot r = qtakesService.getQtakesResults();
+				System.out.println(r);
+			}
+
+		} catch (Exception e) {
+			System.out.println(myService.message());
 		}
 		// String myPublications = ckbEfetch.getPath("//Abstract").get(0);
 		// String myPMID = ckbEfetch.getPath("//PMID").get(0);
