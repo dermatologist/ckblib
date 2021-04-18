@@ -81,6 +81,8 @@ class SignSymptomServiceTest {
 
         }
         assertEquals(signSymptomService.addRelation("C0041834", "C1041834",0, 0, 0).block().getName(), "Pruritus");
+
+        System.out.println(diseaseDisorderService.forD3().toString());
     }
 
 }

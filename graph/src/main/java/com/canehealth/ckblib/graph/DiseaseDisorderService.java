@@ -48,29 +48,29 @@ public class DiseaseDisorderService {
      *
      * @return A representation D3.js can handle
      */
-    public Map<String, List<Object>> f() {
+    public Map<String, List<Object>> forD3() {
 
         var nodes = new ArrayList<>();
         var links = new ArrayList<>();
 
         try (Session session = driver.session()) {
-            var records = session.readTransaction(tx -> tx.run("" + " MATCH (m:Movie) <- [r:ACTED_IN] - (p:Person)"
-                    + " WITH m, p ORDER BY m.title, p.name" + " RETURN m.title AS movie, collect(p.name) AS actors")
+            var records = session.readTransaction(tx -> tx.run("" + " MATCH (d:Disease) <- [r:PRESENTATION_OF] - (s:Symptom)"
+                    + " WITH d, s, r ORDER BY r.confidence, d.name" + " RETURN d.name AS disease, collect(s.name) AS symptoms")
                     .list());
             records.forEach(record -> {
-                var movie = Map.of("label", "movie", "title", record.get("movie").asString());
+                var disease = Map.of("label", "disease", "title", record.get("disease").asString());
 
                 var targetIndex = nodes.size();
-                nodes.add(movie);
+                nodes.add(disease);
 
-                record.get("actors").asList(v -> v.asString()).forEach(name -> {
-                    var actor = Map.of("label", "actor", "title", name);
+                record.get("symptoms").asList(v -> v.asString()).forEach(name -> {
+                    var symptom = Map.of("label", "symptom", "title", name);
 
                     int sourceIndex;
-                    if (nodes.contains(actor)) {
-                        sourceIndex = nodes.indexOf(actor);
+                    if (nodes.contains(symptom)) {
+                        sourceIndex = nodes.indexOf(symptom);
                     } else {
-                        nodes.add(actor);
+                        nodes.add(symptom);
                         sourceIndex = nodes.size() - 1;
                     }
                     links.add(Map.of("source", sourceIndex, "target", targetIndex));
