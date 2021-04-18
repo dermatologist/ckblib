@@ -87,10 +87,7 @@ public class DemoApplication implements CommandLineRunner {
 
 		String _term = "";
 		String mainCui = "";
-		// Fails if disease not known, Try again after adding concepts
-		try{mainCui = diseaseDisorderService.getDiseasesByName(_term).block().getCui();}catch(Exception e){}
 
-		System.out.println(mainCui);
 		try {
 			if (args[0].toLowerCase().equals("help")) {
 				System.out.println(myService.message());
@@ -106,6 +103,14 @@ public class DemoApplication implements CommandLineRunner {
 			TimeUnit.SECONDS.sleep(3);
 			ckbEfetch.get();
 			TimeUnit.SECONDS.sleep(5);
+
+			// Fails if disease not known, Try again after adding concepts
+			try {
+				mainCui = diseaseDisorderService.getDiseasesByName(_term).block().getCui();
+			} catch (Exception e) {
+			}
+
+			System.out.println("MainCUI: " + mainCui + "\n");
 
 			List<String> abstracts = ckbEfetch.getPath("//Abstract");
 			List<String> pmids = ckbEfetch.getPath("//PMID");
@@ -128,6 +133,8 @@ public class DemoApplication implements CommandLineRunner {
 				}
 				TimeUnit.SECONDS.sleep(3);
 				QtakesRoot r = qtakesService.getQtakesResults();
+
+				// Diseases
 				List<ConceptMention>concepts = r.getDiseaseDisorderMention();
 				for(ConceptMention concept : concepts){
 					String name = concept.getText();
@@ -140,6 +147,10 @@ public class DemoApplication implements CommandLineRunner {
 						diseaseDisorderService.saveDisease(diseaseDisorderMention).block();
 					} catch (Exception e) {}
 					journalArticleService.addEvidence(cui, pmid).block();
+
+					if (!"".equals(mainCui) && !mainCui.equals(cui)) {
+						diseaseDisorderService.addDifferential(mainCui, cui, polarity, 0, 0);
+					}
 				}
 				// Disease should exist now
 				if("".equals(mainCui)){
