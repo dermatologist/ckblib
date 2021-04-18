@@ -23,12 +23,12 @@ public class DemoApplicationTest {
 		assertThat(myService.message()).isNotNull();
 	}
 
-	// Use this while testing locally
-	// @Test
-	// public void demoTest() {
-	// 	String[] args = { "Erythema Multiforme"};
-	// 	DemoApplication.main(args);
-	// }
+	//Use this while testing locally
+	@Test
+	public void demoTest() {
+		String[] args = { "Erythema Multiforme"};
+		DemoApplication.main(args);
+	}
 
 	// This is required
 	// @SpringBootApplication

@@ -19,5 +19,6 @@ public interface DiseaseDisorderRepository extends ReactiveNeo4jRepository <Dise
 
     Flux<DiseaseDisorderMention> findAllByNameLikeIgnoreCase(String name);
 
+    Mono<DiseaseDisorderMention> findOneByNameLikeIgnoreCase(String name);
 
 }

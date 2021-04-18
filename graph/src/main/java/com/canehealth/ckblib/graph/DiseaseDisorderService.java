@@ -35,8 +35,8 @@ public class DiseaseDisorderService {
         return diseaseDisorderMentionRepository.save(diseaseDisorderMention);
     }
 
-    public Flux<DiseaseDisorderMention> getDiseasesByName(String name){
-        return diseaseDisorderMentionRepository.findAllByNameLikeIgnoreCase(name);
+    public Mono<DiseaseDisorderMention> getDiseasesByName(String name){
+        return diseaseDisorderMentionRepository.findOneByNameLikeIgnoreCase(name);
     }
 
 

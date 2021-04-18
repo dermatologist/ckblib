@@ -33,8 +33,8 @@ public class SignSymptomService {
         return signSymptomMentionRepository.save(signSymptomMention);
     }
 
-    public Flux<SignSymptomMention> getSymptomByName(String name) {
-        return signSymptomMentionRepository.findAllByNameLikeIgnoreCase(name);
+    public Mono<SignSymptomMention> getSymptomByName(String name) {
+        return signSymptomMentionRepository.findOneByNameLikeIgnoreCase(name);
     }
 
     // public Flux<DiseaseDisorderMention> getDiseases(String cui) {
