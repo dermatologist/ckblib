@@ -1,20 +1,20 @@
 package com.canehealth.ckblib.graph.model;
 
-import static org.springframework.data.neo4j.core.schema.Relationship.Direction.*;
+import static org.springframework.data.neo4j.core.schema.Relationship.Direction.OUTGOING;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.data.annotation.Version;
 import org.springframework.data.neo4j.core.schema.Id;
 import org.springframework.data.neo4j.core.schema.Node;
 import org.springframework.data.neo4j.core.schema.Relationship;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.Getter;
 
 @Node("Anatomy")
-@AllArgsConstructor
+@Data
 public class AnatomicalSiteMention {
     @Id
     private String cui;
