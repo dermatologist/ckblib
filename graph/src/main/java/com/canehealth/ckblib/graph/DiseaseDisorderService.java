@@ -79,8 +79,4 @@ public class DiseaseDisorderService {
         }
         return Map.of("nodes", nodes, "links", links);
     }
-
-
-
-
 }

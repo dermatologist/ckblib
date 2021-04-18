@@ -14,15 +14,10 @@ public interface SignSymptomRepository extends ReactiveNeo4jRepository<SignSympt
 
     Flux<SignSymptomMention> findAll();
 
-    // Mono<DiseaseDisorderMention> findById(String cui);
-
     Mono<SignSymptomMention> findOneByCui(String cui);
 
     Flux<SignSymptomMention> findAllByNameLikeIgnoreCase(String name);
 
-
-    // @Query("MATCH (d:Disease {cui: $dcui}), (s:Symptom {cui: $scui}) MERGE (d) <-[:PRESENTATION_OF]- (s) RETURN s")
-    // Mono<SignSymptomMention> mergeDiseaseWithSymptom(String dcui, String scui);
 
     @Query(""
 		+ "MATCH (d:Disease {cui: $dcui}), (s:Symptom {cui: $scui})\n"
@@ -33,8 +28,5 @@ public interface SignSymptomRepository extends ReactiveNeo4jRepository<SignSympt
 	)
     Mono<SignSymptomMention> mergeDiseaseWithSymptom(String dcui, String scui, int c, int u, int d);
 
-    // @Query("" + "MATCH (d:Disease {cui: $dcui}) <-[r:PRESENTATION_OF]-  (s:Symptom {cui: $scui})\n"
-    //           + "SET r.weights = r.weights + 1 RETURN DISTINCT s")
-    // Mono<SignSymptomMention> updateWeights(String dcui, String scui);
 
 }
