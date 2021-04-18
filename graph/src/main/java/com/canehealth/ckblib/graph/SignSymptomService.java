@@ -41,8 +41,8 @@ public class SignSymptomService {
     //     return signSymptomMentionRepository.findAllDiseasesWithSymptomsByCui(cui);
     // }
 
-    public Mono<SignSymptomMention> addRelation(String dcui, String scui) {
-            return signSymptomMentionRepository.mergeDiseaseWithSymptom(dcui, scui);
+    public Mono<SignSymptomMention> addRelation(String dcui, String scui, int confidence, int upvote, int downvote) {
+            return signSymptomMentionRepository.mergeDiseaseWithSymptom(dcui, scui, confidence, upvote, downvote);
     }
 
     /**

@@ -80,7 +80,7 @@ class SignSymptomServiceTest {
         } catch (Exception e) {
 
         }
-        assertEquals(signSymptomService.addRelation("C0041834", "C1041834").block().getName(), "Pruritus");
+        assertEquals(signSymptomService.addRelation("C0041834", "C1041834",0, 0, 0).block().getName(), "Pruritus");
     }
 
 }
