@@ -1,6 +1,7 @@
 package com.canehealth.ckblib.library.service;
 
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
+
 import java.util.concurrent.TimeUnit;
 import com.canehealth.ckblib.library.model.BaseQuery;
 import com.canehealth.ckblib.library.model.EsearchResultRoot;
@@ -32,6 +33,13 @@ public class CkbEsearchTest {
         assertNotEquals(esearchResultRoot.esearchresult.ids(), "0");
     }
 
+    @Test
+    public void CkbEsearchTestGetMono() throws InterruptedException {
+        ckbEsearch.setBaseQuery(baseQuery);
+        EsearchResultRoot esearchResultRoot = ckbEsearch.get().block();
+        System.out.print(esearchResultRoot.esearchresult.count);
+        assertNotEquals(esearchResultRoot.esearchresult.count, "0");
+    }
     @SpringBootApplication
     @Configuration
     @ComponentScan(basePackages = "com.canehealth.ckblib")

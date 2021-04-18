@@ -1,8 +1,8 @@
 package com.canehealth.ckblib.library.service;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.mockito.Mockito.lenient;
 
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 import com.canehealth.ckblib.library.model.BaseQuery;
 import org.junit.jupiter.api.Test;
@@ -28,10 +28,19 @@ public class CkbEfetchTest {
         TimeUnit.SECONDS.sleep(3);
         ckbEfetch.get();
         TimeUnit.SECONDS.sleep(5);
-        String abstracts = ckbEfetch.getAbstractsAsString(10);
-        assertTrue(abstracts.length() > 100);
+        List<String> abstracts = ckbEfetch.getPath("//Abstract");
+        System.out.println(abstracts.get(0));
+        assertTrue(abstracts.get(0).length() > 100);
     }
 
+    @Test
+    public void CkbEfetchTestGetChain() throws InterruptedException {
+        baseQuery.setTerm("Lichen Planus");
+        String s = ckbEfetch.getChain(baseQuery).block();
+        List<String> abstracts = ckbEfetch.getPathFromString("//Abstract", s);
+        System.out.println(abstracts.get(0));
+        assertTrue(abstracts.get(0).length() > 100);
+    }
     @SpringBootApplication
     @Configuration
     @ComponentScan(basePackages = "com.canehealth.ckblib")
