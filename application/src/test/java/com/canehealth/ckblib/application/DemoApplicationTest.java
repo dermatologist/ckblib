@@ -2,17 +2,15 @@ package com.canehealth.ckblib.application;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import org.junit.jupiter.api.Test;
+import com.canehealth.ckblib.library.service.MyService;
 
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.neo4j.repository.config.EnableReactiveNeo4jRepositories;
-
-import com.canehealth.ckblib.graph.AnatomicalSiteService;
-import com.canehealth.ckblib.library.service.MyService;
 
 @SpringBootTest
 public class DemoApplicationTest {
