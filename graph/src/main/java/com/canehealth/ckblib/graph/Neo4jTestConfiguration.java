@@ -26,15 +26,15 @@ public class Neo4jTestConfiguration extends AbstractReactiveNeo4jConfig {
         return Collections.singletonList(DiseaseDisorderMention.class.getPackage().getName());
     }
 
-    // @Override
-    // public Driver driver() {
-    //     // uto-generated method stub
-    //     return null;
-    // }
-
-
-    @Bean
+    @Override
     public Driver driver() {
-        return GraphDatabase.driver("bolt://localhost:7687", AuthTokens.basic("neo4j", "secret"));
+        // uto-generated method stub
+        return null;
     }
+
+
+    // @Bean
+    // public Driver driver() {
+    //     return GraphDatabase.driver("bolt://localhost:7687", AuthTokens.basic("neo4j", "secret"));
+    // }
 }
