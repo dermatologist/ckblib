@@ -42,8 +42,8 @@ public class SignSymptomService {
         return signSymptomMentionRepository.findAllDiseasesWithSymptomsByCui(cui);
     }
 
-    public void addRelation(String dcui, String scui) {
-            signSymptomMentionRepository.mergeDiseaseWithSymptom(dcui, scui);
+    public Mono<DiseaseDisorderMention> addRelation(String dcui, String scui) {
+            return signSymptomMentionRepository.mergeDiseaseWithSymptom(dcui, scui);
     }
 
     /**

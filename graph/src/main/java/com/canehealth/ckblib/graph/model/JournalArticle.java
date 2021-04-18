@@ -25,6 +25,6 @@ public class JournalArticle {
 
     public String name;
 
-    @Relationship(type = "EVIDENCE", direction = INCOMING)
+    @Relationship(type = "EVIDENCE_OF", direction = OUTGOING)
     private List<BaseRelation> diseases = new ArrayList<>();
 }

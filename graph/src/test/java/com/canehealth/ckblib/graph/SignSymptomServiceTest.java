@@ -78,28 +78,18 @@ class SignSymptomServiceTest {
     }
 
     @Test
-    void testSomethingWithTheDriver(@Autowired Driver driver) {
-        // Intentionally try to create duplicate
+    void shouldRetrieveDiseases() {
         diseaseDisorderMention.setCui("C0041834");
         diseaseDisorderMention.setName("Psoriasis Vulgaris");
         diseaseDisorderMention.setVersion(1L);
         diseaseDisorderService.saveDisease(diseaseDisorderMention).block();
-    }
-    // end::test-harness-example-option3[]
-
-    @Test
-    void shouldRetrieveDiseases() {
         signSymptomMention.setCui("C1041834");
         signSymptomMention.setName("Pruritus");
         signSymptomMention.setVersion(1L);
-        try {
-            // Should fail if already created
-            signSymptomService.saveSymptom(signSymptomMention).block();
-        } catch (Exception e) {
+        signSymptomService.saveSymptom(signSymptomMention).block();
 
-        }
-
-        signSymptomService.addRelation("C0041834", "C1041834");
+        
+        System.out.println(signSymptomService.addRelation("C0041834", "C1041834").block().getName());
 
         // System.out.println(signSymptomService.getDiseaseByCui("C0041834").block().getName());
         assertEquals(signSymptomService.getSymptomByCui("C1041834").block().getName(), "Pruritus");

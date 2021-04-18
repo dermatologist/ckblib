@@ -29,7 +29,7 @@ public class ProcedureMention {
     @Relationship(type = "HAS_ATTRIBUTES", direction = OUTGOING)
     private List<ConceptAttributes> attributes = new ArrayList<>();
 
-    @Relationship(type = "TREATED_WITH", direction = INCOMING)
+    @Relationship(type = "TREATMENT_OF", direction = OUTGOING)
     private List<BaseRelation> diseases = new ArrayList<>();
 
 }

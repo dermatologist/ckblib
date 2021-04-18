@@ -28,6 +28,6 @@ public class AnatomicalSiteMention {
     @Relationship(type = "HAS_ATTRIBUTES", direction = OUTGOING)
     private List<ConceptAttributes> attributes = new ArrayList<>();
 
-    @Relationship(type = "AFFECTS", direction = INCOMING)
+    @Relationship(type = "ANATOMY_OF", direction = OUTGOING)
     private List<BaseRelation> differentials = new ArrayList<>();
 }
