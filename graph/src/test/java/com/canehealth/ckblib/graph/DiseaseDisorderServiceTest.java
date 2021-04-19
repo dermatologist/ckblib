@@ -92,10 +92,13 @@ class DiseaseDisorderServiceTest {
 
     @Test
     void shouldRetrieveDiseases() {
-        diseaseDisorderMention.setCui("C0041834");
-        diseaseDisorderMention.setName("Psoriasis Vulgaris");
         try {
             // Should fail if already created
+            diseaseDisorderMention.setCui("C0041834");
+            diseaseDisorderMention.setName("Psoriasis Vulgaris");
+            diseaseDisorderService.saveDisease(diseaseDisorderMention).block();
+            diseaseDisorderMention.setCui("C0041835");
+            diseaseDisorderMention.setName("Lichen Planus");
             diseaseDisorderService.saveDisease(diseaseDisorderMention).block();
         } catch (Exception e) {
 
@@ -103,6 +106,7 @@ class DiseaseDisorderServiceTest {
 
         // System.out.println(diseaseDisorderService.getDiseaseByCui("C0041834").block().getName());
         assertEquals(diseaseDisorderService.getDiseaseByCui("C0041834").block().getName(), "Psoriasis Vulgaris");
+        assertEquals(diseaseDisorderService.addDifferential("C0041834", "C0041835", 0, 0, 0).block().getName(), "Lichen Planus");
         // assertThat(diseaseDisorderService.getDiseasesByName("psoriasis").next().block().getName()).hasSize(3).contains("The Matrix");
     }
     // tag::test-harness-example-option3[]

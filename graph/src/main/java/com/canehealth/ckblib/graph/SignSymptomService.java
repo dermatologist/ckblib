@@ -12,7 +12,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 @Service
@@ -33,8 +32,8 @@ public class SignSymptomService {
         return signSymptomMentionRepository.save(signSymptomMention);
     }
 
-    public Flux<SignSymptomMention> getSymptomByName(String name) {
-        return signSymptomMentionRepository.findAllByNameLikeIgnoreCase(name);
+    public Mono<SignSymptomMention> getSymptomByName(String name) {
+        return signSymptomMentionRepository.findOneByNameLikeIgnoreCase(name);
     }
 
     // public Flux<DiseaseDisorderMention> getDiseases(String cui) {

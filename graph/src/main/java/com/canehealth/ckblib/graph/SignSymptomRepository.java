@@ -18,6 +18,7 @@ public interface SignSymptomRepository extends ReactiveNeo4jRepository<SignSympt
 
     Flux<SignSymptomMention> findAllByNameLikeIgnoreCase(String name);
 
+    Mono<SignSymptomMention> findOneByNameLikeIgnoreCase(String name);
 
     @Query(""
 		+ "MATCH (d:Disease {cui: $dcui}), (s:Symptom {cui: $scui})\n"
