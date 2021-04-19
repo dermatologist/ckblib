@@ -24,6 +24,7 @@ public class DemoApplicationTest {
 	}
 
 	//Use this while testing locally
+	// Running the application will not work as it looks for the argument
 	@Test
 	public void demoTest() {
 		String[] args = { "Erythema Multiforme"};

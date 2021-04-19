@@ -90,7 +90,7 @@ public class DemoApplication implements CommandLineRunner {
 
 		try {
 			if (args[0].toLowerCase().equals("help")) {
-				System.out.println(myService.message());
+				LOG.info(myService.message());
 			} else {
 				for (int i = 0; i < args.length; ++i) {
 					LOG.debug("args[{}]: {}", i, args[i]);
@@ -121,6 +121,16 @@ public class DemoApplication implements CommandLineRunner {
 			for (int i = 0; i < abstracts.size(); i++) {
 				System.out.println(pmids.get(i) + " : " + titles.get(i));
 				String pmid = pmids.get(i);
+
+				// Chech if pmid processed
+				try{
+					JournalArticle processed = journalArticleService.getSymptomByPmid(pmid).block();
+					if(processed.getPmid().equals(pmid)){
+						LOG.info(pmid + " known.");
+						break;
+					}
+				}catch (Exception e) {}
+
 				journalArticle.setPmid(pmid);
 				journalArticle.setName(titles.get(i));
 				qtakesService.post(abstracts.get(i));
