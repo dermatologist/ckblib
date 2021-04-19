@@ -3,12 +3,15 @@ package com.canehealth.ckblib.application;
 import com.canehealth.ckblib.library.service.MyService;
 
 import java.util.List;
+import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
 import com.canehealth.ckblib.graph.*;
 import com.canehealth.ckblib.graph.model.*;
 import com.canehealth.ckblib.library.model.BaseQuery;
+import com.canehealth.ckblib.library.model.EsearchResultRoot;
 import com.canehealth.ckblib.library.service.CkbEfetch;
+import com.canehealth.ckblib.library.service.CkbEsearch;
 import com.canehealth.ckblib.qtakes.service.QtakesService;
 import com.canehealth.ckblib.qtakes.model.ConceptMention;
 import com.canehealth.ckblib.qtakes.model.QtakesRoot;
@@ -30,6 +33,9 @@ public class DemoApplication implements CommandLineRunner {
 	private static Logger LOG = LoggerFactory.getLogger(DemoApplication.class);
 	@Autowired
 	private BaseQuery baseQuery;
+
+	@Autowired
+	private CkbEsearch ckbEsearch;
 
 	@Autowired
 	private CkbEfetch ckbEfetch;
@@ -99,6 +105,20 @@ public class DemoApplication implements CommandLineRunner {
 			}
 			baseQuery.setTerm(_term);
 			baseQuery.setRetmax(3);
+
+			// Check and adjust for total count of articles
+			ckbEsearch.setBaseQuery(baseQuery);
+			ckbEsearch.get();
+			TimeUnit.SECONDS.sleep(1);
+			EsearchResultRoot esearchResultRoot = ckbEsearch.getResults().get(0);
+			LOG.info("Count: " + esearchResultRoot.esearchresult.count);
+			int ct = Integer.parseInt(esearchResultRoot.esearchresult.count);
+			Random random = new Random();
+			if(ct>3){
+				baseQuery.setRetstart(random.nextInt(ct));
+			}
+
+
 			ckbEfetch.setBaseQuery(baseQuery);
 			TimeUnit.SECONDS.sleep(3);
 			ckbEfetch.get();
@@ -110,7 +130,7 @@ public class DemoApplication implements CommandLineRunner {
 			} catch (Exception e) {
 			}
 
-			System.out.println("MainCUI: " + mainCui + "\n");
+			LOG.info("MainCUI: " + mainCui + "\n");
 
 			List<String> abstracts = ckbEfetch.getPath("//Abstract");
 			List<String> pmids = ckbEfetch.getPath("//PMID");
@@ -119,7 +139,7 @@ public class DemoApplication implements CommandLineRunner {
 			qtakesService.setQtakesUrl("http://127.0.0.1:8093");
 
 			for (int i = 0; i < abstracts.size(); i++) {
-				System.out.println(pmids.get(i) + " : " + titles.get(i));
+				LOG.info(pmids.get(i) + " : " + titles.get(i));
 				String pmid = pmids.get(i);
 
 				// Chech if pmid processed
@@ -129,7 +149,9 @@ public class DemoApplication implements CommandLineRunner {
 						LOG.info(pmid + " known.");
 						break;
 					}
-				}catch (Exception e) {}
+				}catch (Exception e) {
+					LOG.info("Processing: " + pmid);
+				}
 
 				journalArticle.setPmid(pmid);
 				journalArticle.setName(titles.get(i));
@@ -155,10 +177,13 @@ public class DemoApplication implements CommandLineRunner {
 					diseaseDisorderMention.setName(name);
 					try {
 						diseaseDisorderService.saveDisease(diseaseDisorderMention).block();
-					} catch (Exception e) {}
+					} catch (Exception e) {
+						LOG.info(name + " known.");
+					}
 					journalArticleService.addEvidence(cui, pmid).block();
 
 					if (!"".equals(mainCui) && !mainCui.equals(cui)) {
+						LOG.info("Adding DDs");
 						diseaseDisorderService.addDifferential(mainCui, cui, polarity, 0, 0);
 					}
 				}
@@ -167,6 +192,7 @@ public class DemoApplication implements CommandLineRunner {
 					try {
 						mainCui = diseaseDisorderService.getDiseasesByName(_term).block().getCui();
 					} catch (Exception e) {
+						LOG.error(mainCui + " unknown.");
 					}
 				}
 
@@ -183,8 +209,9 @@ public class DemoApplication implements CommandLineRunner {
 					try {
 						signSymptomService.saveSymptom(signSymptomMention).block();
 					} catch (Exception e) {
+						LOG.info(name + " known.");
 					}
-					System.out.println("Disease: " + mainCui + " Contept: " + cui + "\n");
+					LOG.info("Disease: " + mainCui + " Contept: " + cui + "\n");
 					signSymptomService.addRelation(mainCui, cui, polarity, 0, 0).block();
 					journalArticleService.addEvidence(cui, pmid).block();
 				}
@@ -202,8 +229,9 @@ public class DemoApplication implements CommandLineRunner {
 					try {
 						anatomicalSiteService.saveSymptom(anatomicalSiteMention).block();
 					} catch (Exception e) {
+						LOG.info(name + " known.");
 					}
-					System.out.println("Disease: " + mainCui + " Contept: " + cui + "\n");
+					LOG.info("Disease: " + mainCui + " Contept: " + cui + "\n");
 					anatomicalSiteService.addRelation(mainCui, cui, polarity, 0, 0).block();
 					journalArticleService.addEvidence(cui, pmid).block();
 				}
@@ -221,13 +249,14 @@ public class DemoApplication implements CommandLineRunner {
 					try {
 						medicationService.saveSymptom(medicationMention).block();
 					} catch (Exception e) {
+						LOG.info(name + " known.");
 					}
-					System.out.println("Disease: " + mainCui + " Contept: " + cui + "\n");
+					LOG.info("Disease: " + mainCui + " Contept: " + cui + "\n");
 					medicationService.addRelation(mainCui, cui, polarity, 0, 0).block();
 					journalArticleService.addEvidence(cui, pmid).block();
 				}
 
-				// Anatomy
+				// Procedure
 				concepts = r.getProcedureMention();
 				for (ConceptMention concept : concepts) {
 					String name = concept.getText();
@@ -240,8 +269,9 @@ public class DemoApplication implements CommandLineRunner {
 					try {
 						procedureService.saveSymptom(procedureMention).block();
 					} catch (Exception e) {
+						LOG.info(name + " known.");
 					}
-					System.out.println("Disease: " + mainCui + " Contept: " + cui + "\n");
+					LOG.info("Disease: " + mainCui + " Contept: " + cui + "\n");
 					procedureService.addRelation(mainCui, cui, polarity, 0, 0).block();
 					journalArticleService.addEvidence(cui, pmid).block();
 				}
@@ -249,7 +279,7 @@ public class DemoApplication implements CommandLineRunner {
 			}
 
 		} catch (Exception e) {
-			System.out.println(myService.message());
+			LOG.error(e.getLocalizedMessage());
 		}
 		// String myPublications = ckbEfetch.getPath("//Abstract").get(0);
 		// String myPMID = ckbEfetch.getPath("//PMID").get(0);
