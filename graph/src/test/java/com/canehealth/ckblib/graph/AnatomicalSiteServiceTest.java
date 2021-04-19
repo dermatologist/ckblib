@@ -79,7 +79,7 @@ class AnatomicalSiteServiceTest {
         }
         assertEquals(anatomicalSiteService.addRelation("C0041834", "C2041834", 0, 0, 0).block().getName(), "Face");
 
-        System.out.println(anatomicalSiteService.forD3().toString());
+        System.out.println(anatomicalSiteService.forD3("C2041834").toString());
     }
 
 }

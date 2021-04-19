@@ -80,7 +80,7 @@ class MedicationServiceTest {
         }
         assertEquals(medicationService.addRelation("C0041834", "C3041834", 0, 0, 0).block().getName(), "Paracetamol");
 
-        System.out.println(medicationService.forD3().toString());
+        System.out.println(medicationService.forD3("C3041834").toString());
     }
 
 }
