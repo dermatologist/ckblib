@@ -80,7 +80,7 @@ class ProcedureServiceTest {
         }
         assertEquals(procedureService.addRelation("C0041834", "C4041834", 0, 0, 0).block().getName(), "Hernia repair");
 
-        System.out.println(procedureService.forD3().toString());
+        System.out.println(procedureService.forD3("C4041834").toString());
     }
 
 }

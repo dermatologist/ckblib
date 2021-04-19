@@ -2,9 +2,9 @@ package com.canehealth.ckblib.library.service;
 
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
-import java.util.concurrent.TimeUnit;
 import com.canehealth.ckblib.library.model.BaseQuery;
 import com.canehealth.ckblib.library.model.EsearchResultRoot;
+
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

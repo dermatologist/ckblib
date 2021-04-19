@@ -49,14 +49,16 @@ public class ProcedureService {
      *
      * @return A representation D3.js can handle
      */
-    public Map<String, List<Object>> forD3() {
+    public Map<String, List<Object>> forD3(String cui) {
 
         var nodes = new ArrayList<>();
         var links = new ArrayList<>();
 
         try (Session session = driver.session()) {
             var records = session
-                    .readTransaction(tx -> tx.run("" + " MATCH (d:Disease) <- [r:TREATMENT_OF] - (s:Procedure)"
+                    .readTransaction(tx -> tx.run("" + " MATCH (d:Disease) <- [r:TREATMENT_OF] - (s:Procedure {cui: '"
+                            + cui
+                            + "'})"
                             + " WITH d, s, r ORDER BY r.confidence, d.name"
                             + " RETURN d.name AS disease, collect(s.name) AS procedures").list());
             records.forEach(record -> {

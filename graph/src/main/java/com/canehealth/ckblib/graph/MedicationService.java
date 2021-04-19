@@ -49,13 +49,15 @@ public class MedicationService {
      *
      * @return A representation D3.js can handle
      */
-    public Map<String, List<Object>> forD3() {
+    public Map<String, List<Object>> forD3(String cui) {
 
         var nodes = new ArrayList<>();
         var links = new ArrayList<>();
 
         try (Session session = driver.session()) {
-            var records = session.readTransaction(tx -> tx.run("" + " MATCH (d:Disease) <- [r:ASSOCIATION_OF] - (s:Medication)"
+            var records = session.readTransaction(tx -> tx.run("" + " MATCH (d:Disease) <- [r:ASSOCIATION_OF] - (s:Medication {cui: '"
+                    + cui
+                    + "'})"
                     + " WITH d, s, r ORDER BY r.confidence, d.name"
                     + " RETURN d.name AS disease, collect(s.name) AS medications").list());
             records.forEach(record -> {

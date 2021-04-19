@@ -50,14 +50,15 @@ public class AnatomicalSiteService {
      *
      * @return A representation D3.js can handle
      */
-    public Map<String, List<Object>> forD3() {
+    public Map<String, List<Object>> forD3(String cui) {
 
         var nodes = new ArrayList<>();
         var links = new ArrayList<>();
 
         try (Session session = driver.session()) {
             var records = session
-                    .readTransaction(tx -> tx.run("" + " MATCH (d:Disease) <- [r:ANATOMY_OF] - (s:Anatomy)"
+                    .readTransaction(tx -> tx.run("" + " MATCH (d:Disease) <- [r:ANATOMY_OF] - (s:Anatomy {cui: '" + cui
+                            + "'})"
                             + " WITH d, s, r ORDER BY r.confidence, d.name"
                             + " RETURN d.name AS disease, collect(s.name) AS anatomys").list());
             records.forEach(record -> {

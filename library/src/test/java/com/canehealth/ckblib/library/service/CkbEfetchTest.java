@@ -6,8 +6,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
-import com.canehealth.ckblib.library.model.BaseQuery;
+
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -17,9 +16,6 @@ import org.springframework.context.annotation.Configuration;
 
 @SpringBootTest
 public class CkbEfetchTest {
-
-    @Autowired
-    private BaseQuery baseQuery;
 
     @Autowired
     private CkbEfetch ckbEfetch;
