@@ -25,13 +25,25 @@ public class CkbEfetchTest {
     public void CkbEfetchTestGet() throws InterruptedException {
         baseQuery.setTerm("Lichen Planus");
         ckbEfetch.setBaseQuery(baseQuery);
-        TimeUnit.SECONDS.sleep(3);
+        TimeUnit.SECONDS.sleep(1);
         ckbEfetch.get();
-        TimeUnit.SECONDS.sleep(5);
+        TimeUnit.SECONDS.sleep(1);
         List<String> abstracts = ckbEfetch.getPath("//Abstract");
-        System.out.println(abstracts.get(0));
+        // System.out.println(abstracts.get(0));
         assertTrue(abstracts.get(0).length() > 100);
     }
+
+    // Will lead to too many requests
+
+    // @Test
+    // public void CkbEfetchTestGetMono() throws InterruptedException {
+    //     baseQuery.setTerm("Lichen Planus");
+    //     ckbEfetch.setBaseQuery(baseQuery);
+    //     TimeUnit.SECONDS.sleep(1);
+    //     ckbEfetch.get().block();
+    //     List<String> abstracts = ckbEfetch.getPath("//Abstract");
+    //     assertTrue(abstracts.get(0).length() > 100);
+    // }
 
     /*
             The test below is disabled as it leads to too many requests to PubMed
