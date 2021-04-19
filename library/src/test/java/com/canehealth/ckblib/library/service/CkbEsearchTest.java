@@ -36,6 +36,7 @@ public class CkbEsearchTest {
 
     @Test
     public void CkbEsearchTestGetMono() throws InterruptedException {
+        //baseQuery.setRetmax(3);
         ckbEsearch.setBaseQuery(baseQuery);
         EsearchResultRoot esearchResultRoot = ckbEsearch.get().block();
         //System.out.print(esearchResultRoot.esearchresult.count);

@@ -1,0 +1,341 @@
+<?xml version="1.0" ?>
+<!DOCTYPE PubmedArticleSet PUBLIC "-//NLM//DTD PubMedArticle, 1st January 2019//EN" "https://dtd.nlm.nih.gov/ncbi/pubmed/out/pubmed_190101.dtd">
+<PubmedArticleSet>
+<PubmedArticle>
+    <MedlineCitation Status="PubMed-not-MEDLINE" Owner="NLM">
+        <PMID Version="1">33344334</PMID>
+        <DateRevised>
+            <Year>2020</Year>
+            <Month>12</Month>
+            <Day>22</Day>
+        </DateRevised>
+        <Article PubModel="Electronic-eCollection">
+            <Journal>
+                <ISSN IssnType="Print">2229-5178</ISSN>
+                <JournalIssue CitedMedium="Print">
+                    <Volume>11</Volume>
+                    <Issue>6</Issue>
+                    <PubDate>
+                        <MedlineDate>2020 Nov-Dec</MedlineDate>
+                    </PubDate>
+                </JournalIssue>
+                <Title>Indian dermatology online journal</Title>
+                <ISOAbbreviation>Indian Dermatol Online J</ISOAbbreviation>
+            </Journal>
+            <ArticleTitle>Artificial Intelligence in Dermatology: A Practical Introduction to a Paradigm Shift.</ArticleTitle>
+            <Pagination>
+                <MedlinePgn>881-889</MedlinePgn>
+            </Pagination>
+            <ELocationID EIdType="doi" ValidYN="Y">10.4103/idoj.IDOJ_388_20</ELocationID>
+            <Abstract>
+                <AbstractText>Artificial Intelligence (AI) has surpassed dermatologists in skin cancer detection, but dermatology still lags behind radiology in its broader adoption. Building and using AI applications are becoming increasingly accessible. However, complex use cases may still require specialized expertise for design and deployment. AI has many applications in dermatology ranging from fundamental research, diagnostics, therapeutics, and cosmetic dermatology. The lack of standardization of images and privacy concerns are the foremost challenges stifling AI adoption. Dermatologists have a significant role to play in standardized data collection, curating data for machine learning, clinically validating AI solutions, and ultimately adopting this paradigm shift that is changing the way we practice.</AbstractText>
+                <CopyrightInformation>Copyright: © 2020 Indian Dermatology Online Journal.</CopyrightInformation>
+            </Abstract>
+            <AuthorList CompleteYN="Y">
+                <Author ValidYN="Y">
+                    <LastName>Eapen</LastName>
+                    <ForeName>Bell R</ForeName>
+                    <Initials>BR</Initials>
+                    <AffiliationInfo>
+                        <Affiliation>Information Systems, McMaster University, Hamilton, ON, Canada.</Affiliation>
+                    </AffiliationInfo>
+                </Author>
+            </AuthorList>
+            <Language>eng</Language>
+            <PublicationTypeList>
+                <PublicationType UI="D016428">Journal Article</PublicationType>
+                <PublicationType UI="D016454">Review</PublicationType>
+            </PublicationTypeList>
+            <ArticleDate DateType="Electronic">
+                <Year>2020</Year>
+                <Month>11</Month>
+                <Day>08</Day>
+            </ArticleDate>
+        </Article>
+        <MedlineJournalInfo>
+            <Country>India</Country>
+            <MedlineTA>Indian Dermatol Online J</MedlineTA>
+            <NlmUniqueID>101586880</NlmUniqueID>
+            <ISSNLinking>2229-5178</ISSNLinking>
+        </MedlineJournalInfo>
+        <KeywordList Owner="NOTNLM">
+            <Keyword MajorTopicYN="N">Artificial intelligence</Keyword>
+            <Keyword MajorTopicYN="N">machine learning</Keyword>
+            <Keyword MajorTopicYN="N">neural networks</Keyword>
+        </KeywordList>
+        <CoiStatement>There are no conflicts of interest.</CoiStatement>
+    </MedlineCitation>
+    <PubmedData>
+        <History>
+            <PubMedPubDate PubStatus="received">
+                <Year>2020</Year>
+                <Month>05</Month>
+                <Day>17</Day>
+            </PubMedPubDate>
+            <PubMedPubDate PubStatus="revised">
+                <Year>2020</Year>
+                <Month>07</Month>
+                <Day>27</Day>
+            </PubMedPubDate>
+            <PubMedPubDate PubStatus="accepted">
+                <Year>2020</Year>
+                <Month>09</Month>
+                <Day>13</Day>
+            </PubMedPubDate>
+            <PubMedPubDate PubStatus="entrez">
+                <Year>2020</Year>
+                <Month>12</Month>
+                <Day>21</Day>
+                <Hour>6</Hour>
+                <Minute>8</Minute>
+            </PubMedPubDate>
+            <PubMedPubDate PubStatus="pubmed">
+                <Year>2020</Year>
+                <Month>12</Month>
+                <Day>22</Day>
+                <Hour>6</Hour>
+                <Minute>0</Minute>
+            </PubMedPubDate>
+            <PubMedPubDate PubStatus="medline">
+                <Year>2020</Year>
+                <Month>12</Month>
+                <Day>22</Day>
+                <Hour>6</Hour>
+                <Minute>1</Minute>
+            </PubMedPubDate>
+        </History>
+        <PublicationStatus>epublish</PublicationStatus>
+        <ArticleIdList>
+            <ArticleId IdType="pubmed">33344334</ArticleId>
+            <ArticleId IdType="doi">10.4103/idoj.IDOJ_388_20</ArticleId>
+            <ArticleId IdType="pii">IDOJ-11-881</ArticleId>
+            <ArticleId IdType="pmc">PMC7735013</ArticleId>
+        </ArticleIdList>
+        <ReferenceList>
+            <Reference>
+                <Citation>Australas J Dermatol. 2013 Aug;54(3):192-7</Citation>
+                <ArticleIdList>
+                    <ArticleId IdType="pubmed">23713892</ArticleId>
+                </ArticleIdList>
+            </Reference>
+            <Reference>
+                <Citation>J Pathol Inform. 2018 Sep 27;9:32</Citation>
+                <ArticleIdList>
+                    <ArticleId IdType="pubmed">30294501</ArticleId>
+                </ArticleIdList>
+            </Reference>
+            <Reference>
+                <Citation>JAMA. 2013 Apr 3;309(13):1351-2</Citation>
+                <ArticleIdList>
+                    <ArticleId IdType="pubmed">23549579</ArticleId>
+                </ArticleIdList>
+            </Reference>
+            <Reference>
+                <Citation>Lancet Oncol. 2019 Jul;20(7):938-947</Citation>
+                <ArticleIdList>
+                    <ArticleId IdType="pubmed">31201137</ArticleId>
+                </ArticleIdList>
+            </Reference>
+            <Reference>
+                <Citation>Cancers (Basel). 2019 Jan 10;11(1):</Citation>
+                <ArticleIdList>
+                    <ArticleId IdType="pubmed">30634715</ArticleId>
+                </ArticleIdList>
+            </Reference>
+            <Reference>
+                <Citation>J Dermatolog Treat. 2020 Aug;31(5):494-495</Citation>
+                <ArticleIdList>
+                    <ArticleId IdType="pubmed">31122081</ArticleId>
+                </ArticleIdList>
+            </Reference>
+            <Reference>
+                <Citation>Sci Rep. 2018 Apr 11;8(1):5839</Citation>
+                <ArticleIdList>
+                    <ArticleId IdType="pubmed">29643449</ArticleId>
+                </ArticleIdList>
+            </Reference>
+            <Reference>
+                <Citation>Arch Dermatol. 2004 Apr;140(4):473-6</Citation>
+                <ArticleIdList>
+                    <ArticleId IdType="pubmed">15096377</ArticleId>
+                </ArticleIdList>
+            </Reference>
+            <Reference>
+                <Citation>IEEE Trans Pattern Anal Mach Intell. 2019 Feb;41(2):423-443</Citation>
+                <ArticleIdList>
+                    <ArticleId IdType="pubmed">29994351</ArticleId>
+                </ArticleIdList>
+            </Reference>
+            <Reference>
+                <Citation>J Am Acad Dermatol. 2020 Sep;83(3):803-808</Citation>
+                <ArticleIdList>
+                    <ArticleId IdType="pubmed">31306722</ArticleId>
+                </ArticleIdList>
+            </Reference>
+            <Reference>
+                <Citation>Acta Trop. 2018 Dec;188:187-194</Citation>
+                <ArticleIdList>
+                    <ArticleId IdType="pubmed">30201488</ArticleId>
+                </ArticleIdList>
+            </Reference>
+            <Reference>
+                <Citation>Eur Radiol. 2002 Apr;12(4):920-7</Citation>
+                <ArticleIdList>
+                    <ArticleId IdType="pubmed">11960249</ArticleId>
+                </ArticleIdList>
+            </Reference>
+            <Reference>
+                <Citation>Sci Data. 2018 Aug 14;5:180161</Citation>
+                <ArticleIdList>
+                    <ArticleId IdType="pubmed">30106392</ArticleId>
+                </ArticleIdList>
+            </Reference>
+            <Reference>
+                <Citation>JAMA Facial Plast Surg. 2018 Jul 1;20(4):335-337</Citation>
+                <ArticleIdList>
+                    <ArticleId IdType="pubmed">29543955</ArticleId>
+                </ArticleIdList>
+            </Reference>
+            <Reference>
+                <Citation>Eur J Cancer. 2019 Apr;111:148-154</Citation>
+                <ArticleIdList>
+                    <ArticleId IdType="pubmed">30852421</ArticleId>
+                </ArticleIdList>
+            </Reference>
+            <Reference>
+                <Citation>J Med Syst. 2017 Apr;41(4):69</Citation>
+                <ArticleIdList>
+                    <ArticleId IdType="pubmed">28285459</ArticleId>
+                </ArticleIdList>
+            </Reference>
+            <Reference>
+                <Citation>BMC Med Res Methodol. 2019 Mar 19;19(1):64</Citation>
+                <ArticleIdList>
+                    <ArticleId IdType="pubmed">30890124</ArticleId>
+                </ArticleIdList>
+            </Reference>
+            <Reference>
+                <Citation>Comput Biol Med. 2014 Jan;44:144-57</Citation>
+                <ArticleIdList>
+                    <ArticleId IdType="pubmed">24314859</ArticleId>
+                </ArticleIdList>
+            </Reference>
+            <Reference>
+                <Citation>J Dermatolog Treat. 2020 Aug;31(5):496-510</Citation>
+                <ArticleIdList>
+                    <ArticleId IdType="pubmed">31625775</ArticleId>
+                </ArticleIdList>
+            </Reference>
+            <Reference>
+                <Citation>Exp Dermatol. 2018 Nov;27(11):1261-1267</Citation>
+                <ArticleIdList>
+                    <ArticleId IdType="pubmed">30187575</ArticleId>
+                </ArticleIdList>
+            </Reference>
+            <Reference>
+                <Citation>Am J Epidemiol. 2017 Jul 15;186(2):160-172</Citation>
+                <ArticleIdList>
+                    <ArticleId IdType="pubmed">28472335</ArticleId>
+                </ArticleIdList>
+            </Reference>
+            <Reference>
+                <Citation>Circulation. 2015 Nov 17;132(20):1920-30</Citation>
+                <ArticleIdList>
+                    <ArticleId IdType="pubmed">26572668</ArticleId>
+                </ArticleIdList>
+            </Reference>
+            <Reference>
+                <Citation>Med Image Anal. 2016 Oct;33:170-175</Citation>
+                <ArticleIdList>
+                    <ArticleId IdType="pubmed">27423409</ArticleId>
+                </ArticleIdList>
+            </Reference>
+            <Reference>
+                <Citation>Indian J Dermatol Venereol Leprol. 2009 Jul-Aug;75(4):383-7</Citation>
+                <ArticleIdList>
+                    <ArticleId IdType="pubmed">19584464</ArticleId>
+                </ArticleIdList>
+            </Reference>
+            <Reference>
+                <Citation>Nature. 2017 Feb 2;542(7639):115-118</Citation>
+                <ArticleIdList>
+                    <ArticleId IdType="pubmed">28117445</ArticleId>
+                </ArticleIdList>
+            </Reference>
+            <Reference>
+                <Citation>Chin Med J (Engl). 2019 Sep 5;132(17):2017-2020</Citation>
+                <ArticleIdList>
+                    <ArticleId IdType="pubmed">31425274</ArticleId>
+                </ArticleIdList>
+            </Reference>
+            <Reference>
+                <Citation>Comput Methods Programs Biomed. 2017 Oct;150:9-22</Citation>
+                <ArticleIdList>
+                    <ArticleId IdType="pubmed">28859832</ArticleId>
+                </ArticleIdList>
+            </Reference>
+            <Reference>
+                <Citation>JAMA Dermatol. 2018 Nov 1;154(11):1247-1248</Citation>
+                <ArticleIdList>
+                    <ArticleId IdType="pubmed">30073260</ArticleId>
+                </ArticleIdList>
+            </Reference>
+            <Reference>
+                <Citation>Br J Dermatol. 2019 Feb;180(2):373-381</Citation>
+                <ArticleIdList>
+                    <ArticleId IdType="pubmed">29953582</ArticleId>
+                </ArticleIdList>
+            </Reference>
+            <Reference>
+                <Citation>J Cosmet Dermatol. 2019 Aug;18(4):1121-1127</Citation>
+                <ArticleIdList>
+                    <ArticleId IdType="pubmed">30280473</ArticleId>
+                </ArticleIdList>
+            </Reference>
+            <Reference>
+                <Citation>PLoS One. 2018 Jan 19;13(1):e0191493</Citation>
+                <ArticleIdList>
+                    <ArticleId IdType="pubmed">29352285</ArticleId>
+                </ArticleIdList>
+            </Reference>
+            <Reference>
+                <Citation>Int J Med Inform. 2006 Feb;75(2):125-37</Citation>
+                <ArticleIdList>
+                    <ArticleId IdType="pubmed">16112893</ArticleId>
+                </ArticleIdList>
+            </Reference>
+            <Reference>
+                <Citation>Indian J Dermatol Venereol Leprol. 2005 Mar-Apr;71(2):106-8</Citation>
+                <ArticleIdList>
+                    <ArticleId IdType="pubmed">16394384</ArticleId>
+                </ArticleIdList>
+            </Reference>
+            <Reference>
+                <Citation>Br J Dermatol. 2020 Sep;183(3):423-430</Citation>
+                <ArticleIdList>
+                    <ArticleId IdType="pubmed">31960407</ArticleId>
+                </ArticleIdList>
+            </Reference>
+            <Reference>
+                <Citation>Skin Res Technol. 2017 Nov;23(4):552-557</Citation>
+                <ArticleIdList>
+                    <ArticleId IdType="pubmed">28317176</ArticleId>
+                </ArticleIdList>
+            </Reference>
+            <Reference>
+                <Citation>Photodermatol Photoimmunol Photomed. 1998 Feb;14(1):26-30</Citation>
+                <ArticleIdList>
+                    <ArticleId IdType="pubmed">9582083</ArticleId>
+                </ArticleIdList>
+            </Reference>
+            <Reference>
+                <Citation>Artif Intell Med. 2003 Jan;27(1):29-44</Citation>
+                <ArticleIdList>
+                    <ArticleId IdType="pubmed">12473390</ArticleId>
+                </ArticleIdList>
+            </Reference>
+        </ReferenceList>
+    </PubmedData>
+</PubmedArticle>
+
+</PubmedArticleSet>
