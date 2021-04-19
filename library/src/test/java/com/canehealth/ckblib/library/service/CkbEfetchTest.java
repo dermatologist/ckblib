@@ -25,7 +25,7 @@ public class CkbEfetchTest {
     public void CkbEfetchTestGet() throws InterruptedException {
         baseQuery.setTerm("Lichen Planus");
         ckbEfetch.setBaseQuery(baseQuery);
-        TimeUnit.SECONDS.sleep(1);
+        TimeUnit.SECONDS.sleep(4);
         ckbEfetch.get();
         TimeUnit.SECONDS.sleep(1);
         List<String> abstracts = ckbEfetch.getPath("//Abstract");

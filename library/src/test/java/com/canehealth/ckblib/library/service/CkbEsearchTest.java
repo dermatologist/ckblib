@@ -38,7 +38,7 @@ public class CkbEsearchTest {
     public void CkbEsearchTestGetMono() throws InterruptedException {
         ckbEsearch.setBaseQuery(baseQuery);
         EsearchResultRoot esearchResultRoot = ckbEsearch.get().block();
-        System.out.print(esearchResultRoot.esearchresult.count);
+        //System.out.print(esearchResultRoot.esearchresult.count);
         assertNotEquals(esearchResultRoot.esearchresult.count, "0");
     }
     @SpringBootApplication
