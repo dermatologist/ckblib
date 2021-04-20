@@ -48,22 +48,19 @@ public class D3MapBuilder {
      *
      * @return A representation D3.js can handle
      */
+        String query = getQuery(_concept, cCUI, _features, fCUI, _relationship);
+        return createMap(query);
+
+    }
+
+    public String createMap(String query){
         var nodes = new ArrayList<>();
         var links = new ArrayList<>();
 
-        /*
-         query = ""       + " MATCH (d:Disease) <- [r:PRESENTATION_OF] - (s:Symptom {cui: '"
-                            + cui
-                            + "'})"
-                            + " WITH d, s, r ORDER BY r.confidence, d.name"
-                            + " RETURN d.name AS disease, collect(s.name) AS symptoms";
-        */
-        String query = getQuery( _concept,  cCUI,  _features,  fCUI,  _relationship);
         // Disease to Concept and Symptoms to features and confidence as values
         // group 1 is disease, group 2 other
         try (Session session = driver.session()) {
-            var records = session
-                    .readTransaction(tx -> tx.run(query).list());
+            var records = session.readTransaction(tx -> tx.run(query).list());
             records.forEach(record -> {
                 var disease = Map.of("group", 1, "id", record.get("concept").asString());
 
@@ -77,10 +74,9 @@ public class D3MapBuilder {
                         nodes.add(features);
                     }
 
-                    try{ // Cannot coerce LIST OF ANY? to Java int
-                        links.add(Map.of("source",
-                            record.get("concept").asString(), "target",
-                           name, "value", record.get("value").asInt()));
+                    try { // Cannot coerce LIST OF ANY? to Java int
+                        links.add(Map.of("source", record.get("concept").asString(), "target", name, "value",
+                                record.get("value").asInt()));
                     } catch (Exception e) {
                         links.add(Map.of("source", record.get("concept").asString(), "target", name, "value", 1));
                     }
@@ -91,6 +87,7 @@ public class D3MapBuilder {
         JSONObject json = new JSONObject();
         json = new JSONObject(d3graph);
         return json.toString();
+
     }
 
 }
