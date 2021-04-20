@@ -16,8 +16,7 @@ public class MedicationService {
     @Autowired
     MedicationRepository medicationMentionRepository;
 
-    @Autowired
-    D3MapBuilder d3MapBuilder;
+
 
     @Autowired
     Driver driver;

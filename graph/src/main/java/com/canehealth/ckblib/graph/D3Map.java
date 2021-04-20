@@ -14,7 +14,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import net.minidev.json.JSONObject;
 
-@Component
 @Data
 public class D3Map {
 
@@ -22,24 +21,28 @@ public class D3Map {
     // https://dzone.com/articles/design-patterns-the-builder-pattern
     private static Logger LOG = LoggerFactory.getLogger(D3Map.class);
 
-    @Autowired
-    Driver driver;
 
     private String cui;
     private String secondCui = "";
     private String concept;
     private String features;
     private String relationship;
-
+    private Driver driver;
     public static class Builder {
         private String cui;
         private String secondCui;
         private String concept;
         private String features;
         private String relationship;
+        private Driver driver;
 
-        public Builder(String cui){
+        public Builder(Driver driver){
+            this.driver = driver;
+        }
+
+        public Builder withCui(String cui) {
             this.cui = cui;
+            return this;
         }
 
         public Builder withSecondCui(String scui) {
@@ -65,6 +68,7 @@ public class D3Map {
         public D3Map build() {
 
             D3Map d3Map = new D3Map();
+            d3Map.driver = this.driver;
             d3Map.cui = this.cui;
             d3Map.secondCui = this.secondCui;
             d3Map.concept = this.concept;
@@ -104,10 +108,10 @@ public class D3Map {
 
     public String query() {
         String q = "";
-        if("".equals(this.secondCui))
+        if("".equals(this.secondCui) || this.secondCui == null)
             q = this.getQuery(this.cui);
         else
-            q = getQueryWithAll(this.concept, this.cui, this.features, this.secondCui, this.relationship)
+            q = getQueryWithAll(this.concept, this.cui, this.features, this.secondCui, this.relationship);
         return createMap(q);
     }
 
@@ -117,6 +121,7 @@ public class D3Map {
 
         // Disease to Concept and Symptoms to features and confidence as values
         // group 1 is disease, group 2 other
+        LOG.info(query);
         try (Session session = driver.session()) {
             var records = session.readTransaction(tx -> tx.run(query).list());
             records.forEach(record -> {

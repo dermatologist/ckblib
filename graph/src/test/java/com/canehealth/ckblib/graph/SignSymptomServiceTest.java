@@ -22,7 +22,7 @@ import org.springframework.test.context.ContextConfiguration;
 
 
 @SpringBootTest(classes = {
-        D3Map.class, DiseaseDisorderService.class, DiseaseDisorderMention.class, SignSymptomService.class,
+        DiseaseDisorderService.class, DiseaseDisorderMention.class, SignSymptomService.class,
         SignSymptomMention.class, Neo4jTestConfiguration.class })
 @EnableAutoConfiguration
 @ComponentScan({ "com.canehealth.ckblib.graph" })

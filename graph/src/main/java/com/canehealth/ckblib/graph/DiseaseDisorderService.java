@@ -16,8 +16,7 @@ public class DiseaseDisorderService {
     @Autowired
     DiseaseDisorderRepository diseaseDisorderMentionRepository;
 
-    @Autowired
-    D3MapBuilder d3MapBuilder;
+
 
     @Autowired
     Driver driver;

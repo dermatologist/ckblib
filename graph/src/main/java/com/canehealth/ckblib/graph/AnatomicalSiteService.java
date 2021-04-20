@@ -16,8 +16,7 @@ public class AnatomicalSiteService {
     @Autowired
     AnatomicalSiteRepository anatomicalSiteMentionRepository;
 
-    @Autowired
-    D3MapBuilder d3MapBuilder;
+
 
     @Autowired
     Driver driver;

@@ -16,9 +16,6 @@ public class SignSymptomService {
     SignSymptomRepository signSymptomMentionRepository;
 
     @Autowired
-    D3MapBuilder d3MapBuilder;
-
-    @Autowired
     Driver driver;
 
     public Mono<SignSymptomMention> getSymptomByCui(String cui) {
@@ -44,7 +41,10 @@ public class SignSymptomService {
 
     public String forD3(String cui) {
 
-        return d3MapBuilder.build("Disease", "", "Symptom", cui, "PRESENTATION_OF");
+        // return d3MapBuilder.build("Disease", "", "Symptom", cui, "PRESENTATION_OF");
+
+        D3Map d3Map = new D3Map.Builder(driver).withCui(cui).build();
+        return d3Map.query();
 
     }
 }

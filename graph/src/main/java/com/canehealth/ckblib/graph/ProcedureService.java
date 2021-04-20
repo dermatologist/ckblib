@@ -16,8 +16,7 @@ public class ProcedureService {
     @Autowired
     ProcedureRepository procedureMentionRepository;
 
-    @Autowired
-    D3MapBuilder d3MapBuilder;
+
 
     @Autowired
     Driver driver;
