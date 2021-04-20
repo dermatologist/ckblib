@@ -10,19 +10,78 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import lombok.Data;
 import lombok.NoArgsConstructor;
 import net.minidev.json.JSONObject;
 
 @Component
-@NoArgsConstructor
-public class D3MapBuilder {
+@Data
+public class D3Map {
 
-    private static Logger LOG = LoggerFactory.getLogger(D3MapBuilder.class);
+    // Builder pattern
+    // https://dzone.com/articles/design-patterns-the-builder-pattern
+    private static Logger LOG = LoggerFactory.getLogger(D3Map.class);
 
     @Autowired
     Driver driver;
 
-    public String getQuery(String _concept, String cCUI, String _features, String fCUI, String _relationship){
+    private String cui;
+    private String secondCui = "";
+    private String concept;
+    private String features;
+    private String relationship;
+
+    public static class Builder {
+        private String cui;
+        private String secondCui;
+        private String concept;
+        private String features;
+        private String relationship;
+
+        public Builder(String cui){
+            this.cui = cui;
+        }
+
+        public Builder withSecondCui(String scui) {
+            this.secondCui = scui;
+            return this;
+        }
+
+        public Builder withConcept(String concept) {
+            this.concept = concept;
+            return this;
+        }
+
+        public Builder withFeatures(String features) {
+            this.features = features;
+            return this;
+        }
+
+        public Builder withRelationship(String relationship) {
+            this.relationship = relationship;
+            return this;
+        }
+
+        public D3Map build() {
+
+            D3Map d3Map = new D3Map();
+            d3Map.cui = this.cui;
+            d3Map.secondCui = this.secondCui;
+            d3Map.concept = this.concept;
+            d3Map.features = this.features;
+            d3Map.relationship = this.relationship;
+
+            return d3Map;
+
+        }
+    }
+
+    // Fields omitted for brevity.
+    private D3Map() {
+        //Constructor is now private.
+    }
+
+    public String getQueryWithAll(String _concept, String cCUI, String _features, String fCUI, String _relationship){
         String query = "";
         if ("".equals(cCUI))
             query = query + " MATCH (d:" + _concept + ") <- [r:";
@@ -39,18 +98,17 @@ public class D3MapBuilder {
         return query;
     }
 
-    public String build(String _concept, String cCUI, String _features, String fCUI, String _relationship) {
-    /**
-     * This is an example of when you might want to use the pure driver in case you
-     * have no need for mapping at all, neither in the form of the way the
-     * {@link org.springframework.data.neo4j.core.Neo4jClient} allows and not in
-     * form of entities.
-     *
-     * @return A representation D3.js can handle
-     */
-        String query = getQuery(_concept, cCUI, _features, fCUI, _relationship);
-        return createMap(query);
+    public String getQuery(String cui){
+        return "MATCH (d {cui: '" + cui + "'}) -[r]- (s) RETURN d.name AS concept, collect(s.name) AS features, collect(r.confidence) AS value";
+    }
 
+    public String query() {
+        String q = "";
+        if("".equals(this.secondCui))
+            q = this.getQuery(this.cui);
+        else
+            q = getQueryWithAll(this.concept, this.cui, this.features, this.secondCui, this.relationship)
+        return createMap(q);
     }
 
     public String createMap(String query){
