@@ -41,7 +41,8 @@ public class DiseaseDisorderService {
 
     public String forD3(String cui) {
 
-        return d3MapBuilder.build("Disease", cui, "Symptom", "", "PRESENTATION_OF");
+        D3Map d3Map = new D3Map.Builder(driver).withCui(cui).build();
+        return d3Map.query();
 
     }
 }

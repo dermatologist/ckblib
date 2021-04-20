@@ -7,11 +7,8 @@ import org.neo4j.driver.Driver;
 import org.neo4j.driver.Session;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 
 import lombok.Data;
-import lombok.NoArgsConstructor;
 import net.minidev.json.JSONObject;
 
 @Data
