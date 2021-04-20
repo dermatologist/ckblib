@@ -3,13 +3,14 @@ package com.canehealth.ckblib.graph.util;
 import java.util.ArrayList;
 import java.util.Map;
 
-import org.json.JSONObject;
 import org.neo4j.driver.Driver;
 import org.neo4j.driver.Session;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
+import net.minidev.json.JSONObject;
 
 @Component
 public class D3MapBuilder {
