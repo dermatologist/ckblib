@@ -4,7 +4,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import com.canehealth.ckblib.graph.model.DiseaseDisorderMention;
 import com.canehealth.ckblib.graph.model.SignSymptomMention;
-import com.canehealth.ckblib.graph.util.D3MapBuilder;
 
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
@@ -17,6 +16,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.util.TestPropertyValues;
 import org.springframework.context.ApplicationContextInitializer;
 import org.springframework.context.ConfigurableApplicationContext;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
 
@@ -24,6 +24,7 @@ import org.springframework.test.context.ContextConfiguration;
 @SpringBootTest(classes = {
         D3MapBuilder.class, DiseaseDisorderService.class, DiseaseDisorderMention.class, SignSymptomService.class, SignSymptomMention.class, Neo4jTestConfiguration.class })
 @EnableAutoConfiguration
+@ComponentScan({ "com.canehealth.ckblib.graph" })
 @ContextConfiguration(initializers = { SignSymptomServiceTest.Initializer.class })
 @ActiveProfiles({ "test" })
 class SignSymptomServiceTest {

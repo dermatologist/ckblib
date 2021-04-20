@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.Map;
 
 import com.canehealth.ckblib.graph.model.SignSymptomMention;
-import com.canehealth.ckblib.graph.util.D3MapBuilder;
 
 import org.neo4j.driver.Driver;
 import org.neo4j.driver.Session;

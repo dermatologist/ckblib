@@ -1,4 +1,4 @@
-package com.canehealth.ckblib.graph.util;
+package com.canehealth.ckblib.graph;
 // https://github.com/neo4j-examples/movies-java-spring-data-neo4j/tree/sdn6-full-example
 import java.util.ArrayList;
 import java.util.Map;
@@ -10,9 +10,11 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import lombok.NoArgsConstructor;
 import net.minidev.json.JSONObject;
 
 @Component
+@NoArgsConstructor
 public class D3MapBuilder {
 
     private static Logger LOG = LoggerFactory.getLogger(D3MapBuilder.class);
