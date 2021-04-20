@@ -6,11 +6,15 @@ import java.util.Map;
 import org.json.JSONObject;
 import org.neo4j.driver.Driver;
 import org.neo4j.driver.Session;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
 public class D3MapBuilder {
+
+    private static Logger LOG = LoggerFactory.getLogger(D3MapBuilder.class);
 
     @Autowired
     Driver driver;
@@ -28,6 +32,7 @@ public class D3MapBuilder {
             query = query + _features + " {cui: '" + fCUI + "'})";
         query = query + " WITH d, s, r ORDER BY r.confidence, d.name";
         query = query + " RETURN d.name AS concept, collect(s.name) AS features, collect(r.confidence) AS value";
+        LOG.debug(query);
         return query;
     }
 
@@ -59,18 +64,14 @@ public class D3MapBuilder {
             records.forEach(record -> {
                 var disease = Map.of("group", 1, "id", record.get("concept").asString());
 
-                var targetIndex = nodes.size();
                 nodes.add(disease);
 
                 record.get("features").asList(v -> v.asString()).forEach(name -> {
                     var features = Map.of("group", 2, "id", name);
 
-                    int sourceIndex;
                     if (nodes.contains(features)) {
-                        sourceIndex = nodes.indexOf(features);
                     } else {
                         nodes.add(features);
-                        sourceIndex = nodes.size() - 1;
                     }
 
                     try{ // Cannot coerce LIST OF ANY? to Java int
@@ -89,12 +90,4 @@ public class D3MapBuilder {
         return json.toString();
     }
 
-
-    /*
-     * Debug
-     *
-     * {"nodes":[{"label":"id","title":"Psoriasis Vulgaris"},{"label":"group",
-     * "title":0}],"links":[{"source":{"label":"group","title":0},"value":1,"target"
-     * :{"label":"id","title":"Psoriasis Vulgaris"}}]}
-     */
 }
