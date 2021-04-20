@@ -73,10 +73,13 @@ public class D3MapBuilder {
                         sourceIndex = nodes.size() - 1;
                     }
 
-
-                    links.add(Map.of("source",
+                    try{ // Cannot coerce LIST OF ANY? to Java int
+                        links.add(Map.of("source",
                             record.get("concept").asString(), "target",
-                           name));
+                           name, "value", record.get("value").asInt()));
+                    } catch (Exception e) {
+                        links.add(Map.of("source", record.get("concept").asString(), "target", name, "value", 1));
+                    }
                 });
             });
         }
