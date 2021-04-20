@@ -7,13 +7,31 @@ import org.json.JSONObject;
 import org.neo4j.driver.Driver;
 import org.neo4j.driver.Session;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
+@Component
 public class D3MapBuilder {
 
     @Autowired
     Driver driver;
 
-    public String build(String query) {
+    public String getQuery(String _concept, String cCUI, String _features, String fCUI, String _relationship){
+        String query = "";
+        if ("".equals(cCUI))
+            query = query + " MATCH (d:" + _concept + ") <- [r:";
+        else
+            query = query + " MATCH (d:" + _concept + " {cui: '" + cCUI + "'}) <- [r:";
+        query = query + _relationship + "] - (s:";
+        if ("".equals(fCUI))
+            query = query + _features + fCUI + ")";
+        else
+            query = query + _features + " {cui: '" + fCUI + "'})";
+        query = query + " WITH d, s, r ORDER BY r.confidence, d.name";
+        query = query + " RETURN d.name AS concept, collect(s.name) AS features, collect(r.confidence) AS value";
+        return query;
+    }
+
+    public String build(String _concept, String cCUI, String _features, String fCUI, String _relationship) {
     /**
      * This is an example of when you might want to use the pure driver in case you
      * have no need for mapping at all, neither in the form of the way the
@@ -25,26 +43,38 @@ public class D3MapBuilder {
         var nodes = new ArrayList<>();
         var links = new ArrayList<>();
 
+        /*
+         query = ""       + " MATCH (d:Disease) <- [r:PRESENTATION_OF] - (s:Symptom {cui: '"
+                            + cui
+                            + "'})"
+                            + " WITH d, s, r ORDER BY r.confidence, d.name"
+                            + " RETURN d.name AS disease, collect(s.name) AS symptoms";
+        */
+        String query = getQuery( _concept,  cCUI,  _features,  fCUI,  _relationship);
+        // Disease to Concept and Symptoms to features and confidence as values
         try (Session session = driver.session()) {
             var records = session
                     .readTransaction(tx -> tx.run(query).list());
             records.forEach(record -> {
-                var disease = Map.of("label", "disease", "title", record.get("disease").asString());
+                var concept = Map.of("label", "id", "title", record.get("concept").asString());
+
+                // value is confidence
+                var value = record.get("value").asInt();
 
                 var targetIndex = nodes.size();
-                nodes.add(disease);
+                nodes.add(concept);
 
-                record.get("symptoms").asList(v -> v.asString()).forEach(name -> {
-                    var symptom = Map.of("label", "symptom", "title", name);
+                record.get("features").asList(v -> v.asString()).forEach(name -> {
+                    var features = Map.of("label", "group", "title", record.get("features").asList().indexOf(name));
 
                     int sourceIndex;
-                    if (nodes.contains(symptom)) {
-                        sourceIndex = nodes.indexOf(symptom);
+                    if (nodes.contains(features)) {
+                        sourceIndex = nodes.indexOf(features);
                     } else {
-                        nodes.add(symptom);
+                        nodes.add(features);
                         sourceIndex = nodes.size() - 1;
                     }
-                    links.add(Map.of("source", sourceIndex, "target", targetIndex));
+                    links.add(Map.of("source", nodes.get(sourceIndex), "target", nodes.get(targetIndex), "value", value));
                 });
             });
         }
