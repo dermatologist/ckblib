@@ -59,7 +59,13 @@ public class D3MapBuilder {
                 var concept = Map.of("label", "id", "title", record.get("concept").asString());
 
                 // value is confidence
-                var value = record.get("value").asInt();
+                int value = 1;
+                try{
+                    value = record.get("value").asInt();
+                } catch (Exception e) {
+                }
+
+                final int finalvalue = value; //should be final
 
                 var targetIndex = nodes.size();
                 nodes.add(concept);
@@ -74,7 +80,7 @@ public class D3MapBuilder {
                         nodes.add(features);
                         sourceIndex = nodes.size() - 1;
                     }
-                    links.add(Map.of("source", nodes.get(sourceIndex), "target", nodes.get(targetIndex), "value", value));
+                    links.add(Map.of("source", nodes.get(sourceIndex), "target", nodes.get(targetIndex), "value", finalvalue));
                 });
             });
         }
@@ -83,4 +89,12 @@ public class D3MapBuilder {
         json = new JSONObject(d3graph);
         return json.toString();
     }
+
+    /*
+     * Debug
+     *
+     * {"nodes":[{"label":"id","title":"Psoriasis Vulgaris"},{"label":"group",
+     * "title":0}],"links":[{"source":{"label":"group","title":0},"value":1,"target"
+     * :{"label":"id","title":"Psoriasis Vulgaris"}}]}
+     */
 }

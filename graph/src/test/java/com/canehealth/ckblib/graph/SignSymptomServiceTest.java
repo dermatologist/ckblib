@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import com.canehealth.ckblib.graph.model.DiseaseDisorderMention;
 import com.canehealth.ckblib.graph.model.SignSymptomMention;
+import com.canehealth.ckblib.graph.util.D3MapBuilder;
 
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
@@ -21,7 +22,7 @@ import org.springframework.test.context.ContextConfiguration;
 
 
 @SpringBootTest(classes = {
-        DiseaseDisorderService.class, DiseaseDisorderMention.class, SignSymptomService.class, SignSymptomMention.class, Neo4jTestConfiguration.class })
+        D3MapBuilder.class, DiseaseDisorderService.class, DiseaseDisorderMention.class, SignSymptomService.class, SignSymptomMention.class, Neo4jTestConfiguration.class })
 @EnableAutoConfiguration
 @ContextConfiguration(initializers = { SignSymptomServiceTest.Initializer.class })
 @ActiveProfiles({ "test" })
@@ -82,8 +83,8 @@ class SignSymptomServiceTest {
         }
         assertEquals(signSymptomService.addRelation("C0041834", "C1041834",0, 0, 0).block().getName(), "Pruritus");
 
-        System.out.println(diseaseDisorderService.forD3("C0041834").toString());
-        System.out.println(signSymptomService.forD3("C1041834").toString());
+        //System.out.println(diseaseDisorderService.forD3("C0041834"));
+        System.out.println(signSymptomService.forD3("C1041834"));
     }
 
 }
