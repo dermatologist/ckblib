@@ -19,7 +19,8 @@ import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
 
-@SpringBootTest(classes = { DiseaseDisorderService.class, DiseaseDisorderMention.class, AnatomicalSiteService.class,
+@SpringBootTest(classes = { D3MapBuilder.class,
+        DiseaseDisorderService.class, DiseaseDisorderMention.class, AnatomicalSiteService.class,
         AnatomicalSiteMention.class, Neo4jTestConfiguration.class })
 @EnableAutoConfiguration
 @ContextConfiguration(initializers = { AnatomicalSiteServiceTest.Initializer.class })
