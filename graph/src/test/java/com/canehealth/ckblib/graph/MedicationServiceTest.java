@@ -19,7 +19,7 @@ import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
 
-@SpringBootTest(classes = { D3MapBuilder.class,
+@SpringBootTest(classes = {
         DiseaseDisorderService.class, DiseaseDisorderMention.class, MedicationService.class,
         MedicationMention.class, Neo4jTestConfiguration.class })
 @EnableAutoConfiguration

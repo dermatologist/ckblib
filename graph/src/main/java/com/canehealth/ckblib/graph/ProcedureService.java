@@ -16,8 +16,7 @@ public class ProcedureService {
     @Autowired
     ProcedureRepository procedureMentionRepository;
 
-    @Autowired
-    D3MapBuilder d3MapBuilder;
+
 
     @Autowired
     Driver driver;
@@ -42,7 +41,8 @@ public class ProcedureService {
 
     public String forD3(String cui) {
 
-        return d3MapBuilder.build("Disease", "", "Procedure", cui, "TREATMENT_OF");
+        D3Map d3Map = new D3Map.Builder(driver).withCui(cui).build();
+        return d3Map.query();
 
     }
 

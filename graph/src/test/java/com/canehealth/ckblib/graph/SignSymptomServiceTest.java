@@ -22,7 +22,8 @@ import org.springframework.test.context.ContextConfiguration;
 
 
 @SpringBootTest(classes = {
-        D3MapBuilder.class, DiseaseDisorderService.class, DiseaseDisorderMention.class, SignSymptomService.class, SignSymptomMention.class, Neo4jTestConfiguration.class })
+        DiseaseDisorderService.class, DiseaseDisorderMention.class, SignSymptomService.class,
+        SignSymptomMention.class, Neo4jTestConfiguration.class })
 @EnableAutoConfiguration
 @ComponentScan({ "com.canehealth.ckblib.graph" })
 @ContextConfiguration(initializers = { SignSymptomServiceTest.Initializer.class })

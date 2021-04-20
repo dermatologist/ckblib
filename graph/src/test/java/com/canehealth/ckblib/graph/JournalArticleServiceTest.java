@@ -20,7 +20,7 @@ import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
 
-@SpringBootTest(classes = { D3MapBuilder.class,
+@SpringBootTest(classes = { 
         DiseaseDisorderService.class, DiseaseDisorderMention.class, SignSymptomService.class,
         SignSymptomMention.class,
         JournalArticle.class,
