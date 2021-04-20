@@ -21,7 +21,7 @@ public interface SignSymptomRepository extends ReactiveNeo4jRepository<SignSympt
     Mono<SignSymptomMention> findOneByNameLikeIgnoreCase(String name);
 
     @Query(""
-		+ "MATCH (d:Disease {cui: $dcui}), (s:Symptom {cui: $scui})\n"
+		+ "MATCH (d:Disease {cui: $dcui}) MATCH (s:Symptom {cui: $scui})\n"
 		+ "MERGE (d) <-[r:PRESENTATION_OF]- (s) \n"
         + "ON CREATE SET r.confidence = 1, r.upvote = 0, r.downvote = 0 \n"
         + "ON MATCH SET r.confidence = r.confidence +  $c, r.upvote = r.upvote +  $u, r.downvote = r.downvote +  $d  \n"

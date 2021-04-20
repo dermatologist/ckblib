@@ -16,13 +16,15 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.util.TestPropertyValues;
 import org.springframework.context.ApplicationContextInitializer;
 import org.springframework.context.ConfigurableApplicationContext;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
 
 
 @SpringBootTest(classes = {
-        DiseaseDisorderService.class, DiseaseDisorderMention.class, SignSymptomService.class, SignSymptomMention.class, Neo4jTestConfiguration.class })
+        D3MapBuilder.class, DiseaseDisorderService.class, DiseaseDisorderMention.class, SignSymptomService.class, SignSymptomMention.class, Neo4jTestConfiguration.class })
 @EnableAutoConfiguration
+@ComponentScan({ "com.canehealth.ckblib.graph" })
 @ContextConfiguration(initializers = { SignSymptomServiceTest.Initializer.class })
 @ActiveProfiles({ "test" })
 class SignSymptomServiceTest {
@@ -82,8 +84,8 @@ class SignSymptomServiceTest {
         }
         assertEquals(signSymptomService.addRelation("C0041834", "C1041834",0, 0, 0).block().getName(), "Pruritus");
 
-        System.out.println(diseaseDisorderService.forD3("C0041834").toString());
-        System.out.println(signSymptomService.forD3("C1041834").toString());
+        //System.out.println(diseaseDisorderService.forD3("C0041834"));
+        System.out.println(signSymptomService.forD3("C1041834"));
     }
 
 }

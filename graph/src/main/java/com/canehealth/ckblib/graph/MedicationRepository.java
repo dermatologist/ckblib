@@ -18,7 +18,8 @@ public interface MedicationRepository extends ReactiveNeo4jRepository<Medication
 
     Flux<MedicationMention> findAllByNameLikeIgnoreCase(String name);
 
-    @Query("" + "MATCH (d:Disease {cui: $dcui}), (s:Medication {cui: $scui})\n" + "MERGE (d) <-[r:ASSOCIATION_OF]- (s) \n"
+    @Query("" + "MATCH (d:Disease {cui: $dcui}) MATCH (s:Medication {cui: $scui})\n"
+            + "MERGE (d) <-[r:ASSOCIATION_OF]- (s) \n"
             + "ON CREATE SET r.confidence = 1, r.upvote = 0, r.downvote = 0 \n"
             + "ON MATCH SET r.confidence = r.confidence +  $c, r.upvote = r.upvote +  $u, r.downvote = r.downvote +  $d  \n"
             + "RETURN DISTINCT s")

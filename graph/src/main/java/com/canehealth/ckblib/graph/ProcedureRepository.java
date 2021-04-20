@@ -18,7 +18,7 @@ public interface ProcedureRepository extends ReactiveNeo4jRepository<ProcedureMe
 
     Flux<ProcedureMention> findAllByNameLikeIgnoreCase(String name);
 
-    @Query("" + "MATCH (d:Disease {cui: $dcui}), (s:Procedure {cui: $scui})\n"
+    @Query("" + "MATCH (d:Disease {cui: $dcui}) MATCH (s:Procedure {cui: $scui})\n"
             + "MERGE (d) <-[r:TREATMENT_OF]- (s) \n"
             + "ON CREATE SET r.confidence = 1, r.upvote = 0, r.downvote = 0 \n"
             + "ON MATCH SET r.confidence = r.confidence +  $c, r.upvote = r.upvote +  $u, r.downvote = r.downvote +  $d  \n"

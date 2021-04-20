@@ -18,7 +18,7 @@ public interface AnatomicalSiteRepository extends ReactiveNeo4jRepository<Anatom
 
     Flux<AnatomicalSiteMention> findAllByNameLikeIgnoreCase(String name);
 
-    @Query("" + "MATCH (d:Disease {cui: $dcui}), (s:Anatomy {cui: $scui})\n" + "MERGE (d) <-[r:ANATOMY_OF]- (s) \n"
+    @Query("" + "MATCH (d:Disease {cui: $dcui}) MATCH (s:Anatomy {cui: $scui})\n" + "MERGE (d) <-[r:ANATOMY_OF]- (s) \n"
             + "ON CREATE SET r.confidence = 1, r.upvote = 0, r.downvote = 0 \n"
             + "ON MATCH SET r.confidence = r.confidence +  $c, r.upvote = r.upvote +  $u, r.downvote = r.downvote +  $d  \n"
             + "RETURN DISTINCT s")

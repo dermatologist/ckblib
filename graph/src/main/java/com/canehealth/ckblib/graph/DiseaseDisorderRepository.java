@@ -22,7 +22,7 @@ public interface DiseaseDisorderRepository extends ReactiveNeo4jRepository <Dise
 
     Mono<DiseaseDisorderMention> findOneByNameLikeIgnoreCase(String name);
 
-    @Query("" + "MATCH (d:Disease {cui: $dcui}), (dd:Disease {cui: $ddcui})\n"
+    @Query("" + "MATCH (d:Disease {cui: $dcui}) MATCH (dd:Disease {cui: $ddcui})\n"
             + "MERGE (d) <-[r:ASSOCIATED_WITH]- (dd) \n"
             + "ON CREATE SET r.confidence = 1, r.upvote = 0, r.downvote = 0 \n"
             + "ON MATCH SET r.confidence = r.confidence +  $c, r.upvote = r.upvote +  $u, r.downvote = r.downvote +  $d  \n"

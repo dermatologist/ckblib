@@ -1,5 +1,5 @@
 2021-04-18 11:38:41.549  WARN 36071 --- [o4jDriverIO-5-2] org.springframework.data.neo4j.cypher    : Neo.ClientNotification.Statement.CartesianProductWarning: This query builds a cartesian product between disconnected patterns.
-        MATCH (d:Disease {cui: $dcui}), (s:Anatomy {cui: $scui})
+        MATCH (d:Disease {cui: $dcui}) MATCH (s:Anatomy {cui: $scui})
         ^
         MERGE (d) <-[r:ANATOMY_OF]- (s)
         ON CREATE SET r.confidence = 1, r.upvote = 0, r.downvote = 0
