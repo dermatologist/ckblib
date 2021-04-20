@@ -52,26 +52,18 @@ public class D3MapBuilder {
         */
         String query = getQuery( _concept,  cCUI,  _features,  fCUI,  _relationship);
         // Disease to Concept and Symptoms to features and confidence as values
+        // group 1 is disease, group 2 other
         try (Session session = driver.session()) {
             var records = session
                     .readTransaction(tx -> tx.run(query).list());
             records.forEach(record -> {
-                var concept = Map.of("label", "id", "title", record.get("concept").asString());
-
-                // value is confidence
-                int value = 1;
-                try{
-                    value = record.get("value").asInt();
-                } catch (Exception e) {
-                }
-
-                final int finalvalue = value; //should be final
+                var disease = Map.of("group", 1, "id", record.get("concept").asString());
 
                 var targetIndex = nodes.size();
-                nodes.add(concept);
+                nodes.add(disease);
 
                 record.get("features").asList(v -> v.asString()).forEach(name -> {
-                    var features = Map.of("label", "group", "title", record.get("features").asList().indexOf(name));
+                    var features = Map.of("group", 2, "id", name);
 
                     int sourceIndex;
                     if (nodes.contains(features)) {
@@ -80,7 +72,11 @@ public class D3MapBuilder {
                         nodes.add(features);
                         sourceIndex = nodes.size() - 1;
                     }
-                    links.add(Map.of("source", nodes.get(sourceIndex), "target", nodes.get(targetIndex), "value", finalvalue));
+
+
+                    links.add(Map.of("source",
+                            record.get("concept").asString(), "target",
+                           name));
                 });
             });
         }
@@ -89,6 +85,7 @@ public class D3MapBuilder {
         json = new JSONObject(d3graph);
         return json.toString();
     }
+
 
     /*
      * Debug
