@@ -29,7 +29,8 @@ import org.springframework.test.context.ContextConfiguration;
  * connection setting.
  */
 // tag::test-harness-example-option3[]
-@SpringBootTest(classes = {DiseaseDisorderService.class,
+@SpringBootTest(classes = { D3MapBuilder.class,
+        DiseaseDisorderService.class,
         DiseaseDisorderMention.class,
         Neo4jTestConfiguration.class})
 @EnableAutoConfiguration

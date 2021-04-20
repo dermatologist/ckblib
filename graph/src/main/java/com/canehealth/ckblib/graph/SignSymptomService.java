@@ -1,13 +1,8 @@
 package com.canehealth.ckblib.graph;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-
 import com.canehealth.ckblib.graph.model.SignSymptomMention;
 
 import org.neo4j.driver.Driver;
-import org.neo4j.driver.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
