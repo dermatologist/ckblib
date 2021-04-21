@@ -3,7 +3,10 @@ package com.canehealth.ckblib.graph;
 import java.util.ArrayList;
 import java.util.Map;
 
+import com.google.gson.Gson;
+
 import org.neo4j.driver.Driver;
+import org.neo4j.driver.Record;
 import org.neo4j.driver.Session;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -24,6 +27,7 @@ public class D3Map {
     private String concept;
     private String features;
     private String relationship;
+    private String externalQuery;
     private Driver driver;
     public static class Builder {
         private String cui;
@@ -31,6 +35,7 @@ public class D3Map {
         private String concept;
         private String features;
         private String relationship;
+        private String externalQuery;
         private Driver driver;
 
         public Builder(Driver driver){
@@ -62,6 +67,11 @@ public class D3Map {
             return this;
         }
 
+        public Builder withQuery(String externalQuery) {
+            this.externalQuery = externalQuery;
+            return this;
+        }
+
         public D3Map build() {
 
             D3Map d3Map = new D3Map();
@@ -71,7 +81,7 @@ public class D3Map {
             d3Map.concept = this.concept;
             d3Map.features = this.features;
             d3Map.relationship = this.relationship;
-
+            d3Map.externalQuery = this.externalQuery;
             return d3Map;
 
         }
@@ -110,6 +120,10 @@ public class D3Map {
         else
             q = getQueryWithAll(this.concept, this.cui, this.features, this.secondCui, this.relationship);
         return createMap(q);
+    }
+
+    public String fetch(){
+        return createJson(this.externalQuery);
     }
 
     public String createMap(String query){
@@ -153,6 +167,16 @@ public class D3Map {
         json = new JSONObject(d3graph);
         return json.toString();
 
+    }
+
+    public String createJson(String query){
+        LOG.info(query);
+        var results = new ArrayList<Record>();
+        try (Session session = driver.session()) {
+            results = (ArrayList<Record>) session.readTransaction(tx -> tx.run(query).list());
+        }
+        String json = new Gson().toJson(results);
+        return json;
     }
 
 }

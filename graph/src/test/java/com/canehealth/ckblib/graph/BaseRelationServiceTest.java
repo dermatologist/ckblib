@@ -1,8 +1,9 @@
 package com.canehealth.ckblib.graph;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 
+import com.canehealth.ckblib.graph.model.BaseRelation;
 import com.canehealth.ckblib.graph.model.DiseaseDisorderMention;
 import com.canehealth.ckblib.graph.model.SignSymptomMention;
 
@@ -21,15 +22,16 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
 
-
 @SpringBootTest(classes = {
-        DiseaseDisorderService.class, DiseaseDisorderMention.class, SignSymptomService.class,
+        BaseRelationService.class,
+        BaseRelation.class, DiseaseDisorderService.class, DiseaseDisorderMention.class, SignSymptomService.class,
         SignSymptomMention.class, Neo4jTestConfiguration.class })
 @EnableAutoConfiguration
 @ComponentScan({ "com.canehealth.ckblib.graph" })
-@ContextConfiguration(initializers = { SignSymptomServiceTest.Initializer.class })
+@ContextConfiguration(initializers = {
+        BaseRelationServiceTest.Initializer.class })
 @ActiveProfiles({ "test" })
-class SignSymptomServiceTest {
+class BaseRelationServiceTest {
 
     private static Neo4j embeddedDatabaseServer;
 
@@ -45,7 +47,8 @@ class SignSymptomServiceTest {
     @Autowired
     private DiseaseDisorderMention diseaseDisorderMention;
 
-
+    @Autowired
+    BaseRelationService baseRelationService;
 
     @BeforeAll
     static void initializeNeo4j() { // <.>
@@ -74,27 +77,22 @@ class SignSymptomServiceTest {
     void shouldRetrieveDiseases() {
         diseaseDisorderMention.setCui("C0041834");
         diseaseDisorderMention.setName("Psoriasis Vulgaris");
-        signSymptomMention.setCui("C1041834");
-        signSymptomMention.setName("Pruritus");
         try {
             // Should fail if already created
             diseaseDisorderService.saveDisease(diseaseDisorderMention).block();
+            signSymptomMention.setCui("C1041834");
+            signSymptomMention.setName("Pruritus");
+            signSymptomService.saveSymptom(signSymptomMention).block();
+            signSymptomMention.setCui("C1041835");
+            signSymptomMention.setName("Erythema");
             signSymptomService.saveSymptom(signSymptomMention).block();
 
         } catch (Exception e) {
 
         }
-        assertEquals(signSymptomService.addRelation("C0041834", "C1041834",0, 0, 0).block().getName(), "Pruritus");
-
-        //System.out.println(diseaseDisorderService.forD3("C0041834"));
-        System.out.println(signSymptomService.forD3("C1041834"));
-
-        SignSymptomMention signSymptomMention2 = signSymptomService.getSymptomByCui("C1041834").block();
-
-        // How to get relations
-        assertNotNull(signSymptomMention2.getDiseases());
-
-        System.out.println(signSymptomMention2.getDiseases().toString());
+        assertEquals(signSymptomService.addRelation("C0041834", "C1041834", 0, 0, 0).block().getName(), "Pruritus");
+        assertEquals(signSymptomService.addRelation("C0041834", "C1041835", 0, 0, 0).block().getName(), "Erythema");
+        assertFalse(baseRelationService.getRelationsByCui("C0041834").length() < 10);
     }
 
 }
