@@ -1,6 +1,7 @@
 package com.canehealth.ckblib.graph;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import com.canehealth.ckblib.graph.model.DiseaseDisorderMention;
 import com.canehealth.ckblib.graph.model.SignSymptomMention;
@@ -87,6 +88,13 @@ class SignSymptomServiceTest {
 
         //System.out.println(diseaseDisorderService.forD3("C0041834"));
         System.out.println(signSymptomService.forD3("C1041834"));
+
+        SignSymptomMention signSymptomMention2 = signSymptomService.getSymptomByCui("C1041834").block();
+
+        // How to get relations
+        assertNotNull(signSymptomMention2.getDiseases());
+
+        System.out.println(signSymptomMention2.getDiseases().toString());
     }
 
 }
