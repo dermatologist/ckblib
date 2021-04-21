@@ -3,6 +3,8 @@ package com.canehealth.ckblib.graph;
 import java.util.ArrayList;
 import java.util.Map;
 
+import com.google.gson.Gson;
+
 import org.neo4j.driver.Driver;
 import org.neo4j.driver.Record;
 import org.neo4j.driver.Session;
@@ -10,7 +12,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import lombok.Data;
-import net.minidev.json.JSONArray;
 import net.minidev.json.JSONObject;
 
 @Data
@@ -170,13 +171,12 @@ public class D3Map {
 
     public String createJson(String query){
         LOG.info(query);
-
-        // JSONObject jsonObject = new JSONObject();
         var results = new ArrayList<Record>();
         try (Session session = driver.session()) {
             results = (ArrayList<Record>) session.readTransaction(tx -> tx.run(query).list());
         }
-        return results.toString();
+        String json = new Gson().toJson(results);
+        return json;
     }
 
 }
