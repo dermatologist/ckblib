@@ -127,7 +127,12 @@ public class D3Map {
                 nodes.add(disease);
 
                 record.get("features").asList(v -> v.asString()).forEach(name -> {
-                    var features = Map.of("group", 2, "id", name);
+                    int color = 2;
+                    if(Character.isUpperCase(name.charAt(0)))
+                        color = 3;
+                    if(name.length()>50)
+                        color = 4;
+                    var features = Map.of("group", color, "id", name);
 
                     if (nodes.contains(features)) {
                     } else {
