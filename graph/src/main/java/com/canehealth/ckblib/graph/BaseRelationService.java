@@ -13,13 +13,12 @@ import reactor.core.publisher.Mono;
 public class BaseRelationService {
 
     @Autowired
-    BaseRelationRepository baseRelationRepository;
-
-    @Autowired
     Driver driver;
 
-    public Mono<BaseRelation> getRelationsByCui(String cui) {
-        return baseRelationRepository.getRelationsByCui(cui);
+    public String getRelationsByCui(String cui) {
+        String externalQuery = "MATCH (d {cui: '" + cui + "'}) -[r]- (s) RETURN r";
+        D3Map d3Map = new D3Map.Builder(driver).withQuery(externalQuery).build();
+        return d3Map.fetch();
     }
 
 

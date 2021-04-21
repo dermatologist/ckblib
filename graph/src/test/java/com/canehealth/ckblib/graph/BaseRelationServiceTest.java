@@ -97,7 +97,7 @@ class BaseRelationServiceTest {
 
 
 
-        System.out.println(baseRelationService.getRelationsByCui("C0041834").block().toString());
+        System.out.println(baseRelationService.getRelationsByCui("C0041834"));
     }
 
 }
