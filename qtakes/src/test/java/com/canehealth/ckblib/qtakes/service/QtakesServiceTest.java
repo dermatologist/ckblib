@@ -1,10 +1,8 @@
-package com.canehealth.ckblib.library.service;
+package com.canehealth.ckblib.qtakes.service;
 
 import java.util.concurrent.TimeUnit;
 
 import com.canehealth.ckblib.qtakes.model.QtakesRoot;
-import com.canehealth.ckblib.qtakes.service.QtakesService;
-
 import org.junit.After;
 import org.junit.BeforeClass;
 import org.junit.jupiter.api.Test;
