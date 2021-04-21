@@ -50,9 +50,6 @@ class BaseRelationServiceTest {
     @Autowired
     BaseRelationService baseRelationService;
 
-    @Autowired
-    private BaseRelation baseRelation;
-
     @BeforeAll
     static void initializeNeo4j() { // <.>
 
