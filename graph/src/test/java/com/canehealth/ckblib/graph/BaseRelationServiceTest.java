@@ -2,6 +2,7 @@ package com.canehealth.ckblib.graph;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 import com.canehealth.ckblib.graph.model.BaseRelation;
 import com.canehealth.ckblib.graph.model.DiseaseDisorderMention;
@@ -93,8 +94,15 @@ class BaseRelationServiceTest {
         assertEquals(signSymptomService.addRelation("C0041834", "C1041834", 0, 0, 0).block().getName(), "Pruritus");
         assertEquals(signSymptomService.addRelation("C0041834", "C1041835", 0, 0, 0).block().getName(), "Erythema");
         assertFalse(baseRelationService.getRelationsByCui("C0041834").length() < 10);
-        System.out.println(baseRelationService.addAttributes("C0041834", "C1041834",0, 3, -5));
+        String before = baseRelationService.getRelationsByCui("C0041834");
+        System.out.println(baseRelationService.addAttributes("C0041834", "C1041834",0, 1, 1));
+        baseRelationService.addAttributes("C0041834", "C1041834",0, 1, 1);
+        baseRelationService.addAttributes("C0041834", "C1041834",0, 1, 1);
+        baseRelationService.addAttributes("C0041834", "C1041834",0, 1, 1);
+        String after = baseRelationService.getRelationsByCui("C0041834");
         System.out.println(baseRelationService.getRelationsByCui("C0041834"));
+        assertNotEquals(before, after);
+
     }
 
 }
