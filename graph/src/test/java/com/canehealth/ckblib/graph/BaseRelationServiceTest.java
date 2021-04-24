@@ -95,12 +95,8 @@ class BaseRelationServiceTest {
         assertEquals(signSymptomService.addRelation("C0041834", "C1041835", 0, 0, 0).block().getName(), "Erythema");
         assertFalse(baseRelationService.getRelationsByCui("C0041834").length() < 10);
         String before = baseRelationService.getRelationsByCui("C0041834");
-        System.out.println(baseRelationService.addAttributes("C0041834", "C1041834",0, 1, 1));
-        baseRelationService.addAttributes("C0041834", "C1041834",0, 1, 1);
-        baseRelationService.addAttributes("C0041834", "C1041834",0, 1, 1);
-        baseRelationService.addAttributes("C0041834", "C1041834",0, 1, 1);
+        baseRelationService.addAttributes("C0041834", "C1041834",0, 1, 1).block();
         String after = baseRelationService.getRelationsByCui("C0041834");
-        System.out.println(baseRelationService.getRelationsByCui("C0041834"));
         assertNotEquals(before, after);
 
     }

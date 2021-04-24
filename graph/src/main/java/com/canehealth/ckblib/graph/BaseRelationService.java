@@ -3,7 +3,7 @@ package com.canehealth.ckblib.graph;
 import org.neo4j.driver.Driver;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.canehealth.ckblib.graph.model.BaseRelation;
+
 import reactor.core.publisher.Mono;
 
 @Service
@@ -24,12 +24,8 @@ public class BaseRelationService {
     // Cannot use above method
     // Writing in read access mode not allowed. Attempted write to internal graph 0
     // (neo4j)
-    public String addAttributes(String dcui, String scui, int confidence, int upvote, int downvote) {
-            try {
-                baseRelationRepository.updateRelationshipAttributes(dcui, scui, confidence, upvote, downvote);
-                return "Success";
-            } catch (Exception e) {
-                return "Error" + e.getLocalizedMessage();
-            }
+    public Mono<Object> addAttributes(String dcui, String scui, int confidence, int upvote, int downvote) {
+        return baseRelationRepository.updateRelationshipAttributes(dcui, scui, confidence, upvote, downvote);
+
     }
 }

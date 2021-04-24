@@ -20,6 +20,6 @@ public interface BaseRelationRepository extends ReactiveNeo4jRepository<BaseRela
 		+ "MATCH (d {cui: $dcui}) -[r]- (s {cui: $scui})\n"
         + "SET r.confidence = r.confidence +  $c, r.upvote = r.upvote +  $u, r.downvote = r.downvote +  $d  \n"
 	)
-    void updateRelationshipAttributes(String dcui, String scui, int c, int u, int d);
+    Mono<Object> updateRelationshipAttributes(String dcui, String scui, int c, int u, int d);
 
 }
