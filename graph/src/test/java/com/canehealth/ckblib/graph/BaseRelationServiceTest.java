@@ -93,6 +93,7 @@ class BaseRelationServiceTest {
         assertEquals(signSymptomService.addRelation("C0041834", "C1041834", 0, 0, 0).block().getName(), "Pruritus");
         assertEquals(signSymptomService.addRelation("C0041834", "C1041835", 0, 0, 0).block().getName(), "Erythema");
         assertFalse(baseRelationService.getRelationsByCui("C0041834").length() < 10);
+        System.out.println(baseRelationService.addAttributes("C0041834", "C1041834",0, 3, -5).block());
     }
 
 }

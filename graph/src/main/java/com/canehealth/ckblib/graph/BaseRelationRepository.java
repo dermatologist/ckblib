@@ -16,4 +16,11 @@ public interface BaseRelationRepository extends ReactiveNeo4jRepository<BaseRela
     @Query("" + "MATCH (d {cui: $cui}) -[r]- (s) \n" + "RETURN r")
     Mono<BaseRelation> getRelationsByCui(String cui);
 
+    @Query(""
+		+ "MATCH (d {cui: $dcui}) -[r]- (s  {cui: $scui})\n"
+        + "SET r.confidence = r.confidence +  $c, r.upvote = r.upvote +  $u, r.downvote = r.downvote +  $d  \n"
+		+ "RETURN r"
+	)
+    Mono<BaseRelation> updateRelationshipAttributes(String dcui, String scui, int c, int u, int d);
+
 }
