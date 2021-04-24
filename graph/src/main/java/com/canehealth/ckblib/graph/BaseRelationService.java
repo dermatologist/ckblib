@@ -21,7 +21,15 @@ public class BaseRelationService {
         return d3Map.fetch();
     }
 
-    public Mono<BaseRelation> addAttributes(String dcui, String scui, int confidence, int upvote, int downvote) {
-            return baseRelationRepository.updateRelationshipAttributes(dcui, scui, confidence, upvote, downvote);
+    // Cannot use above method
+    // Writing in read access mode not allowed. Attempted write to internal graph 0
+    // (neo4j)
+    public String addAttributes(String dcui, String scui, int confidence, int upvote, int downvote) {
+            try {
+                baseRelationRepository.updateRelationshipAttributes(dcui, scui, confidence, upvote, downvote);
+                return "Success";
+            } catch (Exception e) {
+                return "Error" + e.getLocalizedMessage();
+            }
     }
 }
