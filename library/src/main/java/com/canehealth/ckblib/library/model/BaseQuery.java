@@ -13,6 +13,7 @@ public class BaseQuery {
     private int retmax = 10;
     private int reldate = 0;
     private int retstart = 0;
+    private String api_key = "";
 
     public String getQuery() {
         String query = "?retmode=json&db=" + db + "&term=" + term + "&retmax=" + Integer.toString(retmax);
@@ -21,6 +22,9 @@ public class BaseQuery {
         }
         if (retstart > 0) {
             query += "&retstart=" + Integer.toString(retstart);
+        }
+        if(!"".equals(api_key)){
+            query += "&api_key=" + api_key;
         }
         return query.replace(" ", "+");
     }
