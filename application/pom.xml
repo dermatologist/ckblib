@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>com.canehealth.ckblib</groupId>
 	<artifactId>ckblib-application</artifactId>
-	<version>0.10.0</version>
+	<version>0.11.0</version>
 	<name>ckblib-application</name>
 	<description>Demo project for Spring Boot</description>
 	<properties>
