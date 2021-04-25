@@ -17,6 +17,7 @@ import org.w3c.dom.NodeList;
 import org.w3c.dom.Node;
 
 import lombok.Getter;
+import lombok.Setter;
 import reactor.core.publisher.Mono;
 
 @Service
@@ -31,10 +32,12 @@ public class CkbEfetch {
 
     private WebClient webClient;
 
+    @Setter
     List<EsearchResultRoot> esearch_results = new ArrayList<EsearchResultRoot>();
 
 
     @Getter
+    @Setter
     List<String> results = new ArrayList<String>();
 
     public CkbEfetch() {

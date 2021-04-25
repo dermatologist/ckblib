@@ -27,6 +27,7 @@ public class CkbEsearch {
     private WebClient webClient;
 
     @Getter
+    @Setter
     List<EsearchResultRoot> results = new ArrayList<EsearchResultRoot>();
 
     public CkbEsearch() {
