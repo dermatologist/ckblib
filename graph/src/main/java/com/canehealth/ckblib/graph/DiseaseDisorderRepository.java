@@ -22,11 +22,20 @@ public interface DiseaseDisorderRepository extends ReactiveNeo4jRepository <Dise
 
     Mono<DiseaseDisorderMention> findOneByNameLikeIgnoreCase(String name);
 
-    @Query("" + "MATCH (d:Disease {cui: $dcui}) MATCH (dd:Disease {cui: $ddcui})\n"
-            + "MERGE (d) <-[r:ASSOCIATED_WITH]- (dd) \n"
-            + "ON CREATE SET r.confidence = 1, r.upvote = 0, r.downvote = 0 \n"
-            + "ON MATCH SET r.confidence = r.confidence +  $c, r.upvote = r.upvote +  $u, r.downvote = r.downvote +  $d  \n"
-            + "RETURN DISTINCT dd")
-    Mono<DiseaseDisorderMention> mergeDiseaseWithDisease(String dcui, String ddcui, int c, int u, int d);
+    // @Query("" + "MATCH (d:Disease {cui: $dcui}) MATCH (dd:Disease {cui: $ddcui})\n"
+    //         + "MERGE (d) <-[r:ASSOCIATED_WITH]- (dd) \n"
+    //         + "ON CREATE SET r.confidence = 1, r.upvote = 0, r.downvote = 0 \n"
+    //         + "ON MATCH SET r.confidence = r.confidence +  $c, r.upvote = r.upvote +  $u, r.downvote = r.downvote +  $d  \n"
+    //         + "RETURN DISTINCT dd")
+
+    @Query(
+    ""+"MATCH\n"
+    + "(d:Disease {cui: $dcui}),\n"
+    + "(o:Disease {cui: $ddcui})\n"
+    + "MERGE (d)-[r:ASSOCIATED_WITH]-(o)\n"
+    + "ON CREATE SET r.confidence = 1, r.upvote = 0, r.downvote = 0 \n"
+    + "ON MATCH SET r.confidence = r.confidence +  $c, r.upvote = r.upvote +  $u, r.downvote = r.downvote +  $d  \n"
+    )
+    Mono<Object> mergeDiseaseWithDisease(String dcui, String ddcui, int c, int u, int d);
 
 }
