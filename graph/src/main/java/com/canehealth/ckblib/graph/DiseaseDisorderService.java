@@ -35,7 +35,7 @@ public class DiseaseDisorderService {
         return diseaseDisorderMentionRepository.findOneByNameLikeIgnoreCase(name);
     }
 
-    public Mono<DiseaseDisorderMention> addDifferential(String dcui, String ddcui, int confidence, int upvote, int downvote) {
+    public Mono<Object> addDifferential(String dcui, String ddcui, int confidence, int upvote, int downvote) {
         return diseaseDisorderMentionRepository.mergeDiseaseWithDisease(dcui, ddcui, confidence, upvote, downvote);
     }
 
