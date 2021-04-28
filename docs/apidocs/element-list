@@ -1,0 +1,8 @@
+com.canehealth.ckblib.application
+com.canehealth.ckblib.graph
+com.canehealth.ckblib.graph.model
+com.canehealth.ckblib.library.model
+com.canehealth.ckblib.library.service
+com.canehealth.ckblib.library.util
+com.canehealth.ckblib.qtakes.model
+com.canehealth.ckblib.qtakes.service

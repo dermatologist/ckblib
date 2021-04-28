@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>com.canehealth.ckblib</groupId>
 	<artifactId>library</artifactId>
-	<version>0.11.0</version>
+	<version>0.12.0</version>
 	<name>ckblib-library</name>
 	<description>Demo project for Spring Boot</description>
 
@@ -39,5 +39,17 @@
 			<scope>provided</scope>
 		</dependency>
 	</dependencies>
+
+	<build>
+        <plugins>
+            <!-- javadocs -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-site-plugin</artifactId>
+                <version>3.9.1</version>
+            </plugin>
+        </plugins>
+	</build>
+
 
 </project>

@@ -35,6 +35,10 @@ public class QtakesService {
         this.qtakesUrl = qtakesUrl;
     }
 
+    public void clearResults() {
+        this.results = new ArrayList<String>();
+    }
+
     public Mono<String> post(String queryString) {
         Mono<String> qtakesRoot = webClient.post().uri("/analyze")
                 // .header(HttpHeaders.CONTENT_TYPE, MediaType.TEXT_PLAIN)

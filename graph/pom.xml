@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>com.canehealth.ckblib</groupId>
 	<artifactId>graph</artifactId>
-	<version>0.11.0</version>
+	<version>0.12.0</version>
 	<name>ckblib-graph</name>
 	<description>Demo project for Spring Boot</description>
 
@@ -44,7 +44,7 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-rest</artifactId>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
@@ -104,5 +104,14 @@
 
 	</dependencies>
 
-
+	<build>
+        <plugins>
+            <!-- javadocs -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-site-plugin</artifactId>
+                <version>3.9.1</version>
+            </plugin>
+        </plugins>
+	</build>
 </project>
