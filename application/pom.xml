@@ -43,7 +43,7 @@
 			<version>${lombok.version}</version>
 			<scope>provided</scope>
 		</dependency>
-		
+
 		<!-- https://stackoverflow.com/questions/62006284/noclassdeffounderror-org-w3c-dom-ls-documentls-issue-occurring-only-on-deploy -->
 		<dependency>
 			<groupId>xerces</groupId>
@@ -64,6 +64,12 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
+			            <!-- javadocs -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-site-plugin</artifactId>
+                <version>3.9.1</version>
+            </plugin>
 		</plugins>
 	</build>
 
