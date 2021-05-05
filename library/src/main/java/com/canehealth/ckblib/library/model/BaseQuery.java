@@ -30,7 +30,7 @@ public class BaseQuery {
     }
 
     public String getFetchQuery(String ids) {
-        String query = "?retmode=xml&rettype=abstract&db=" + db + "&id=" + ids;
+        String query = "?retmode=xml&rettype=abstract&db=" + db + "&id=" + ids + "&api_key=" + api_key;
         return query.replace(" ", "+");
     }
 }
