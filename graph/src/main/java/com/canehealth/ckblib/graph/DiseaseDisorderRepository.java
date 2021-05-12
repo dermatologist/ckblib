@@ -14,19 +14,11 @@ public interface DiseaseDisorderRepository extends ReactiveNeo4jRepository <Dise
 
     Flux<DiseaseDisorderMention> findAll();
 
-    // Mono<DiseaseDisorderMention> findById(String cui);
-
     Mono<DiseaseDisorderMention> findOneByCui(String cui);
 
     Flux<DiseaseDisorderMention> findAllByNameLikeIgnoreCase(String name);
 
     Mono<DiseaseDisorderMention> findOneByNameLikeIgnoreCase(String name);
-
-    // @Query("" + "MATCH (d:Disease {cui: $dcui}) MATCH (dd:Disease {cui: $ddcui})\n"
-    //         + "MERGE (d) <-[r:ASSOCIATED_WITH]- (dd) \n"
-    //         + "ON CREATE SET r.confidence = 1, r.upvote = 0, r.downvote = 0 \n"
-    //         + "ON MATCH SET r.confidence = r.confidence +  $c, r.upvote = r.upvote +  $u, r.downvote = r.downvote +  $d  \n"
-    //         + "RETURN DISTINCT dd")
 
     @Query(
     ""+"MATCH\n"
