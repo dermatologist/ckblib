@@ -35,7 +35,7 @@ public class AnatomicalSiteService {
      * @since 0.14.0
      * @return All anatomy nodes in the graph
     */
-    public Flux<DiseaseDisorderMention> getAllAnatomies(){
+    public Flux<AnatomicalSiteMention> getAllAnatomies(){
         return anatomicalSiteMentionRepository.findAll();
     }
 
