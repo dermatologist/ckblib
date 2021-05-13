@@ -2,6 +2,7 @@ package com.canehealth.ckblib.graph;
 
 import com.canehealth.ckblib.graph.model.DiseaseDisorderMention;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
 import org.junit.jupiter.api.AfterAll;
@@ -112,6 +113,8 @@ class DiseaseDisorderServiceTest {
         // System.out.println(diseaseDisorderService.addDifferential("C0041834", "C0041835", 0, 0, 0).block());
         // assertEquals(diseaseDisorderService.addDifferential("C0041834", "C0041835", 0, 0, 0).block().getName(), "Lichen Planus");
         // assertThat(diseaseDisorderService.getDiseasesByName("psoriasis").next().block().getName()).hasSize(3).contains("The Matrix");
+        diseaseDisorderService.deleteDiseaseByCui("C0041834");
+        assertNotNull(diseaseDisorderService.getAllDiseases().blockLast());
     }
     // tag::test-harness-example-option3[]
 

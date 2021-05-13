@@ -5,5 +5,9 @@
     ],
     "licenser.license": "MPLv2",
     "licenser.author": "Bell Eapen",
-    "licenser.projectName": "CKBLIB"
+    "licenser.projectName": "CKBLIB",
+    "licenser.useSingleLineStyle": false,
+    "java.format.settings.url": "https://raw.githubusercontent.com/google/styleguide/gh-pages/eclipse-java-google-style.xml",
+    "editor.formatOnSave": true,
+    "editor.formatOnPaste": true,
 }
