@@ -8,9 +8,9 @@
                  \/        \/        \/
 </pre>
 ![omopfhirmap](https://forthebadge.com/images/badges/made-with-java.svg)
-![GitHub tag (latest by date)](https://img.shields.io/github/v/tag/E-Health/omopfhirmap)
+![GitHub tag (latest by date)](https://img.shields.io/github/v/tag/dermatologist/ckblib)
 
-[![ckblib](https://raw.github.com/dermatologist/ckblib/develop/notes/dermml.jpg)](https://nuchange.ca)
+[![ckblib](https://github.com/dermatologist/ckblib/blob/develop/notes/dermml.jpg)](https://nuchange.ca)
 
 ## About
 
