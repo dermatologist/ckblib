@@ -28,7 +28,7 @@ public class AnatomicalSiteService {
     Driver driver;
 
     /**
-     * Returns all diseases in the graph
+     * Returns all anatomical sites in the graph
      *
      * @see com.canehealth.ckblib.graph.AnatomicalSiteRepository
      * @author beapen
