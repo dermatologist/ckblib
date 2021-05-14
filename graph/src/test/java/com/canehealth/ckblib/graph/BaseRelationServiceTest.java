@@ -101,7 +101,6 @@ class BaseRelationServiceTest {
 
         String lift = baseRelationService.getLift("C0041834");
         assertFalse(lift.length()<10);
-
     }
 
 }
