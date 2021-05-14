@@ -99,6 +99,9 @@ class BaseRelationServiceTest {
         String after = baseRelationService.getRelationsByCui("C0041834");
         assertNotEquals(before, after);
 
+        String lift = baseRelationService.getLift("C0041834");
+        assertFalse(lift.length()<10);
+
     }
 
 }

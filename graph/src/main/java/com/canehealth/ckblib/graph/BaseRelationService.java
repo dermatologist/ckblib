@@ -36,4 +36,14 @@ public class BaseRelationService {
         return baseRelationRepository.updateRelationshipAttributes(dcui, scui, confidence, upvote, downvote);
 
     }
+
+
+    public String getLift(String cui) {
+        String query = ""
+		+ "MATCH (d {cui: '"+ cui + "'}) -[r]- (s)\n"
+        + "RETURN sum(r.upvote) - sum(r.downvote) as lift, d.name as name, d.cui as cui \n";
+        D3Map d3Map = new D3Map.Builder(driver).withQuery(query).build();
+        return d3Map.fetch();
+    }
+
 }
