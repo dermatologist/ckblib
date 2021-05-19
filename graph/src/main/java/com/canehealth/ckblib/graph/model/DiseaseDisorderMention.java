@@ -4,7 +4,7 @@ import static org.springframework.data.neo4j.core.schema.Relationship.Direction.
 
 import java.util.ArrayList;
 import java.util.List;
-
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.data.annotation.Version;
 import org.springframework.data.neo4j.core.schema.Id;
 import org.springframework.data.neo4j.core.schema.Node;
@@ -30,6 +30,7 @@ public class DiseaseDisorderMention {
     private List<ConceptAttributes> attributes = new ArrayList<>();
 
     // target is in differential diagnosis
+    @JsonIgnore
     @Relationship(type = "ASSOCIATED_WITH", direction = INCOMING)
     private List<BaseRelation> differentials = new ArrayList<>();
 

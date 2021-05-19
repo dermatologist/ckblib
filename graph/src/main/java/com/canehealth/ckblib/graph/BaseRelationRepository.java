@@ -27,9 +27,4 @@ public interface BaseRelationRepository extends ReactiveNeo4jRepository<BaseRela
 	)
     Mono<Object> updateRelationshipAttributes(String dcui, String scui, int c, int u, int d);
 
-    @Query(""
-		+ "MATCH (d {cui: $cui}) -[r]- (s)\n"
-        + "RETURN sum(r.upvote) - sum(r.downvote) as lift, d.name as name, d.cui as cui \n"
-	)
-    Mono<Object> getLift(String cui);
 }
