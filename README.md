@@ -23,6 +23,7 @@ Providing clinical decision support requires some formal way of representing cli
 
 * [Read how to install mvn packages from GitHub](https://docs.github.com/en/packages/guides/configuring-apache-maven-for-use-with-github-packages#installing-a-package)
 * Include dependencies in pom.xml
+* See an application [![forthebadge](https://forthebadge.com/images/badges/built-with-love.svg) using ckblib: [GulfDoctor](https://gulfdoctor.net)
 
 ```
 <dependency>
@@ -51,4 +52,5 @@ Providing clinical decision support requires some formal way of representing cli
 * [Bell Eapen](https://nuchange.ca) | [contact](https://nuchange.ca/contact) | [![Twitter Follow](https://img.shields.io/twitter/follow/beapen?style=social)](https://twitter.com/beapen)
 
 ## Contributors
-* PR welcome. Please see CONTRIBUTING.md for details.
+* PR welcome.
+* Please see CONTRIBUTING.md for details.
