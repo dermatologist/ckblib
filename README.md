@@ -7,9 +7,9 @@
           \______  /____|__ \ |______  /          /_/
                  \/        \/        \/
 </pre>
-![omopfhirmap](https://forthebadge.com/images/badges/made-with-java.svg)
+[![ckblib](https://forthebadge.com/images/badges/made-with-java.svg)](https://dermatologist.co.in)
 
-[![ckblib](https://github.com/dermatologist/ckblib/blob/develop/notes/dermml.jpg)](https://nuchange.ca)
+[![ckblib](https://github.com/dermatologist/ckblib/blob/develop/notes/dermml.jpg)](https://gulfdoctor.net)
 
 ## About
 
@@ -23,7 +23,7 @@ Providing clinical decision support requires some formal way of representing cli
 
 * [Read how to install mvn packages from GitHub](https://docs.github.com/en/packages/guides/configuring-apache-maven-for-use-with-github-packages#installing-a-package)
 * Include dependencies in pom.xml
-* See an application [![forthebadge](https://forthebadge.com/images/badges/built-with-love.svg) using ckblib: [GulfDoctor](https://gulfdoctor.net)
+* See an application [![forthebadge](https://forthebadge.com/images/badges/built-with-love.svg)](https://gulfdoctor.net) using ckblib: [GulfDoctor](https://gulfdoctor.net)
 
 ```
 <dependency>
