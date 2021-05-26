@@ -45,7 +45,7 @@ Providing clinical decision support requires some formal way of representing cli
 </dependency>
 ```
 * Read [javadoc](https://dermatologist.github.io/ckblib/index.html). Documentation is WIP.
-* Check the application module for an example end-to-end use.
+* Check the [application module](https://github.com/dermatologist/ckblib/blob/develop/application/src/main/java/com/canehealth/ckblib/application/DemoApplication.java) for an example end-to-end use.
 
 ## Author
 
