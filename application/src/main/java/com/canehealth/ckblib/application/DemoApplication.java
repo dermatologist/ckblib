@@ -108,8 +108,7 @@ public class DemoApplication implements CommandLineRunner {
 
 			// Check and adjust for total count of articles
 			ckbEsearch.setBaseQuery(baseQuery);
-			ckbEsearch.get();
-			TimeUnit.SECONDS.sleep(1);
+			ckbEsearch.get().block();
 			EsearchResultRoot esearchResultRoot = ckbEsearch.getResults().get(0);
 			LOG.info("Count: " + esearchResultRoot.esearchresult.count);
 			int ct = Integer.parseInt(esearchResultRoot.esearchresult.count);
@@ -121,8 +120,7 @@ public class DemoApplication implements CommandLineRunner {
 
 			ckbEfetch.setBaseQuery(baseQuery);
 			TimeUnit.SECONDS.sleep(3);
-			ckbEfetch.get();
-			TimeUnit.SECONDS.sleep(5);
+			ckbEfetch.get().block();
 
 			// Fails if disease not known, Try again after adding concepts
 			try {
@@ -136,6 +134,7 @@ public class DemoApplication implements CommandLineRunner {
 			List<String> pmids = ckbEfetch.getPath("//PMID");
 			List<String> titles = ckbEfetch.getPath("//ArticleTitle");
 
+			// Visit https://github.com/dermatologist/quick-ctakes for details on using QTakes
 			qtakesService.setQtakesUrl("http://127.0.0.1:8093");
 
 			for (int i = 0; i < abstracts.size(); i++) {
@@ -275,28 +274,11 @@ public class DemoApplication implements CommandLineRunner {
 					procedureService.addRelation(mainCui, cui, polarity, 0, 0).block();
 					journalArticleService.addEvidence(cui, pmid).block();
 				}
-				//System.out.println(r);
 			}
 
 		} catch (Exception e) {
 			LOG.error(e.getLocalizedMessage());
 		}
-		// String myPublications = ckbEfetch.getPath("//Abstract").get(0);
-		// String myPMID = ckbEfetch.getPath("//PMID").get(0);
-		// System.out.print(myPublications);
-		// System.out.print(myPMID);
-
-		// qtakesService.setQtakesUrl("http://127.0.0.1:8093");
-		// qtakesService.post(myPublications);
-		// TimeUnit.SECONDS.sleep(3);
-		// QtakesRoot r = qtakesService.getQtakesResults();
-		// System.out.print(r.toString());
-		// String s = ckbEfetch.getChain(baseQuery).block();
-		// List<String> abstracts = ckbEfetch.getPathFromString("//Abstract", s);
-		// for (String abs : abstracts){
-		// 	System.out.println(abs);
-		// }
-
 	}
 
 }
