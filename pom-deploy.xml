@@ -10,6 +10,7 @@
     <modules>
         <module>qtakes</module>
         <module>library</module>
+        <module>umls</module>
         <module>graph</module>
     </modules>
 
