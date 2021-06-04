@@ -8,24 +8,22 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.web.reactive.function.BodyInserters;
 import org.springframework.web.reactive.function.client.WebClient;
-
 import reactor.core.publisher.Mono;
 
 public class RestTicketService {
     private String tgt = null;
-    private String st;
     private String apikey;
-    private String service = "http%3A%2F%2Fumlsks.nlm.nih.gov";
+    private String service = "http://umlsks.nlm.nih.gov";
     Timestamp timestamp;
-    private WebClient umlsAuthClient;
 
     public RestTicketService(String apikey){
         this.apikey = apikey;
+        processTgT(getTgtAsync().block()); // Get a TGT on creation
     }
 
     public Mono<String> getTgtAsync() {
-        this.umlsAuthClient = WebClient.create(CkblibConstants.UMLS_AUTH_URL);
-        Mono<String> _tgt = this.umlsAuthClient.post().uri("/cas/v1/tickets")
+        WebClient client = WebClient.create(CkblibConstants.UMLS_AUTH_URL);
+        Mono<String> _tgt = client.post().uri("/cas/v1/tickets")
                 .header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_FORM_URLENCODED_VALUE)
                 .body(BodyInserters.fromFormData("apikey", this.apikey))
                 .retrieve()
@@ -33,6 +31,25 @@ public class RestTicketService {
 
         _tgt.subscribe(response -> processTgT(response));
         return _tgt;
+    }
+
+    public Mono<String> getStAsync() {
+        if(this.getElapsedTime() > 6) // if token is older than 6 hours (valid till 8 hrs), get a new one
+            getTgtAsync();
+        WebClient client = WebClient.create(this.tgt);
+        Mono<String> _st = client.post()
+                .header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_FORM_URLENCODED_VALUE)
+                .body(BodyInserters.fromFormData("service", this.service)).retrieve()
+                .bodyToMono(String.class);
+        return _st;
+    }
+
+    public WebClient webClient(){
+        WebClient client = WebClient.builder().baseUrl("https://uts-ws.nlm.nih.gov/rest")
+                .defaultHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
+                // .defaultUriVariables(Collections.singletonMap("ticket", getStAsync().block()))
+                .build();
+        return client;
     }
 
     private void processTgT(String response){
@@ -50,8 +67,8 @@ public class RestTicketService {
         return hours;
     }
 
-    public String getTgt(){
-        return this.tgt;
+    public String getSt(){
+        return getStAsync().block();
     }
 
 }

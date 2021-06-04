@@ -18,3 +18,14 @@ return client.post()
 
 * https://howtodoinjava.com/spring-webflux/webclient-get-post-example/
 * https://www.baeldung.com/spring-5-webclient
+
+* https://documentation.uts.nlm.nih.gov/rest/home.html
+
+* https://www.baeldung.com/webflux-webclient-parameters
+```
+this.webClient.get()
+  .uri(uriBuilder - > uriBuilder
+    .path("/products/{id}/attributes/{attributeId}")
+    .build(2, 13))
+  .retrieve();
+```
