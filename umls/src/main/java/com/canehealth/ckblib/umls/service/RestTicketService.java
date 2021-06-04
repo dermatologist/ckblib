@@ -3,10 +3,10 @@ package com.canehealth.ckblib.umls.service;
 import java.sql.Timestamp;
 import java.util.Date;
 import com.canehealth.ckblib.library.util.CkblibConstants;
-import com.canehealth.ckblib.umls.model.PostModel;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
+import org.springframework.web.reactive.function.BodyInserters;
 import org.springframework.web.reactive.function.client.WebClient;
 
 import reactor.core.publisher.Mono;
@@ -14,20 +14,20 @@ import reactor.core.publisher.Mono;
 public class RestTicketService {
     private String tgt = null;
     private String st;
-    private PostModel postModel = new PostModel();
+    private String apikey;
+    private String service = "http%3A%2F%2Fumlsks.nlm.nih.gov";
     Timestamp timestamp;
-    private WebClient umlsServiceClient;
     private WebClient umlsAuthClient;
 
     public RestTicketService(String apikey){
-        this.postModel.setApikey(apikey);
-        this.umlsAuthClient = WebClient.create(CkblibConstants.UMLS_AUTH_URL);
-        this.umlsServiceClient = WebClient.create(CkblibConstants.UMLS_SERVICE_URL);
+        this.apikey = apikey;
     }
 
-    public Mono<String> getTgt() {
+    public Mono<String> getTgtAsync() {
+        this.umlsAuthClient = WebClient.create(CkblibConstants.UMLS_AUTH_URL);
         Mono<String> _tgt = this.umlsAuthClient.post().uri("/cas/v1/tickets")
-                .body(Mono.just(this.postModel), PostModel.class)
+                .header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_FORM_URLENCODED_VALUE)
+                .body(BodyInserters.fromFormData("apikey", this.apikey))
                 .retrieve()
                 .bodyToMono(String.class);
 
@@ -48,6 +48,10 @@ public class RestTicketService {
         int seconds = (int) milliseconds / 1000;
         int hours = seconds / 3600;
         return hours;
+    }
+
+    public String getTgt(){
+        return this.tgt;
     }
 
 }
