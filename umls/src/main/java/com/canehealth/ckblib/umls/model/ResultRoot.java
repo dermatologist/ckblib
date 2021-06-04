@@ -1,5 +1,6 @@
 package com.canehealth.ckblib.umls.model;
 
+import java.util.HashMap;
 import java.util.List;
 import lombok.Data;
 
@@ -41,9 +42,9 @@ public class ResultRoot {
 
     private String defaultPreferredAtom;
 
-    private List<SubsetMemberships> subsetMemberships;
-
-    private List<ContentViewMemberships> contentViewMemberships;
+    private List<HashMap<String, Object>> subsetMemberships;
+    
+    private List<HashMap<String, Object>> contentViewMemberships;
 
     private String name;
 
