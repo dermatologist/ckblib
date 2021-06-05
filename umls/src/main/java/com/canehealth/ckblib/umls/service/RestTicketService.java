@@ -1,3 +1,10 @@
+/**
+ * Copyright (c) 2021 Bell Eapen
+ *
+ * This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0. If a copy of
+ * the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
+ */
+
 package com.canehealth.ckblib.umls.service;
 
 import java.sql.Timestamp;
@@ -16,6 +23,10 @@ public class RestTicketService {
     private String service = "http://umlsks.nlm.nih.gov";
     Timestamp timestamp;
 
+    /** Constructor sets the TGT token
+     * @since 0.16.0
+     * @param apikey
+     */
     public RestTicketService(String apikey){
         this.apikey = apikey;
         processTgT(getTgtAsync().block()); // Get a TGT on creation
@@ -44,6 +55,10 @@ public class RestTicketService {
         return _st;
     }
 
+    /** Returns WebClient with the default baseUrl and headers
+     * @since 0.16.0
+     * @return client
+     */
     public WebClient webClient(){
         WebClient client = WebClient.builder().baseUrl("https://uts-ws.nlm.nih.gov/rest")
                 .defaultHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
@@ -67,6 +82,10 @@ public class RestTicketService {
         return hours;
     }
 
+    /**
+     * @since 0.16.0
+     * @return St token
+     */
     public String getSt(){
         return getStAsync().block();
     }
