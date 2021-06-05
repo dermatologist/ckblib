@@ -5,12 +5,13 @@
 
     <groupId>com.canehealth.ckblib</groupId>
     <artifactId>cklib-core</artifactId>
-    <version>0.15.0</version>
+    <version>0.16.0</version>
     <packaging>pom</packaging>
 
     <modules>
         <module>library</module>
         <module>qtakes</module>
+        <module>umls</module>
         <module>graph</module>
         <module>application</module>
     </modules>

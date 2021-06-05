@@ -1,0 +1,40 @@
+{
+    "name": "ckblib",
+    "build": {
+        "dockerfile": "Dockerfile",
+    },
+    "containerEnv": {
+        "GITHUB_TOKEN": "${localEnv:GITHUB_TOKEN}",
+        "GITHUB_USER": "${localEnv:GITHUB_USER}"
+    },
+    // Comment out the next line to run as root instead. Linux users,
+    // update Dockerfile with your user's UID/GID if not 1000.
+    // "runArgs": ["-u", "vscode"],
+    // In the container
+    // git clone into /workspaces by git clone https://github.com/dermatologist/dermml.git
+    // Increase password cache git config --global credential.helper 'cache --timeout=50600'
+    // "workspaceFolder": "/workspaces/dermml",
+    // "workspaceMount": "src=dermml,dst=/workspaces/dermml,type=volume,volume-driver=local",
+    // https://stackoverflow.com/questions/38520638/how-to-set-spring-profile-from-system-variable
+    // "runArgs": [ "-e", "SPRING_PROFILES_ACTIVE=dev"],
+    // Use 'settings' to set *default* container specific settings.json values on container create.
+    // You can edit these settings after create using File > Preferences > Settings > Remote.
+    "settings": {
+        "terminal.integrated.shell.linux": "/bin/bash"
+    },
+    // Uncomment the next line if you want to publish any ports.
+    // "appPort": [],
+    //"appPort": "8093:8080",
+    // Uncomment the next line to run commands after the container is created.
+    // "postCreateCommand": "java -version",
+    "shutdownAction": "none", // or stopContainer
+    "extensions": [
+        "vscjava.vscode-java-pack",
+        "redhat.vscode-xml",
+        "eamodio.gitlens",
+        "mhutchie.git-graph",
+        "humao.rest-client",
+        "Trinity.trinity",
+        "tht13.html-preview-vscode"
+    ]
+}
