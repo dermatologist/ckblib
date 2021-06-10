@@ -18,7 +18,7 @@ import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Mono;
 
 public class RestTicketService {
-    private String tgt = null;
+    private String tgt = "";
     private String apikey;
     private String service = "http://umlsks.nlm.nih.gov";
     Timestamp timestamp;
@@ -45,7 +45,7 @@ public class RestTicketService {
     }
 
     public Mono<String> getStAsync() {
-        if(this.getElapsedTime() > 6 || this.tgt == null) // if token is older than 6 hours (valid till 8 hrs), get a new one
+        if(this.getElapsedTime() > 6 || "".equals(this.tgt)) // if token is older than 6 hours (valid till 8 hrs), get a new one
             getTgtAsync().block();
         WebClient client = WebClient.create(this.tgt);
         Mono<String> _st = client.post()
