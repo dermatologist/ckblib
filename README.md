@@ -23,6 +23,7 @@ Providing clinical decision support requires some formal way of representing cli
 ## How to use
 
 * [Read how to install mvn packages from GitHub](https://docs.github.com/en/packages/guides/configuring-apache-maven-for-use-with-github-packages#installing-a-package)
+* **This will be available on GitHub packages soon. In the mean time 'mvn clean install' locally**
 * Include dependencies in pom.xml
 * See an application [![forthebadge](https://forthebadge.com/images/badges/built-with-love.svg)](https://gulfdoctor.net) using ckblib: [GulfDoctor](https://gulfdoctor.net)
 
