@@ -9,25 +9,26 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
+    timeout-minutes: 10
 
     steps:
     - name: Checkout Latest Commit
       uses: actions/checkout@v2
 
     - name: Bump Version main
-      id: bump
-      uses: E-Health/maven-version-bump-action@v4.1
+      id: bump-main
+      uses: E-Health/maven-version-bump-action@v4.3
       with:
         github-token: ${{ secrets.github_token }}
         version-prefix: pre-
 
     - name: Bump Version deploy
-      id: bump
-      uses: E-Health/maven-version-bump-action@v4.1
+      id: bump-deploy
+      uses: E-Health/maven-version-bump-action@v4.3
       with:
         github-token: ${{ secrets.github_token }}
         pom-path: ./pom-deploy.xml
-        version-prefix: pre-
+        version-prefix: dep-
 
     - name: Print Version
       run: "echo 'New Version: ${{steps.bump.outputs.version}}'"
