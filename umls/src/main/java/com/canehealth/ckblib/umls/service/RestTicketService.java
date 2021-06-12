@@ -45,8 +45,8 @@ public class RestTicketService {
     }
 
     public Mono<String> getStAsync() {
-        if(this.getElapsedTime() > 1 || "".equals(this.tgt)) // if token is older (valid till 8 hrs according to docs), get a new one
-            getTgtAsync().block();
+        if(this.getElapsedTime() > 7 || "".equals(this.tgt)) // if token is older (valid till 8 hrs according to docs), get a new one
+            getTgtAsync();
         WebClient client = WebClient.create(this.tgt);
         Mono<String> _st = client.post()
                 .header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_FORM_URLENCODED_VALUE)
@@ -87,7 +87,17 @@ public class RestTicketService {
      * @return St token
      */
     public String getSt(){
-        return getStAsync().block();
+
+        try {
+            return getStAsync().block();
+
+            // Raises an exception if TGT is not valis
+        } catch (Exception e) {
+            getTgtAsync().block();
+            return getStAsync().block();
+        }
+
+
     }
 
 }
