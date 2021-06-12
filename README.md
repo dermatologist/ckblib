@@ -17,7 +17,7 @@ Providing clinical decision support requires some formal way of representing cli
 
 * The 'library' module wraps the NCBI's E-Utils API for published article abstracts.
 * The 'qtakes' module provides a programmable interface to [quick-ctakes](https://github.com/dermatologist/quick-ctakes) or the quarkus based apache ctakes, a fast clinical text annotation engine.
-* The 'umls' module is a wrapper for UMLS REST API managing the TGT and ST tokens using the reactive WebClient. See [RestTicketServiceTest.java](https://github.com/dermatologist/ckblib/blob/develop/umls/src/test/java/com/canehealth/ckblib/umls/service/RestTicketServiceTest.java) for example use. A list of available [UMLS REST APIs are here.](https://documentation.uts.nlm.nih.gov/rest/home.html)
+* The 'umls' module is a wrapper for UMLS REST API managing the TGT and ST tokens using the reactive WebClient. See [RestTicketServiceTest.java](https://github.com/dermatologist/ckblib/blob/develop/umls/src/test/java/com/canehealth/ckblib/umls/service/RestTicketServiceTest.java) for example use. A list of available [UMLS REST APIs are here.](https://documentation.uts.nlm.nih.gov/rest/home.html). My Javascript library for similar purpose [(umlsjs) is here.](https://github.com/dermatologist/umlsjs)
 * Finally, the graph module provides the Neo4J models, repositories and services for abstracting as a knowledge graph.
 
 ## How to use

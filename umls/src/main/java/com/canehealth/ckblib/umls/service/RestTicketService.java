@@ -45,7 +45,7 @@ public class RestTicketService {
     }
 
     public Mono<String> getStAsync() {
-        if(this.getElapsedTime() > 6 || "".equals(this.tgt)) // if token is older than 6 hours (valid till 8 hrs), get a new one
+        if(this.getElapsedTime() > 1 || "".equals(this.tgt)) // if token is older (valid till 8 hrs according to docs), get a new one
             getTgtAsync().block();
         WebClient client = WebClient.create(this.tgt);
         Mono<String> _st = client.post()
