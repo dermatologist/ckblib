@@ -1,39 +1,88 @@
 # Changelog
 
+## [dep-0.16.2](https://github.com/dermatologist/ckblib/tree/dep-0.16.2) (2021-06-24)
 
-## Features
+[Full Changelog](https://github.com/dermatologist/ckblib/compare/pre-0.16.2...dep-0.16.2)
 
-* feat: get all anatomy
-* feat: github actions: create changelog on bump
-* feat: tgt in progress
+## [pre-0.16.2](https://github.com/dermatologist/ckblib/tree/pre-0.16.2) (2021-06-24)
 
-## Bugs
+[Full Changelog](https://github.com/dermatologist/ckblib/compare/0.16.1...pre-0.16.2)
 
-* fix bump.yml
-* fix d3 function in all services
-* fix folder names
-* fix models
-* fix relationship name
-* fix: AnatomicalSiteMention
-* fix: github.repository in bump.yml
-* fix: links in README
-* fix: loop in WeightAttributes
-* fix: typo in welcome message
+**Merged pull requests:**
 
-## Other
+- Bump neo4j-harness from 4.2.4 to 4.3.1 [\#11](https://github.com/dermatologist/ckblib/pull/11) ([dependabot[bot]](https://github.com/apps/dependabot))
+- Bump maven-javadoc-plugin from 3.2.0 to 3.3.0 [\#10](https://github.com/dermatologist/ckblib/pull/10) ([dependabot[bot]](https://github.com/apps/dependabot))
+- Bump xercesImpl from 2.12.0 to 2.12.1 [\#8](https://github.com/dermatologist/ckblib/pull/8) ([dependabot[bot]](https://github.com/apps/dependabot))
+- Bump spring-boot-starter-parent from 2.4.3 to 2.5.1 [\#7](https://github.com/dermatologist/ckblib/pull/7) ([dependabot[bot]](https://github.com/apps/dependabot))
+- Bump maven-project-info-reports-plugin from 3.1.0 to 3.1.2 [\#6](https://github.com/dermatologist/ckblib/pull/6) ([dependabot[bot]](https://github.com/apps/dependabot))
+- Bump gson from 2.8.6 to 2.8.7 [\#5](https://github.com/dermatologist/ckblib/pull/5) ([dependabot[bot]](https://github.com/apps/dependabot))
+- Bump actions/setup-java from 1 to 2.1.0 [\#4](https://github.com/dermatologist/ckblib/pull/4) ([dependabot[bot]](https://github.com/apps/dependabot))
+- Bump neo4j-java-driver-test-harness-spring-boot-autoconfigure from 4.1.1.1 to 4.2.7.0 [\#3](https://github.com/dermatologist/ckblib/pull/3) ([dependabot[bot]](https://github.com/apps/dependabot))
 
-* refactor HELP_STRING
-* refactor and upvote/downvote
-* refactor demo application
-* refactor library folder
-* refactor models
-* refactor readme
-* refactor remove autowired
-* refactor: remove unused imports
-* refactor: remove unwanted models
-* refactor: unwanted imports
-* tests: cui test
+## [0.16.1](https://github.com/dermatologist/ckblib/tree/0.16.1) (2021-06-10)
+
+[Full Changelog](https://github.com/dermatologist/ckblib/compare/dep-0.16.1...0.16.1)
+
+## [dep-0.16.1](https://github.com/dermatologist/ckblib/tree/dep-0.16.1) (2021-06-10)
+
+[Full Changelog](https://github.com/dermatologist/ckblib/compare/pre-0.16.1...dep-0.16.1)
+
+## [pre-0.16.1](https://github.com/dermatologist/ckblib/tree/pre-0.16.1) (2021-06-10)
+
+[Full Changelog](https://github.com/dermatologist/ckblib/compare/0.16.0...pre-0.16.1)
+
+**Merged pull requests:**
+
+- Version bump pr 1 [\#1](https://github.com/dermatologist/ckblib/pull/1) ([dermatologist](https://github.com/dermatologist))
+
+## [0.16.0](https://github.com/dermatologist/ckblib/tree/0.16.0) (2021-06-05)
+
+[Full Changelog](https://github.com/dermatologist/ckblib/compare/0.15.0...0.16.0)
+
+## [0.15.0](https://github.com/dermatologist/ckblib/tree/0.15.0) (2021-05-19)
+
+[Full Changelog](https://github.com/dermatologist/ckblib/compare/0.14.0...0.15.0)
+
+## [0.14.0](https://github.com/dermatologist/ckblib/tree/0.14.0) (2021-05-13)
+
+[Full Changelog](https://github.com/dermatologist/ckblib/compare/0.13.0...0.14.0)
+
+## [0.13.0](https://github.com/dermatologist/ckblib/tree/0.13.0) (2021-05-05)
+
+[Full Changelog](https://github.com/dermatologist/ckblib/compare/0.12.0...0.13.0)
+
+## [0.12.0](https://github.com/dermatologist/ckblib/tree/0.12.0) (2021-04-28)
+
+[Full Changelog](https://github.com/dermatologist/ckblib/compare/0.11.0...0.12.0)
+
+## [0.11.0](https://github.com/dermatologist/ckblib/tree/0.11.0) (2021-04-26)
+
+[Full Changelog](https://github.com/dermatologist/ckblib/compare/0.9.0...0.11.0)
+
+## [0.9.0](https://github.com/dermatologist/ckblib/tree/0.9.0) (2021-04-21)
+
+[Full Changelog](https://github.com/dermatologist/ckblib/compare/0.2.0...0.9.0)
+
+## [0.2.0](https://github.com/dermatologist/ckblib/tree/0.2.0) (2021-04-14)
+
+[Full Changelog](https://github.com/dermatologist/ckblib/compare/0.1.0.3...0.2.0)
+
+## [0.1.0.3](https://github.com/dermatologist/ckblib/tree/0.1.0.3) (2021-04-14)
+
+[Full Changelog](https://github.com/dermatologist/ckblib/compare/0.1.0.2...0.1.0.3)
+
+## [0.1.0.2](https://github.com/dermatologist/ckblib/tree/0.1.0.2) (2021-04-14)
+
+[Full Changelog](https://github.com/dermatologist/ckblib/compare/0.1.0.1...0.1.0.2)
+
+## [0.1.0.1](https://github.com/dermatologist/ckblib/tree/0.1.0.1) (2021-04-14)
+
+[Full Changelog](https://github.com/dermatologist/ckblib/compare/0.1.0...0.1.0.1)
+
+## [0.1.0](https://github.com/dermatologist/ckblib/tree/0.1.0) (2021-04-14)
+
+[Full Changelog](https://github.com/dermatologist/ckblib/compare/ac3a251c60e22f604909d50059bbfbafe192fbce...0.1.0)
 
 
 
-> Changelog generated through the projects' GitHub Actions.
+\* *This Changelog was automatically generated by [github_changelog_generator](https://github.com/github-changelog-generator/github-changelog-generator)*

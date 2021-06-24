@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>com.canehealth.ckblib</groupId>
 	<artifactId>umls</artifactId>
-	<version>0.16.2</version>
+	<version>0.16.3</version>
 	<name>ckblib-umls</name>
 	<description>Demo project for Spring Boot</description>
 
