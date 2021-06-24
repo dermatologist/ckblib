@@ -18,11 +18,15 @@ jobs:
           # Create changelog needs the entire history of the project to generate. The script handles everything else.
           fetch-depth: 0
 
-    - name: Create changelog
-      uses: heinrichreimer/github-changelog-generator-action@v2.1.1
+    - name: Generate changelog
+      id: changelog
+      uses: metcalfc/changelog-generator@v1.0.0
       with:
-        token: ${{ secrets.GITHUB_TOKEN }}
-        
+        myToken: ${{ secrets.GITHUB_TOKEN }}
+
+    - name: Get the changelog
+      run: echo "${{ steps.changelog.outputs.changelog }}" >> ./CHANGELOG.md
+
     - name: Bump Version main
       id: bump-main
       uses: E-Health/maven-version-bump-action@v4.3
