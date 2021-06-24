@@ -14,6 +14,9 @@ jobs:
     steps:
     - name: Checkout Latest Commit
       uses: actions/checkout@v2
+      with:
+          # Create changelog needs the entire history of the project to generate. The script handles everything else.
+          fetch-depth: 0
 
     - name: Bump Version main
       id: bump-main
@@ -30,5 +33,10 @@ jobs:
         pom-path: ./pom-deploy.xml
         version-prefix: dep-
 
-    - name: Print Version
-      run: "echo 'New Version: ${{steps.bump.outputs.version}}'"
+    - name: Create changelog
+      uses: srepollock/changelog-generator-action@master
+      with:
+        REPO_NAME: ${{ github.repository	}}
+        ACCESS_TOKEN: ${{secrets.GITHUB_TOKEN}}
+        PATH: '/CHANGELOG.md'
+        COMMIT_MESSAGE: 'docs(CHANGELOG): update release notes'
