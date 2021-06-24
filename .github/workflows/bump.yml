@@ -36,7 +36,7 @@ jobs:
     - name: Create changelog
       uses: srepollock/changelog-generator-action@master
       with:
-        REPO_NAME: ${{GITHUB_REPOSITORY}}
+        REPO_NAME: ${{ github.repository	}}
         ACCESS_TOKEN: ${{secrets.GITHUB_TOKEN}}
         PATH: '/CHANGELOG.md'
         COMMIT_MESSAGE: 'docs(CHANGELOG): update release notes'
