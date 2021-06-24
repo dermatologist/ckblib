@@ -7,7 +7,11 @@ updates:
     # open-pull-requests-limit: 10
     ignore:
     - dependency-name: org.mock-server:mockserver-client-java
-      versions: ["4.x", "5.x"]
+      versions:
+      - 5.11.x
+    - dependency-name: org.mock-server:mockserver-netty
+      versions:
+      - 5.11.x
 
   - package-ecosystem: "github-actions"
     directory: "/"
