@@ -7,7 +7,7 @@
 
 # https://github.com/behaviorbot/welcome
 newIssueWelcomeComment: >
-  Thank your for raising the issue. We will try and get back to you as soon as possible.
+  Thank you for raising the issue. We will try and get back to you as soon as possible.
 
   Be sure to star ✨ the repository for a priority response!
 
@@ -21,3 +21,4 @@ newPRWelcomeComment: >
 
 firstPRMergeComment: >
   Congrats on merging your first pull request! 🎉🎉🎉
+  
