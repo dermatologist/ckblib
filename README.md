@@ -13,7 +13,7 @@
 
 ## About
 
-Providing clinical decision support requires some formal way of representing clinical knowledge and complex algorithms for sophisticated inference. ckblib is a java library to facilitate knowledge extraction, annotation and representation as a Neo4J graph. These knowledge graphs can be visualized in a semantically enriched way that we call ClinGraph™ (see above). ckblib consists of four modules:
+Providing clinical decision support requires some formal way of representing clinical knowledge and complex algorithms for sophisticated inference. ckblib is a java library to facilitate knowledge extraction, annotation and representation as a Neo4J graph. These knowledge graphs can be visualized in a semantically enriched way that we call ClinGraph (see above). ckblib consists of four modules:
 
 * The 'library' module wraps the NCBI's E-Utils API for published article abstracts.
 * The 'qtakes' module provides a programmable interface to [quick-ctakes](https://github.com/dermatologist/quick-ctakes) or the quarkus based apache ctakes, a fast clinical text annotation engine.
