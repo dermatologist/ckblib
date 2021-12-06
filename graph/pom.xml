@@ -17,7 +17,7 @@
 	<properties>
 		<java.version>13</java.version>
 		<neo4j-java-driver-spring-boot-starter.version>4.2.4.0</neo4j-java-driver-spring-boot-starter.version>
-		<neo4j.version>4.3.7</neo4j.version>
+		<neo4j.version>4.4.0</neo4j.version>
 	</properties>
 
 	<dependencies>
