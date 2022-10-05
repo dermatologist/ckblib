@@ -1,7 +1,7 @@
 package com.canehealth.ckblib.umls.service;
 
-import static org.junit.Assert.assertThrows;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import com.canehealth.ckblib.umls.model.SearchRoot;
 import com.canehealth.ckblib.umls.model.SingletonRoot;
 import org.junit.jupiter.api.Test;

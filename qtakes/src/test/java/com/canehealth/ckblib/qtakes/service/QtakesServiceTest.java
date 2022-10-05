@@ -3,8 +3,8 @@ package com.canehealth.ckblib.qtakes.service;
 import java.util.concurrent.TimeUnit;
 
 import com.canehealth.ckblib.qtakes.model.QtakesRoot;
-import org.junit.After;
-import org.junit.BeforeClass;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.mockserver.client.server.MockServerClient;
 import org.mockserver.integration.ClientAndServer;
@@ -30,12 +30,12 @@ public class QtakesServiceTest {
 
     private static ClientAndServer mockServer;
 
-    @BeforeClass
+    @BeforeAll
     public static void startServer() {
         mockServer = startClientAndServer(1080);
     }
 
-    @After
+    @AfterAll
     public static void stopServer() {
         mockServer.stop();
     }
